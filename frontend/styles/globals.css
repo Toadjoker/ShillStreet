@@ -19,3 +19,8 @@ body {
   width: 350px;
   margin: auto;
 }
+
+.v_line {
+  border-left: 3px solid rgb(107 114 128);
+  height: 10px;
+}

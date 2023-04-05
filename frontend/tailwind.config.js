@@ -12,6 +12,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         logo: "url('/images/logo.gif')",
+        cloudBg: "url('/images/cloudbg.jpg')",
       },
     },
   },

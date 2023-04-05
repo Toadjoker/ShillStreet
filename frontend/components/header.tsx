@@ -23,7 +23,7 @@ const Header = () => {
         <span className="v_line" />
         <Link
           href="/connect"
-          className="bg-blue-500 p-2 rounded-full hover:bg-blue-400 hover:shadow-2xl"
+          className="bg-blue-500 p-2 rounded-full hover:bg-blue-600 hover:shadow-2xl"
         >
           Connect Wallet
         </Link>

@@ -23,7 +23,7 @@ const LandingBox = () => {
       <div className="flex flex-col items-center justify-center mb-10">
         <div className="bg-logo bg-cover bg-center w-40 h-40 rounded-full mb-5" />
         <button
-          className="bg-blue-500 p-2 rounded-full w-20 shadow-md hover:bg-blue-400 text-white"
+          className="bg-blue-500 p-2 rounded-full w-20 shadow-md hover:bg-blue-600 text-white"
           type="submit"
         >
           Submit

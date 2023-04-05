@@ -28,6 +28,7 @@ const LandingBox = () => {
             alt="bird-logo"
             width={400}
             height={400}
+            unoptimized={true}
           />
         </div>
         <button

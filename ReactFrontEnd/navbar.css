@@ -1,0 +1,71 @@
+/* Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .navbar a {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+  .navbar-button {
+    display: inline-block;
+    background-color: #ffcc00;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.2s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+.website-name {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.tab {
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tab:not(:last-child) {
+    border-right: 1px solid #ccc;
+}
+.action-button {
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}

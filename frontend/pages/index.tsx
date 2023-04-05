@@ -1,16 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-const inter = Inter({ subsets: ['latin'] })
-import {Header} from '../components';
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
+import { Header, LandingBox } from "../components";
 
 export default function Landing() {
   return (
     <>
-        <Header />
-      <main className="text-xl h-screen">
-        <p className="text-blue-600">Landing...</p>
+      <Header />
+      <main className="h-screen flex items-center justify-center">
+        <LandingBox />
       </main>
     </>
-  )
+  );
 }

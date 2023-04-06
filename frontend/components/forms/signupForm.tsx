@@ -4,6 +4,7 @@ import { ConnectWalletButton } from "../";
 import { useAccount, useSignMessage } from "wagmi";
 import { RegisterType } from "../../utils/types";
 import { registerRequest } from "../../utils/apiRequests";
+import { press_start_2P } from "../../utils/customFont";
 
 type Inputs = {
   twitterHandle: string;
@@ -45,6 +46,7 @@ const SignUpForm = () => {
   };
 
   useMemo(() => {
+    console.log(data, isValid, isConnected, address);
     if (isConnected && data === undefined) {
       signMessage(); // sign the message
     }
@@ -55,14 +57,13 @@ const SignUpForm = () => {
       setIsValid(true);
       setPostData(address, data);
     }
-    if (isError) {
-      setIsValid(false);
-    }
-  }, [isSuccess, isError, isValid]);
+  }, [isSuccess, isValid]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
-      <p className="text-center text-xl font-semibold mb-5 text-gray-500">
+      <p
+        className={`${press_start_2P.className} text-center text-xl font-semibold mb-5 text-gray-500`}
+      >
         Sign Up
       </p>
       <input

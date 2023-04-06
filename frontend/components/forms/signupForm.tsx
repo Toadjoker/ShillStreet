@@ -2,17 +2,14 @@ import { useMemo, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ConnectWalletButton } from "../";
 import { useAccount, useSignMessage } from "wagmi";
+import { RegisterType } from "../../utils/types";
 
 type Inputs = {
   name: string;
   email: string;
-  // walletAddress: string;
-  // privateString: string;
 };
 
 const SignUpForm = () => {
-  const [connectedAddress, setConnectedAddress] = useState<string>("");
-  const [privateStringMessage, setPrivateStringMessage] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(false);
   const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
     message: "default shill street sign message",
@@ -22,36 +19,46 @@ const SignUpForm = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log("yeahhhh");
     if (isValid) {
-      let postData = {
-        name: data.name,
-        email: data.email,
-        walletAddress: connectedAddress,
-        privateString: privateStringMessage,
-      };
-      console.log(postData);
+      console.log("yeahhhh: ", data);
     }
   };
 
+  const setPostData = async (
+    address?: string,
+    privateString?: string
+  ) => {
+    // prepare post data
+    const postData: RegisterType = {
+      name: watch("name"),
+      email: watch("email"),
+      walletAddress: address,
+      privateString: privateString,
+    };
+
+    // invoke the submission with the data to post
+    onSubmit(postData);
+  };
+
   useMemo(() => {
-    if (isConnected) {
+    if (isConnected && data === undefined) {
       signMessage(); // sign the message
-      setConnectedAddress(address);
-      console.log("addressF: ", address);
     }
   }, [isConnected]);
 
   useMemo(() => {
     if (isSuccess) {
       setIsValid(true);
-      setPrivateStringMessage(data);
-      console.log("message: ", data);
+      setPostData(address, data);
     }
-  }, [isSuccess, isValid]);
+    if (isError) {
+      setIsValid(false);
+    }
+  }, [isSuccess, isError, isValid]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">

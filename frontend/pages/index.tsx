@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Header, LandingBox, Modal } from "../components";
 import { SignUpForm } from "../components/forms";
+import { useAccount } from "wagmi";
 
 export default function Landing() {
+  const { address, isConnected } = useAccount();
   const [isShowModal, setIsShowModal] = useState<boolean>(false);
   const handleHeaderCallback = (data: any) => {
     // 0 means register
@@ -18,6 +20,10 @@ export default function Landing() {
     console.log(data);
     setIsShowModal(data);
   };
+
+  if (isConnected) {
+    console.log("address: ", address);
+  }
 
   return (
     <>

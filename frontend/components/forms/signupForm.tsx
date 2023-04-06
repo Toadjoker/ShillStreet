@@ -1,4 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
+import { ConnectWalletButton } from "../";
+import { useAccount } from "wagmi";
 
 type Inputs = {
   name: string;
@@ -8,6 +10,7 @@ type Inputs = {
 };
 
 const SignUpForm = () => {
+  const { address, isConnected } = useAccount();
   const {
     register,
     handleSubmit,
@@ -16,6 +19,10 @@ const SignUpForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     console.log(data);
   };
+
+  if (isConnected) {
+    console.log("addressF: ", address);
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
@@ -35,12 +42,13 @@ const SignUpForm = () => {
         {...register("email", { required: "This field is required" })}
       />
       <div className="flex justify-center items-center my-3">
-        <button
+        <ConnectWalletButton buttonTitle="Sign up" />
+        {/* <button
           className="bg-blue-500 p-2 rounded-full w-32 shadow-md hover:bg-blue-600 text-white"
           type="submit"
         >
           Sign up
-        </button>
+        </button> */}
       </div>
     </form>
   );

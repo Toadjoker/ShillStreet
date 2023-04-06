@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        logo: "url('/images/logo.gif')",
+        logo: "url('/images/whiteBird.svg')",
         cloudBg: "url('/images/movingClouds.svg')",
       },
     },

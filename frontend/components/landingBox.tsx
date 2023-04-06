@@ -22,9 +22,9 @@ const LandingBox = () => {
     >
       {/* image and button section */}
       <div className="flex flex-col items-center justify-center mb-10">
-        <div className="rounded-full bg-white w-40 h-40 flex items-center justify-center mb-5 overflow-hidden">
+        <div className="rounded-full w-40 h-40 flex items-center justify-center mb-5 overflow-hidden">
           <Image
-            src="/images/logo.gif"
+            src="/images/whiteBird.svg"
             alt="bird-logo"
             width={400}
             height={400}

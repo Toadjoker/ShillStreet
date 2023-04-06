@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Press_Start_2P } from "next/font/google";
 import { useDisconnect, useAccount } from "wagmi";
 
+const press_start_2P = Press_Start_2P({ weight: "400", subsets: ["latin"] });
 /**
  *
  * @param headerCallback: is a number. 0 means Register & 1 means Login
@@ -13,8 +15,8 @@ const Header = ({ headerCallback }: any) => {
   return (
     <div className="bg-gray-800 h-20 flex items-center justify-between px-20">
       {/* site logo */}
-      <div>
-        <p className="text-white text-2xl font-semibold">SHILL STREET</p>
+      <div className={press_start_2P.className}>
+        <p className="text-white text-xl font-semibold">SHILL STREET</p>
       </div>
       {/* navigation */}
       <nav className="text-white space-x-5">

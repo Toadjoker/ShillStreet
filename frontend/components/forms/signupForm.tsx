@@ -6,7 +6,7 @@ import { RegisterType } from "../../utils/types";
 import { registerRequest } from "../../utils/apiRequests";
 
 type Inputs = {
-  name: string;
+  twitterHandle: string;
   email: string;
 };
 
@@ -34,7 +34,7 @@ const SignUpForm = () => {
   const setPostData = async (address?: string, privateString?: string) => {
     // prepare post data
     const postData: RegisterType = {
-      name: watch("name"),
+      twitterHandle: watch("twitterHandle"),
       email: watch("email"),
       walletAddress: address,
       privateString: privateString,
@@ -66,10 +66,10 @@ const SignUpForm = () => {
         Sign Up
       </p>
       <input
-        type="name"
-        placeholder="your name"
+        type="text"
+        placeholder="Twitter Handle"
         className="w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3"
-        {...register("name", { required: "This field is required" })}
+        {...register("twitterHandle", { required: "This field is required" })}
       />
       <input
         type="email"

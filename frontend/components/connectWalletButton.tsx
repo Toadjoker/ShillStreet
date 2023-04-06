@@ -1,9 +1,14 @@
 import { useConnect } from "wagmi";
-import { InjectedConnector } from "wagmi/connectors/injected";
+// import { InjectedConnector } from "wagmi/connectors/injected";
+import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 
 const ConnectWalletButton = ({ buttonTitle }: any) => {
   const { connect } = useConnect({
-    connector: new InjectedConnector(),
+    connector: new MetaMaskConnector({
+      options: {
+        shimDisconnect: true,
+      },
+    }), //InjectedConnector(),
   });
 
   return (

@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { ConnectWalletButton } from "../";
 import { useAccount, useSignMessage } from "wagmi";
 import { RegisterType } from "../../utils/types";
+import { registerRequest } from "../../utils/apiRequests";
 
 type Inputs = {
   name: string;
@@ -22,16 +23,15 @@ const SignUpForm = () => {
     watch,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<RegisterType> = async (data) => {
     if (isValid) {
+      const response = await registerRequest.post("/users/register", data);
       console.log("yeahhhh: ", data);
+      console.log("response: ", response);
     }
   };
 
-  const setPostData = async (
-    address?: string,
-    privateString?: string
-  ) => {
+  const setPostData = async (address?: string, privateString?: string) => {
     // prepare post data
     const postData: RegisterType = {
       name: watch("name"),

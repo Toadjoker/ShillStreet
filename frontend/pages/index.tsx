@@ -30,7 +30,7 @@ export default function Landing() {
       <Header headerCallback={handleHeaderCallback} />
       <main className="h-screen w-full flex items-center justify-center bg-cloudBg bg-cover bg-center bg-no-repeat fixed">
         {/* show the modal on condition */}
-        {isShowModal ? (
+        {isShowModal && !isConnected ? (
           <Modal modalCallback={handleModalCallback}>
             <SignUpForm />
           </Modal>

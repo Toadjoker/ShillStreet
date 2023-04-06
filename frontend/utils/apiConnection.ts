@@ -4,9 +4,9 @@ import axios, { AxiosResponse } from 'axios';
 export const axiosInstance = axios.create({
   baseURL: 'https://api.shillstreet.com/',
   headers: {
+    'Access-Control-Allow-Origin': '*',
     'Content-Type': 'Application/json'
-  },
-  withCredentials: true,
+  }
 });
 
 // the response body

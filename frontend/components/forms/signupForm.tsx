@@ -1,6 +1,7 @@
+import { useMemo, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { ConnectWalletButton } from "../";
-import { useAccount } from "wagmi";
+import { useAccount, useSignMessage } from "wagmi";
 
 type Inputs = {
   name: string;
@@ -10,19 +11,47 @@ type Inputs = {
 };
 
 const SignUpForm = () => {
+  const [connectedAddress, setConnectedAddress] = useState<string>("");
+  const [privateStringMessage, setPrivateStringMessage] = useState<string>("");
+  const [isValid, setIsValid] = useState<boolean>(false);
+  const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
+    message: "default shill street sign message",
+  });
   const { address, isConnected } = useAccount();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    console.log("yeahhhh");
+    if (isValid) {
+      let postData = {
+        name: data.name,
+        email: data.email,
+        walletAddress: connectedAddress,
+        privateString: privateStringMessage,
+      };
+      console.log(postData);
+    }
   };
 
-  if (isConnected) {
-    console.log("addressF: ", address);
-  }
+  useMemo(() => {
+    if (isConnected) {
+      signMessage(); // sign the message
+      setConnectedAddress(address);
+      console.log("addressF: ", address);
+    }
+  }, [isConnected]);
+
+  useMemo(() => {
+    if (isSuccess) {
+      setIsValid(true);
+      setPrivateStringMessage(data);
+      console.log("message: ", data);
+    }
+  }, [isSuccess, isValid]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
@@ -43,12 +72,6 @@ const SignUpForm = () => {
       />
       <div className="flex justify-center items-center my-3">
         <ConnectWalletButton buttonTitle="Sign up" />
-        {/* <button
-          className="bg-blue-500 p-2 rounded-full w-32 shadow-md hover:bg-blue-600 text-white"
-          type="submit"
-        >
-          Sign up
-        </button> */}
       </div>
     </form>
   );

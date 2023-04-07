@@ -36,13 +36,13 @@ const LandingBox = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center">
-            <p
+        <section className="flex flex-col items-center justify-center">
+            <h2
                 className={`${press_start_2P.className} w-1/2 text-center text-xs text-gray-600 leading-loose`}
             >
                 The Web3 Marketing Platform - Empowering Threadors and Automating Marketing
                 Campaigns for Web3 Protocols
-            </p>
+            </h2>
             <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col items-center justify-start w-1/4 h-1/2"
@@ -84,7 +84,7 @@ const LandingBox = () => {
                     {requesting ? <Spinner width={20} height={20} /> : "Submit"}
                 </button>
             </form>
-        </div>
+        </section>
     )
 }
 

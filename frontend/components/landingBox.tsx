@@ -23,12 +23,10 @@ const LandingBox = () => {
         await waitListRequest
             .post("/users/join_waitlist", data)
             .then((response: any) => {
-                console.log(response)
+                if (response) Alert(AlertType.success, "You have been added to the wait list!")
             })
             .catch((error: any) => {
-                if (error.response) {
-                    Alert(AlertType.error, error.response?.data?.email[0])
-                }
+                if (error.response) Alert(AlertType.error, error.response?.data?.email[0])
             })
             .finally(() => setReqesting(false))
     }

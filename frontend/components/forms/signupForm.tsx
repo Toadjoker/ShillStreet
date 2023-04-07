@@ -24,6 +24,7 @@ const SignUpForm = () => {
         register,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm<Inputs>()
     const onSubmit: SubmitHandler<RegisterType> = async (data) => {
@@ -32,7 +33,10 @@ const SignUpForm = () => {
             await registerRequest
                 .post("/users/register", data)
                 .then((response: any) => {
-                    if (response) Alert(AlertType.success, "Registration Successful!")
+                    if (response) {
+                        reset() // clear the inputs
+                        Alert(AlertType.success, "Registration Successful!")
+                    }
                 })
                 .catch((error: any) => {
                     if (error.response) {

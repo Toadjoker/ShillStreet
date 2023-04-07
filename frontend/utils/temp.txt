@@ -1,0 +1,12 @@
+//// These are the previous nav
+{/* <Link href="/dashboard" className="hover:text-blue-400">
+Dashboard
+</Link>
+<span className="v_line" />
+<Link href="/create" className="hover:text-blue-400">
+  Create
+</Link>
+<span className="v_line" />
+<Link href="/jobs" className="hover:text-blue-400">
+  Jobs
+</Link> */}

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { ConnectWalletButton } from "../"
-import { useAccount, useSignMessage } from "wagmi"
+import { useAccount, useSignMessage, useDisconnect } from "wagmi"
 import { RegisterType } from "../../utils/types"
 import { registerRequest } from "../../utils/apiRequests"
 import { press_start_2P } from "../../utils/customFont"
@@ -15,6 +15,7 @@ type Inputs = {
 const SignUpForm = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
     const [requesting, setReqesting] = useState<boolean>(false)
+    const { disconnect } = useDisconnect()
     const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
         message: "default shill street sign message",
     })
@@ -40,6 +41,7 @@ const SignUpForm = () => {
                 })
                 .catch((error: any) => {
                     if (error.response) {
+                        disconnect() // disconnect the user
                         Alert(
                             AlertType.error,
                             error.response?.data?.email[0],
@@ -80,11 +82,11 @@ const SignUpForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
-            <p
+            <h3
                 className={`${press_start_2P.className} text-center text-xl font-semibold mb-5 text-gray-500`}
             >
                 Sign Up
-            </p>
+            </h3>
             <input
                 type="text"
                 placeholder="Your name"

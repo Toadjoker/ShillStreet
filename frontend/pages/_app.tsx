@@ -3,10 +3,18 @@ import "../styles/globals.css"
 import "antd/dist/reset.css"
 import { WagmiConfig, createClient } from "wagmi"
 import { getDefaultProvider } from "ethers"
+import { InjectedConnector } from "wagmi/connectors/injected"
 
 const client = createClient({
     autoConnect: true,
     provider: getDefaultProvider(),
+    connectors: [
+        new InjectedConnector({
+            options: {
+                shimDisconnect: true,
+            },
+        }),
+    ],
 })
 
 export default function App({ Component, pageProps }) {

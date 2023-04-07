@@ -12,11 +12,14 @@ const Header = ({ headerCallback }: any) => {
     const { isConnected, address } = useAccount()
 
     return (
-        <section className="bg-gray-800 h-20 flex items-center justify-between px-20">
+        <section className="bg-gray-800 h-20 flex items-center justify-between px-3 md:px-20">
             {/* site logo */}
-            <h1 className={`${press_start_2P.className} text-white text-xl font-semibold`}>
+            <Link
+                href="/"
+                className={`${press_start_2P.className} text-white md:text-xl font-semibold cursor-pointer`}
+            >
                 SHILL STREET
-            </h1>
+            </Link>
             {/* navigation */}
             <nav className="text-white space-x-5">
                 {isConnected && (

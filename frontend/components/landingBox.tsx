@@ -1,51 +1,35 @@
+import React, { useState } from "react"
 import Image from "next/image"
 import { press_start_2P } from "../utils/customFont"
 import { useForm, SubmitHandler } from "react-hook-form"
-import React, { SyntheticEvent, useState, useEffect } from "react"
+import { waitListRequest } from "../utils/apiRequests"
+import { WaitListType } from "../utils/types"
+import { Spinner } from "./"
+import { AxiosError } from "axios"
+
 type Inputs = {
     email: string
 }
 
 const LandingBox = () => {
-    const joinWaitList = async (email: string) => {
-        const response = await fetch(`https://api.shillstreet.com/users/join_waitlist`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify({
-                email,
-            }),
-        })
-
-        if (!response.ok) {
-            const error = new Error("Error")
-            throw error
-        }
-
-        const dataa = await response.json()
-        return dataa
-    }
-
+    const [requesting, setReqesting] = useState<boolean>(false)
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>()
 
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        try {
-            const result = await joinWaitList(data.email)
-            console.log(result)
-        } catch (error) {
-            console.error("Error submitting form:", error)
-            if (error.response) {
-                console.error(
-                    `Server responded with status ${error.response.status} (${error.response.statusText})`
-                )
-            }
-        }
+    const onSubmit: SubmitHandler<WaitListType> = async (data) => {
+        setReqesting(true)
+        await waitListRequest
+            .post("/users/join_waitlist", data)
+            .then((response: any) => {
+                console.log(response)
+            })
+            .catch((error: any) => {
+                if (error.response) console.log(error.response?.data?.email[0])
+            })
+            .finally(() => setReqesting(false))
     }
 
     return (
@@ -72,10 +56,10 @@ const LandingBox = () => {
                         />
                     </div>
                     <button
-                        className={`${press_start_2P.className} text-xs bg-blue-500 p-2 rounded-full w-24 shadow-md hover:bg-blue-600 text-white`}
+                        className={`${press_start_2P.className} flex justify-center text-xs bg-blue-500 p-2 rounded-full w-24 shadow-md hover:bg-blue-600 text-white`}
                         type="submit"
                     >
-                        Submit
+                        {requesting ? <Spinner width={20} height={20} /> : "Submit"}
                     </button>
                 </div>
 

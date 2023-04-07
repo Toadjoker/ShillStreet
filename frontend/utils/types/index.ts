@@ -5,3 +5,7 @@ export type RegisterType = {
   walletAddress: string;
   privateString: string;
 };
+
+export type WaitListType = {
+  email: string;
+}

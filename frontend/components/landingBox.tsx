@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { press_start_2P } from "../utils/customFont";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Inputs = {
@@ -32,7 +33,7 @@ const LandingBox = () => {
           />
         </div>
         <button
-          className="bg-blue-500 p-2 rounded-full w-20 shadow-md hover:bg-blue-600 text-white"
+          className={`${press_start_2P.className} text-xs bg-blue-500 p-2 rounded-full w-24 shadow-md hover:bg-blue-600 text-white`}
           type="submit"
         >
           Submit
@@ -41,14 +42,16 @@ const LandingBox = () => {
 
       {/* instruction text and input field section */}
       <div className="my-5 space-y-3">
-        <p className="text-center text-xl text-gray-500">
+        <p
+          className={`${press_start_2P.className} text-center text-xs text-gray-600`}
+        >
           Provide Email For Private Beta
         </p>
         <div className="h_line"></div>
         <input
           type="email"
           placeholder="youremail@example.com"
-          className="w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400"
+          className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400`}
           {...register("email", { required: "This field is required" })}
         />
 

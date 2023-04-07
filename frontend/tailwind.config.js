@@ -13,7 +13,7 @@ module.exports = {
       backgroundImage: {
         logo: "url('/images/whiteBird.svg')",
         cloudBg: "url('/images/movingClouds.svg')",
-      },
+      }
     },
   },
   plugins: [],

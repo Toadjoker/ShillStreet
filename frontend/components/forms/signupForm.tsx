@@ -69,13 +69,13 @@ const SignUpForm = () => {
       <input
         type="text"
         placeholder="Twitter Handle"
-        className="w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3"
+        className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
         {...register("twitterHandle", { required: "This field is required" })}
       />
       <input
         type="email"
         placeholder="youremail@example.com"
-        className="w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3"
+        className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
         {...register("email", { required: "This field is required" })}
       />
       <div className="flex justify-center items-center my-3">

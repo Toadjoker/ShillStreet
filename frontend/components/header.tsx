@@ -55,7 +55,7 @@ const Header = ({ headerCallback }: any) => {
             {/* <span className="v_line" /> */}
             <Link
               href="#"
-              className="hover:text-blue-400"
+              className={`${press_start_2P.className} hover:text-blue-400 text-xs`}
               onClick={() => headerCallback(0)}
             >
               Register

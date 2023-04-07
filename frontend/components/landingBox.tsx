@@ -8,28 +8,24 @@ type Inputs = {
 
 const LandingBox = () => {
     const joinWaitList = async (email: string) => {
-        try {
-            const response = await fetch(`https://api.shillstreet.com/users/join_waitlist`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify({
-                    email,
-                }),
-            })
+        const response = await fetch(`https://api.shillstreet.com/users/join_waitlist`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: "include",
+            body: JSON.stringify({
+                email,
+            }),
+        })
 
-            if (!response.ok) {
-                throw new Error(`Error: ${response.statusText}`)
-            }
-
-            const dataa = await response.json()
-            return dataa
-        } catch (error) {
-            console.error("Error in fetch request:", error)
+        if (!response.ok) {
+            const error = new Error("Error")
             throw error
         }
+
+        const dataa = await response.json()
+        return dataa
     }
 
     const {
@@ -44,6 +40,11 @@ const LandingBox = () => {
             console.log(result)
         } catch (error) {
             console.error("Error submitting form:", error)
+            if (error.response) {
+                console.error(
+                    `Server responded with status ${error.response.status} (${error.response.statusText})`
+                )
+            }
         }
     }
 

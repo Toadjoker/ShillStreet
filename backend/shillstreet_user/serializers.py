@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import User
+from .models import User, WaitList
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,3 +19,9 @@ class UserSerializer(serializers.ModelSerializer):
             instance.set_password(privateString)
         instance.save()
         return instance
+
+
+class WaitListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WaitList
+        fields = ('email',)

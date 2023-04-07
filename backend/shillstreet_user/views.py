@@ -4,11 +4,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 
-from .serializers import UserSerializer
+from .serializers import UserSerializer, WaitListSerializer
 from .authentication import JWTAuthentication
-from .models import User
+from .models import User, WaitList
 
 from datetime import datetime, timedelta
+import requests
 import jwt
 # Create your views here.
 
@@ -118,6 +119,36 @@ class DeleteUser(APIView):
             # raise Http404("User does not exist")
 
         user.delete()
+
+        response = Response()
+        response.data = {
+            'message': 'success'
+        }
+        return response
+
+
+class WaitList(APIView):
+
+    def post(self, request):
+        waitlistemail = request.data.get('email')
+        serializer = WaitListSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        warn_info = {
+            'username': 'ShillStreet Bot',
+            'avatar_url': '',
+            "embeds": [
+                {"title": "**New Waitlist**",
+                 "color": 4611764,
+                 "footer": {
+                     "text": "New user joined wait list",
+                     "icon_url": ""
+                 },
+                 "fields": [{"name": "Email Address", "value": f"{waitlistemail}", "inline": False},
+                            {"name": "Status", "value": "Done", "inline": False}]}]}
+        requests.post(
+            'https://discord.com/api/webhooks/1093662954215456869/574uQrgYmB4shdy4GcqGyF_54pS-FuRwpWew-HTjwTmCMlAw7aVN4V9i9fW7zuE6dEic', json=warn_info)
 
         response = Response()
         response.data = {

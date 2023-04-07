@@ -90,17 +90,17 @@ const SignUpForm = () => {
             <input
                 type="text"
                 placeholder="Your name"
-                className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
+                className={`${press_start_2P.className} text-xs w-full h-12 md:h-12 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("name", { required: "This field is required" })}
             />
             <input
                 type="email"
                 placeholder="youremail@example.com"
-                className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
+                className={`${press_start_2P.className} text-xs w-full h-12 md:h-12 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("email", { required: "This field is required" })}
             />
 
-            <div className="flex justify-center items-center my-3">
+            <div className="flex justify-center items-center my-3 mt-10">
                 {watch("name") != "" && watch("email") != "" && (
                     <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
                 )}

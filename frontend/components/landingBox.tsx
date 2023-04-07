@@ -15,6 +15,7 @@ const LandingBox = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm<Inputs>()
 
@@ -23,7 +24,10 @@ const LandingBox = () => {
         await waitListRequest
             .post("/users/join_waitlist", data)
             .then((response: any) => {
-                if (response) Alert(AlertType.success, "You have been added to the wait list!")
+                if (response) {
+                    reset() // clear form input when submit is successful
+                    Alert(AlertType.success, "You have been added to the wait list!")
+                }
             })
             .catch((error: any) => {
                 if (error.response) Alert(AlertType.error, error.response?.data?.email[0])
@@ -44,7 +48,7 @@ const LandingBox = () => {
                 className="flex flex-col items-center justify-start w-1/4 h-1/2"
             >
                 {/* image and button section */}
-                <div className="flex flex-col items-center justify-center mb-10">
+                <div className="flex flex-col items-center justify-center mb-3">
                     <div className="rounded-full w-40 h-40 flex items-center justify-center mb-5 overflow-hidden">
                         <Image
                             src="/images/whiteBird.svg"

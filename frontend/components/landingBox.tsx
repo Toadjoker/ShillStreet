@@ -49,7 +49,7 @@ const LandingBox = () => {
             >
                 {/* image and button section */}
                 <div className="flex flex-col items-center justify-center mb-3">
-                    <div className="rounded-full w-40 h-40 flex items-center justify-center mb-5 overflow-hidden">
+                    <div className="rounded-full w-48 h-48 flex items-center justify-center mb-5 overflow-hidden">
                         <Image
                             src="/images/whiteBird.svg"
                             alt="bird-logo"

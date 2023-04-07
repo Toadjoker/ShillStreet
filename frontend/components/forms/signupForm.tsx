@@ -7,12 +7,13 @@ import { registerRequest } from "../../utils/apiRequests";
 import { press_start_2P } from "../../utils/customFont";
 
 type Inputs = {
-  twitterHandle: string;
+  name: string;
   email: string;
 };
 
 const SignUpForm = () => {
   const [isValid, setIsValid] = useState<boolean>(false);
+  // const [connectedAddress, setConnectedAddress] = useState<string>("");
   const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
     message: "default shill street sign message",
   });
@@ -26,31 +27,31 @@ const SignUpForm = () => {
   } = useForm<Inputs>();
   const onSubmit: SubmitHandler<RegisterType> = async (data) => {
     if (isValid) {
+      console.log("YI: ", data);
       const response = await registerRequest.post("/users/register", data);
-      console.log("yeahhhh: ", data);
       console.log("response: ", response);
     }
   };
 
-  const setPostData = async (address?: string, privateString?: string) => {
-    // prepare post data
-    const postData: RegisterType = {
-      twitterHandle: watch("twitterHandle"),
-      email: watch("email"),
-      walletAddress: address,
-      privateString: privateString,
-    };
-
-    // invoke the submission with the data to post
-    onSubmit(postData);
+  const setPostData = (address?: string, privateString?: string) => {
+    if (address != "" && privateString != "") {
+      // prepare post data
+      const postData: RegisterType = {
+        name: watch("name"),
+        email: watch("email"),
+        walletAddress: address,
+        privateString: privateString,
+      };
+      // invoke the submission with the data to post
+      onSubmit(postData);
+    }
   };
 
   useMemo(() => {
-    console.log(data, isValid, isConnected, address);
     if (isConnected && data === undefined) {
       signMessage(); // sign the message
     }
-  }, [isConnected]);
+  }, [isConnected, data]);
 
   useMemo(() => {
     if (isSuccess) {
@@ -70,7 +71,7 @@ const SignUpForm = () => {
         type="text"
         placeholder="Twitter Handle"
         className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
-        {...register("twitterHandle", { required: "This field is required" })}
+        {...register("name", { required: "This field is required" })}
       />
       <input
         type="email"
@@ -78,8 +79,11 @@ const SignUpForm = () => {
         className={`${press_start_2P.className} text-xs w-full h-8 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-3`}
         {...register("email", { required: "This field is required" })}
       />
+
       <div className="flex justify-center items-center my-3">
-        <ConnectWalletButton buttonTitle="Sign up" />
+        {watch("name") != "" && watch("email") != "" && (
+          <ConnectWalletButton buttonTitle="Sign up" />
+        )}
       </div>
     </form>
   );

@@ -1,6 +1,6 @@
 // registration type
 export type RegisterType = {
-  twitterHandle: string;
+  name: string;
   email: string;
   walletAddress: string;
   privateString: string;

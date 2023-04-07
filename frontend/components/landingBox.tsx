@@ -4,8 +4,7 @@ import { press_start_2P } from "../utils/customFont"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { waitListRequest } from "../utils/apiRequests"
 import { WaitListType } from "../utils/types"
-import { Spinner } from "./"
-import { AxiosError } from "axios"
+import { Spinner, Alert, AlertType } from "./"
 
 type Inputs = {
     email: string
@@ -27,7 +26,9 @@ const LandingBox = () => {
                 console.log(response)
             })
             .catch((error: any) => {
-                if (error.response) console.log(error.response?.data?.email[0])
+                if (error.response) {
+                    Alert(AlertType.error, error.response?.data?.email[0])
+                }
             })
             .finally(() => setReqesting(false))
     }

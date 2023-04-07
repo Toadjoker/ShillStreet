@@ -54,12 +54,6 @@ const LandingBox = () => {
                             unoptimized={true}
                         />
                     </div>
-                    <button
-                        className={`${press_start_2P.className} flex justify-center text-xs bg-blue-500 p-2 rounded-full w-24 shadow-md hover:bg-blue-600 text-white`}
-                        type="submit"
-                    >
-                        {requesting ? <Spinner width={20} height={20} /> : "Submit"}
-                    </button>
                 </div>
 
                 {/* instruction text and input field section */}
@@ -79,6 +73,12 @@ const LandingBox = () => {
                         <span className="text-red-400 text-center">{errors.email?.message}</span>
                     )}
                 </div>
+                <button
+                    className={`${press_start_2P.className} flex justify-center text-xs bg-blue-500 p-2 rounded-full w-24 shadow-md hover:bg-blue-600 text-white`}
+                    type="submit"
+                >
+                    {requesting ? <Spinner width={20} height={20} /> : "Submit"}
+                </button>
             </form>
         </div>
     )

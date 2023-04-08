@@ -61,7 +61,7 @@ const LandingBox = () => {
                 </div>
 
                 {/* instruction text and input field section */}
-                <div className="-mt-10 md:-mt-12 lg:-mt-3 mb-8 md:my-10 space-y-3">
+                <div className="-mt-10 md:-mt-12 lg:-mt-3 mb-8 md:my-10 lg:my-10 space-y-3">
                     <p
                         className={`${press_start_2P.className} text-center text-gray-600 text-xs md:text-sm lg:text-sm leading-7`}
                     >
@@ -71,7 +71,7 @@ const LandingBox = () => {
                     <input
                         type="email"
                         placeholder="youremail@example.com"
-                        className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-13 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400`}
+                        className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400`}
                         {...register("email", { required: "This field is required" })}
                     />
 
@@ -80,7 +80,7 @@ const LandingBox = () => {
                     )}
                 </div>
                 <button
-                    className={`${press_start_2P.className} flex items-center justify-center text-xs md:text-sm lg:text-md bg-blue-500 p-2 rounded-full w-32 md:w-40 lg:w-40 h-14 md:h-12 lg:h-12 shadow-md hover:bg-blue-600 text-white`}
+                    className={`${press_start_2P.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 md:w-32 lg:w-32 h-14 md:h-10 lg:h-10 shadow-md hover:bg-blue-600 text-white`}
                     type="submit"
                 >
                     {requesting ? <Spinner width={20} height={20} /> : "Submit"}

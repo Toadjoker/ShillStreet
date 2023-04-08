@@ -16,7 +16,7 @@ const Header = ({ headerCallback }: any) => {
             {/* site logo */}
             <Link
                 href="/"
-                className={`${press_start_2P.className} text-white md:text-xl font-semibold cursor-pointer`}
+                className={`${press_start_2P.className} text-white text-xs md:text-xl font-semibold cursor-pointer`}
             >
                 SHILL STREET
             </Link>

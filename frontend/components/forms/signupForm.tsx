@@ -83,20 +83,20 @@ const SignUpForm = () => {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
             <h3
-                className={`${press_start_2P.className} text-center text-xl font-semibold mb-5 text-gray-500`}
+                className={`${press_start_2P.className} text-center font-semibold mb-5 text-gray-500`}
             >
                 Sign Up
             </h3>
             <input
                 type="text"
                 placeholder="Your name"
-                className={`${press_start_2P.className} text-xs w-full h-12 md:h-12 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("name", { required: "This field is required" })}
             />
             <input
                 type="email"
                 placeholder="youremail@example.com"
-                className={`${press_start_2P.className} text-xs w-full h-12 md:h-12 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("email", { required: "This field is required" })}
             />
 

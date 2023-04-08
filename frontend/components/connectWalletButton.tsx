@@ -10,7 +10,7 @@ const ConnectWalletButton = ({ buttonTitle, requesting }: any) => {
             {connectors?.map((connector: any) => (
                 <button
                     key={connector.id}
-                    className={`${press_start_2P.className} flex items-center justify-center text-sm bg-blue-500 p-2 rounded-full w-40 h-14 shadow-md hover:bg-blue-600 text-white`}
+                    className={`${press_start_2P.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                     type="submit"
                     onClick={() => connect({ connector })}
                 >

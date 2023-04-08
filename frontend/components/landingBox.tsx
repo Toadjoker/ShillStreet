@@ -36,19 +36,19 @@ const LandingBox = () => {
     }
 
     return (
-        <section className="flex flex-col items-center justify-center -mt-28 md:-mt-auto">
+        <section className="flex flex-col items-center justify-center h-full pb-48 md:pb-0 lg:pb-10 mx-8 lg:mx-48">
             <h2
-                className={`${press_start_2P.className} mx-10 md:mx-0 md:w-1/2 text-center text-sm md:text-xl text-gray-600 leading-6 md:leading-loose`}
+                className={`${press_start_2P.className} md:w-3/4 text-center text-sm md:text-sm lg:text-sm text-gray-600 leading-8 md:leading-loose lg:leading-10`}
             >
                 The Web3 Marketing Platform - Empowering Threadors and Automating Marketing
                 Campaigns for Web3 Protocols
             </h2>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="flex flex-col items-center justify-start w-2/5 h-1/2"
+                className="flex flex-col items-center justify-start w-2/5 md:w-3/5 h-1/2 md:h-auto"
             >
                 {/* image and button section */}
-                <div className="flex flex-col items-center justify-center mb-3">
+                <div className="flex flex-col items-center justify-center md:mb-3">
                     <div className="rounded-full w-48 h-48 flex items-center justify-center mb-5 overflow-hidden">
                         <Image
                             src="/images/whiteBird.svg"
@@ -61,9 +61,9 @@ const LandingBox = () => {
                 </div>
 
                 {/* instruction text and input field section */}
-                <div className="my-10 space-y-3">
+                <div className="-mt-10 md:-mt-12 lg:-mt-3 mb-8 md:my-10 space-y-3">
                     <p
-                        className={`${press_start_2P.className} text-center text-gray-600 text-xs md:text-sm leading-7`}
+                        className={`${press_start_2P.className} text-center text-gray-600 text-xs md:text-sm lg:text-sm leading-7`}
                     >
                         Provide Email For Private Beta
                     </p>
@@ -71,7 +71,7 @@ const LandingBox = () => {
                     <input
                         type="email"
                         placeholder="youremail@example.com"
-                        className={`${press_start_2P.className} text-xs w-full h-14 md:h-12 rounded-sm p-4 text-gray-500 border-2 border-gray-400`}
+                        className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-13 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400`}
                         {...register("email", { required: "This field is required" })}
                     />
 
@@ -80,7 +80,7 @@ const LandingBox = () => {
                     )}
                 </div>
                 <button
-                    className={`${press_start_2P.className} flex items-center justify-center text-sm bg-blue-500 p-2 rounded-full w-40 h-14 shadow-md hover:bg-blue-600 text-white`}
+                    className={`${press_start_2P.className} flex items-center justify-center text-xs md:text-sm lg:text-md bg-blue-500 p-2 rounded-full w-32 md:w-40 lg:w-40 h-14 md:h-12 lg:h-12 shadow-md hover:bg-blue-600 text-white`}
                     type="submit"
                 >
                     {requesting ? <Spinner width={20} height={20} /> : "Submit"}

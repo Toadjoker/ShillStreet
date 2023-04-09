@@ -38,7 +38,7 @@ const Header = ({ headerCallback }: any) => {
                 )}
 
                 {/* show the register button if no connected */}
-                {!isConnected && (
+                {/* {!isConnected && (
                     <Link
                         href="#"
                         className={`${press_start_2P.className} hover:text-blue-400 text-xs`}
@@ -46,7 +46,7 @@ const Header = ({ headerCallback }: any) => {
                     >
                         Register
                     </Link>
-                )}
+                )} */}
             </nav>
         </section>
     )

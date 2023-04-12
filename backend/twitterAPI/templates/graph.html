@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Total Likes Graph</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div id="likes-graph"></div>
+
+<script>
+    // Initial rendering of the graph
+    const trace = {
+        y: [0],
+        mode: 'lines',
+        name: 'Total Likes'
+    };
+    const data = [trace];
+    const layout = {
+        title: 'Total Likes Across All Tweets Requested by the App',
+        xaxis: {title: 'Requests'},
+        yaxis: {title: 'Total Likes'}
+    };
+    Plotly.newPlot('likes-graph', data, layout);
+
+    // WebSocket connection
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/likes/');
+
+    socket.onmessage = (event) => {
+        const total_likes = JSON.parse(event.data).total_likes;
+        updateGraph(total_likes);
+    };
+
+    socket.onopen = (_) => {
+        socket.send(JSON.stringify({'message': 'request_likes'}));
+    };
+
+    function updateGraph(total_likes) {
+        const update = {y: [[total_likes]]};
+        Plotly.update('likes-graph', update);
+    }
+</script>
+
+</body>
+</html>

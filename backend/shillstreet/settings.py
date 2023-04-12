@@ -40,9 +40,22 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'shillstreet_user'
-
+    'shillstreet_user',
+    'twitterAPI',
+    'channels',
 ]
+#Configuring CORS and Django Channels
+ASGI_APPLICATION = 'shillstreet.routing.application'
+
+CHANNEL_LAYERS = {
+    "default" : {
+        "BACKEND" : "channels.layers.InMemoryChannelLayer",
+        'CONFIG' : {
+            'hosts': [('localhost', 6379)],
+        },
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

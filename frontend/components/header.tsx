@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { press_start_2P } from "../utils/customFont"
 import { useDisconnect, useAccount } from "wagmi"
 
@@ -14,11 +15,14 @@ const Header = ({ headerCallback }: any) => {
     return (
         <section className="bg-gray-800 h-20 flex items-center justify-between px-3 md:px-20">
             {/* site logo */}
-            <Link
-                href="/"
-                className={`${press_start_2P.className} text-white text-xs md:text-xl font-semibold cursor-pointer`}
-            >
-                SHILL STREET
+            <Link href="/" className=" text-white text-xs md:text-xl font-semibold cursor-pointer">
+                <Image
+                    src="/images/shillstreet_logo.png"
+                    alt="shillstreet-logo"
+                    width={200}
+                    height={200}
+                    unoptimized={true}
+                />
             </Link>
             {/* navigation */}
             <nav className="text-white space-x-5">

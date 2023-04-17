@@ -1,3 +1,4 @@
+import MainLayout from './MainLayout'
 import Header from './header'
 import WaitlistBox from './waitlistBox'
 import Modal from './modal'
@@ -7,5 +8,5 @@ import Alert from './alert'
 import { AlertType } from './alert'
 
 export {
-    Header, WaitlistBox, Modal, ConnectWalletButton, Spinner, Alert, AlertType
+    MainLayout, Header, WaitlistBox, Modal, ConnectWalletButton, Spinner, Alert, AlertType
 }

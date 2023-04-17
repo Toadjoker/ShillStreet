@@ -16,25 +16,25 @@ const CardSampleData: any = [
 const Landing = () => {
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow p-32">
-                <div className="flex justify-between h-1/2 w-5/6">
+            <section className="bg-shillStreetBlue flex flex-col flex-grow p-24">
+                <div className="flex justify-between h-1/2 w-full">
                     <div>
                         <h3
-                            className={`${space_grotesk_bold.className} text-shillStreetGrey text-8xl tracking-wide`}
+                            className={`${space_grotesk_bold.className} text-shillStreetGrey text-7xl tracking-wide`}
                         >
                             ShillStreet
                         </h3>
-                        <h5 className={`${space_grotesk_semibold.className} text-white text-3xl`}>
+                        <h5 className={`${space_grotesk_semibold.className} text-white text-2xl`}>
                             Automated Web3 Marketing Platform
                         </h5>
                         <p
-                            className={`${space_grotesk_regular.className} text-white text-xl mt-20`}
+                            className={`${space_grotesk_regular.className} text-white text-lg mt-10`}
                         >
                             Enabling one-click marketing campaigns for Web3 protocols and <br />
                             automating value exchange between threadors and protocols
                         </p>
                     </div>
-                    <div>
+                    <div className="mr-20">
                         <Image
                             src="/images/logo-right.png"
                             alt="right-icon"
@@ -44,7 +44,7 @@ const Landing = () => {
                         />
                     </div>
                 </div>
-                <div className="mt-36 h-32 flex space-x-20">
+                <div className="mt-24 h-32 flex space-x-20">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none">
                             <LandingMiniCard title={item.title} subtitle={item.subtitle} />

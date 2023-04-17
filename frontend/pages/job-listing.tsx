@@ -45,7 +45,7 @@ const JobListing = () => {
                 {/* smart campaign cards container */}
                 <div className="my-10 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
                     {CardSampleData.map((item: any) => (
-                        <li key={item.index}>
+                        <li key={item.index} className="list-none">
                             <SmartCampaignCard
                                 title={item.title}
                                 valutSize={item.valutSize}

@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { press_start_2P } from "../utils/customFont"
+import { press_start_2P, space_grotesk_regular } from "../utils/customFont"
 import { useDisconnect, useAccount } from "wagmi"
 
 /**
@@ -56,7 +56,9 @@ const Header = ({ headerCallback }: any) => {
                             />
                         </Link>
                         <Link href="#" className="flex space-x-2">
-                            <span className="bg-green-500 p-2 rounded-full h-8 w-8 text-center">
+                            <span
+                                className={`${space_grotesk_regular.className} bg-green-500 p-2 rounded-full h-8 w-8 text-center`}
+                            >
                                 J
                             </span>
                             <Image
@@ -69,7 +71,7 @@ const Header = ({ headerCallback }: any) => {
                         </Link>
                         <Link
                             href={router.pathname === "/job-listing" ? "#" : "job-listing"}
-                            className="bg-blue-800 hover:bg-blue-900 p-3 rounded-md border-2 border-white"
+                            className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-3 rounded-md border-2 border-white`}
                         >
                             {router.pathname === "/job-listing" ? "Connect Wallet" : "Launch App"}
                         </Link>

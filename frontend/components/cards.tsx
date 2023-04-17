@@ -9,14 +9,16 @@ type landingMiniCardProps = {
 
 type smartCampaignCardProps = {
     title: string
-    valutSize?: number
-    threadComplete?: number
-    utilization?: number
+    valutSize: number
+    threadComplete: number
+    utilization: number
 }
 
 export const LandingMiniCard = ({ title, subtitle }: landingMiniCardProps) => {
     return (
-        <div className="bg-shillStreetGrey w-60 h-24 flex flex-col items-center justify-center text-white font-semibold text-center">
+        <div
+            className={`${space_grotesk_regular.className} bg-shillStreetGrey w-60 h-24 flex flex-col items-center justify-center text-white font-semibold text-center`}
+        >
             <p className="text-xl pt-5">${title}</p>
             <p className="text-lg">{subtitle}</p>
         </div>

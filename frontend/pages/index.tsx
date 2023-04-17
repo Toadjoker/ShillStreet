@@ -18,7 +18,7 @@ export default function Landing() {
     return (
         <MainLayout>
             {/* <Header headerCallback={handleHeaderCallback} /> */}
-            <section className="h-screen w-full flex items-center justify-center bg-cloudBg bg-cover bg-center bg-no-repeat fixed">
+            <section className="flex flex-col flex-grow w-full items-center justify-center bg-cloudBg bg-cover bg-center bg-no-repeat">
                 {/* show the modal on condition */}
                 {isShowModal ? (
                     <Modal modalCallback={handleModalCallback}>

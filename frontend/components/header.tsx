@@ -69,7 +69,7 @@ const Header = ({ headerCallback }: any) => {
                         </Link>
                         <Link
                             href="job-listing"
-                            className="bg-blue-800 p-3 rounded-md border-2 border-white"
+                            className="bg-blue-800 hover:bg-blue-900 p-3 rounded-md border-2 border-white"
                         >
                             Launch App
                         </Link>

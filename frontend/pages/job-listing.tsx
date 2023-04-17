@@ -10,30 +10,13 @@ const LandingMiniCardsContent: any = [
 const JobListing = () => {
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow p-32">
-                <div className="flex justify-between h-1/2 w-3/4">
-                    <div>
-                        <h3 className="text-shillStreetGrey text-7xl font-semibold tracking-wide">
-                            Shill Street
-                        </h3>
-                        <h5 className="text-white text-3xl">Automated Web3 Marketing Platform</h5>
-                        <p className="text-white text-xl mt-20">
-                            Enabling one-click marketing campaigns for Web3 protocols and <br />
-                            automating value exchange between threadors and protocols
-                        </p>
-                    </div>
-                    <div>
-                        <p className="bg-red-300 h-40 w-40">logo</p>
-                    </div>
-                </div>
-                <div className="mt-36 h-32 flex space-x-20">
-                    {LandingMiniCardsContent.map((item: any) => (
-                        <LandingMiniCards
-                            index={item.index}
-                            title={item.title}
-                            subtitle={item.subtitle}
-                        />
-                    ))}
+            <section className="bg-shillStreetBlue flex flex-col flex-grow px-48 py-10">
+                <h3 className="text-white text-3xl font-semibold tracking-wide">
+                    Smart Campaigns
+                </h3>
+                <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-24 text-white border-4 border-white">
+                    <p className="font-bold text-3xl">$12,981</p>
+                    <p className="text-gray-200 text-sm -mt-3">Total Value Locked</p>
                 </div>
             </section>
         </MainLayout>

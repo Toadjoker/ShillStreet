@@ -25,7 +25,7 @@ const CardSampleData: any = [
 const JobListing = () => {
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow px-60 pt-10 overflow-hidden">
+            <section className="bg-shillStreetBlue flex flex-col flex-grow px-52 pt-10 overflow-hidden">
                 <h3
                     className={`${space_grotesk_medium.className} text-white text-3xl font-semibold tracking-wide`}
                 >
@@ -43,7 +43,7 @@ const JobListing = () => {
                 </div>
 
                 {/* smart campaign cards container */}
-                <div className="my-10 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
+                <div className="my-4 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none">
                             <SmartCampaignCard

@@ -32,18 +32,16 @@ export const SmartCampaignCard = ({
     utilization,
 }: smartCampaignCardProps) => {
     return (
-        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-76 text-white border-4 border-white">
-            <h3 className={`${space_grotesk_bold.className} text-3xl pt-4 text-center`}>
-                {title}
-            </h3>
+        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white">
+            <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
-                <p className="text-lg">Vault Size: ${valutSize}</p>
-                <p className="text-lg">Threads Complete: {threadComplete}</p>
+                <p className="text-sm">Vault Size: ${valutSize}</p>
+                <p className="text-sm">Threads Complete: {threadComplete}</p>
             </div>
             {/* progress bar and content container */}
             <div>
                 <div
-                    className={`${space_grotesk_regular.className} flex justify-between text-sm mb-2`}
+                    className={`${space_grotesk_regular.className} flex justify-between text-xs mb-2`}
                 >
                     <span>Utilzation</span>
                     <span>{utilization}%</span>
@@ -54,7 +52,7 @@ export const SmartCampaignCard = ({
             <div className="mt-5 flex justify-center">
                 <Link
                     href="#"
-                    className={`${space_grotesk_regular.className} bg-white rounded-lg p-3 text-gray-900 hover:bg-gray-200`}
+                    className={`${space_grotesk_regular.className} bg-white rounded-lg p-2 text-gray-900 hover:bg-gray-200 text-sm`}
                 >
                     View Campaign
                 </Link>

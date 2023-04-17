@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Header, LandingBox, Modal } from "../components"
+import { Header, WaitlistBox, Modal } from "../components"
 import { SignUpForm } from "../components/forms"
 
 export default function Landing() {
@@ -25,7 +25,7 @@ export default function Landing() {
                         <SignUpForm />
                     </Modal>
                 ) : (
-                    <LandingBox />
+                    <WaitlistBox />
                 )}
             </section>
         </>

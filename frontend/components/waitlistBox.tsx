@@ -4,13 +4,13 @@ import { press_start_2P } from "../utils/customFont"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { waitListRequest } from "../utils/apiRequests"
 import { WaitListType } from "../utils/types"
-import { Spinner, Alert, AlertType } from "./"
+import { Spinner, Alert, AlertType } from "."
 
 type Inputs = {
     email: string
 }
 
-const LandingBox = () => {
+const WaitlistBox = () => {
     const [requesting, setReqesting] = useState<boolean>(false)
     const {
         register,
@@ -90,4 +90,4 @@ const LandingBox = () => {
     )
 }
 
-export default LandingBox
+export default WaitlistBox

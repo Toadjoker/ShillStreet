@@ -33,17 +33,17 @@ const JobListing = () => {
                 </h3>
 
                 {/* total value card */}
-                <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-24 text-white border-4 border-white">
-                    <p className={`${space_grotesk_semibold.className} font-bold text-3xl`}>
+                <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-20 text-white border-4 border-white">
+                    <p className={`${space_grotesk_semibold.className} font-bold text-2xl`}>
                         $12,981
                     </p>
-                    <p className={`${space_grotesk_light.className}text-gray-200 text-sm -mt-3`}>
+                    <p className={`${space_grotesk_light.className}text-gray-200 text-xs -mt-4`}>
                         Total Value Locked
                     </p>
                 </div>
 
                 {/* smart campaign cards container */}
-                <div className="my-4 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
+                <div className="my-5 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none">
                             <SmartCampaignCard

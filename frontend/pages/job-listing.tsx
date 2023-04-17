@@ -7,7 +7,7 @@ const LandingMiniCardsContent: any = [
     { index: 2, title: "$35,250", subtitle: "Threadors Earned" },
 ]
 
-const Listing = () => {
+const JobListing = () => {
     return (
         <MainLayout>
             <section className="bg-shillStreetBlue flex flex-col flex-grow p-32">
@@ -40,4 +40,4 @@ const Listing = () => {
     )
 }
 
-export default Listing
+export default JobListing

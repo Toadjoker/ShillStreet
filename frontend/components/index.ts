@@ -1,4 +1,4 @@
-import MainLayout from './MainLayout'
+import MainLayout from './mainLayout'
 import Header from './header'
 import WaitlistBox from './waitlistBox'
 import Modal from './modal'

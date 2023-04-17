@@ -50,14 +50,14 @@ const Header = ({ headerCallback }: any) => {
                             <Image
                                 src="/images/notification-bell.svg"
                                 alt="notification-bell-icon"
-                                width={30}
-                                height={30}
+                                width={25}
+                                height={25}
                                 unoptimized={true}
                             />
                         </Link>
                         <Link href="#" className="flex space-x-2">
                             <span
-                                className={`${space_grotesk_regular.className} bg-green-500 p-2 rounded-full h-8 w-8 text-center`}
+                                className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
                             >
                                 J
                             </span>
@@ -71,7 +71,7 @@ const Header = ({ headerCallback }: any) => {
                         </Link>
                         <Link
                             href={router.pathname === "/job-listing" ? "#" : "job-listing"}
-                            className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-3 rounded-md border-2 border-white`}
+                            className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
                         >
                             {router.pathname === "/job-listing" ? "Connect Wallet" : "Launch App"}
                         </Link>

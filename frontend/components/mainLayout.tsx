@@ -14,7 +14,7 @@ const MainLayout = ({ children }: Props) => {
         }
     }
     return (
-        <section>
+        <section className="h-screen flex flex-col">
             <Header headerCallback={handleHeaderCallback} />
             {children}
         </section>

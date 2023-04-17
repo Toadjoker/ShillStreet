@@ -68,10 +68,10 @@ const Header = ({ headerCallback }: any) => {
                             />
                         </Link>
                         <Link
-                            href="job-listing"
+                            href={router.pathname === "/job-listing" ? "#" : "job-listing"}
                             className="bg-blue-800 hover:bg-blue-900 p-3 rounded-md border-2 border-white"
                         >
-                            Launch App
+                            {router.pathname === "/job-listing" ? "Connect Wallet" : "Launch App"}
                         </Link>
                     </>
                 )}

@@ -18,6 +18,11 @@ module.exports = {
                 shillStreetBlue: "#07A5C3",
                 shillStreetGrey: "#323232",
             },
+            height: {
+                76: "18rem",
+                86: "20rem",
+                160: "50rem",
+            },
         },
     },
     plugins: [],

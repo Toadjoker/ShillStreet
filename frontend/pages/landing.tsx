@@ -1,10 +1,10 @@
 import { MainLayout } from "../components"
-import { LandingMiniCards } from "../components/cards"
+import { LandingMiniCard } from "../components/cards"
 
-const LandingMiniCardsContent: any = [
-    { index: 0, title: "$12,500", subtitle: "TVL" },
+const CardSampleData: any = [
+    { index: 0, title: "12,500", subtitle: "TVL" },
     { index: 1, title: "6", subtitle: "Campaigns" },
-    { index: 2, title: "$35,250", subtitle: "Threadors Earned" },
+    { index: 2, title: "35,250", subtitle: "Threadors Earned" },
 ]
 
 const Landing = () => {
@@ -27,12 +27,10 @@ const Landing = () => {
                     </div>
                 </div>
                 <div className="mt-36 h-32 flex space-x-20">
-                    {LandingMiniCardsContent.map((item: any) => (
-                        <LandingMiniCards
-                            index={item.index}
-                            title={item.title}
-                            subtitle={item.subtitle}
-                        />
+                    {CardSampleData.map((item: any) => (
+                        <li key={item.index}>
+                            <LandingMiniCard title={item.title} subtitle={item.subtitle} />
+                        </li>
                     ))}
                 </div>
             </section>

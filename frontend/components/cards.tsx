@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { space_grotesk_bold, space_grotesk_regular } from "../utils/customFont"
 import ProgressBar from "./progressBar"
 
 type landingMiniCardProps = {
@@ -30,14 +31,18 @@ export const SmartCampaignCard = ({
 }: smartCampaignCardProps) => {
     return (
         <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-76 text-white border-4 border-white">
-            <h3 className="text-3xl pt-4 text-center font-semibold">{title}</h3>
-            <div className="mt-4">
-                <p className="text-lg font-semibold">Vault Size: ${valutSize}</p>
-                <p className="text-lg font-semibold">Threads Complete: {threadComplete}</p>
+            <h3 className={`${space_grotesk_bold.className} text-3xl pt-4 text-center`}>
+                {title}
+            </h3>
+            <div className={`${space_grotesk_regular.className} mt-4`}>
+                <p className="text-lg">Vault Size: ${valutSize}</p>
+                <p className="text-lg">Threads Complete: {threadComplete}</p>
             </div>
             {/* progress bar and content container */}
             <div>
-                <div className="flex justify-between text-sm">
+                <div
+                    className={`${space_grotesk_regular.className} flex justify-between text-sm mb-2`}
+                >
                     <span>Utilzation</span>
                     <span>{utilization}%</span>
                 </div>
@@ -45,7 +50,10 @@ export const SmartCampaignCard = ({
                 <ProgressBar value={utilization} />
             </div>
             <div className="mt-5 flex justify-center">
-                <Link href="#" className="bg-white rounded-lg p-3 text-gray-900 hover:bg-gray-200">
+                <Link
+                    href="#"
+                    className={`${space_grotesk_regular.className} bg-white rounded-lg p-3 text-gray-900 hover:bg-gray-200`}
+                >
                     View Campaign
                 </Link>
             </div>

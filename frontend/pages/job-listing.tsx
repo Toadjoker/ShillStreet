@@ -1,5 +1,10 @@
 import { MainLayout } from "../components"
 import { SmartCampaignCard } from "../components/cards"
+import {
+    space_grotesk_light,
+    space_grotesk_medium,
+    space_grotesk_semibold,
+} from "../utils/customFont"
 
 // sample data
 const CardSampleData: any = [
@@ -21,14 +26,20 @@ const JobListing = () => {
     return (
         <MainLayout>
             <section className="bg-shillStreetBlue flex flex-col flex-grow px-60 pt-10 overflow-hidden">
-                <h3 className="text-white text-3xl font-semibold tracking-wide">
+                <h3
+                    className={`${space_grotesk_medium.className} text-white text-3xl font-semibold tracking-wide`}
+                >
                     Smart Campaigns
                 </h3>
 
                 {/* total value card */}
                 <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-24 text-white border-4 border-white">
-                    <p className="font-bold text-3xl">$12,981</p>
-                    <p className="text-gray-200 text-sm -mt-3">Total Value Locked</p>
+                    <p className={`${space_grotesk_semibold.className} font-bold text-3xl`}>
+                        $12,981
+                    </p>
+                    <p className={`${space_grotesk_light.className}text-gray-200 text-sm -mt-3`}>
+                        Total Value Locked
+                    </p>
                 </div>
 
                 {/* smart campaign cards container */}

@@ -6,7 +6,8 @@ import ConnectWalletButton from './connectWalletButton'
 import Spinner from './spinner'
 import Alert from './alert'
 import { AlertType } from './alert'
+import ProgressBar from './progressBar'
 
 export {
-    MainLayout, Header, WaitlistBox, Modal, ConnectWalletButton, Spinner, Alert, AlertType
+    MainLayout, Header, WaitlistBox, Modal, ConnectWalletButton, Spinner, Alert, AlertType, ProgressBar
 }

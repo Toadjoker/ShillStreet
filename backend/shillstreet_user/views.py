@@ -61,6 +61,15 @@ class UserView(APIView):
         return Response(serializer.data)
 
 
+class RequestTwitterVerification(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        return Response(user.id)
+
+
 class BindTwitterView(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]

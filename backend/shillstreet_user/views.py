@@ -67,7 +67,7 @@ class RequestTwitterVerification(APIView):
 
     def get(self, request):
         user = request.user
-        return Response(user.id)
+        return Response({"id": f"{135487456845+int(user.id)}"})
 
 
 class BindTwitterView(APIView):

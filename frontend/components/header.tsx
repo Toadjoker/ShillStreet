@@ -30,7 +30,7 @@ const Header = ({ headerCallback }: any) => {
             <nav className="text-white space-x-5 flex items-center">
                 {isConnected && (
                     <div className="flex items-center">
-                        <p className="bg-blue-500 p-2 rounded-full w-auto mx-3">
+                        <p className="bg-blue-500 p-2 rounded-full w-auto mx-3 mt-4">
                             {address.slice(0, 10)}...
                         </p>
                         {/* logout button */}
@@ -46,35 +46,56 @@ const Header = ({ headerCallback }: any) => {
                 {/* only show the following if user is not on the waitlist page  */}
                 {router.pathname !== "/" && (
                     <>
-                        <Link href="#">
-                            <Image
-                                src="/images/notification-bell.svg"
-                                alt="notification-bell-icon"
-                                width={25}
-                                height={25}
-                                unoptimized={true}
-                            />
-                        </Link>
-                        <Link href="#" className="flex space-x-2">
-                            <span
-                                className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
-                            >
-                                J
-                            </span>
-                            <Image
-                                src="/images/chevron-down-white.svg"
-                                alt="chevron-down"
-                                width={20}
-                                height={20}
-                                unoptimized={true}
-                            />
-                        </Link>
-                        <Link
-                            href={router.pathname === "/job-listing" ? "#" : "job-listing"}
-                            className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
-                        >
-                            {router.pathname === "/job-listing" ? "Connect Wallet" : "Launch App"}
-                        </Link>
+                        {router.pathname != "/account-setup" ? (
+                            <>
+                                <Link href="#">
+                                    <Image
+                                        src="/images/notification-bell.svg"
+                                        alt="notification-bell-icon"
+                                        width={25}
+                                        height={25}
+                                        unoptimized={true}
+                                    />
+                                </Link>
+                                <Link href="#" className="flex space-x-2">
+                                    <span
+                                        className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
+                                    >
+                                        J
+                                    </span>
+                                    <Image
+                                        src="/images/chevron-down-white.svg"
+                                        alt="chevron-down"
+                                        width={20}
+                                        height={20}
+                                        unoptimized={true}
+                                    />
+                                </Link>
+                                <Link
+                                    href="/account-setup"
+                                    className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                >
+                                    Launch App
+                                </Link>
+                            </>
+                        ) : (
+                            <>
+                                <Link
+                                    href="/"
+                                    className={`${space_grotesk_regular.className} hover:text-blue-400`}
+                                    onClick={() => headerCallback(0)}
+                                >
+                                    Home
+                                </Link>
+                                <Link
+                                    href="/jobs"
+                                    className={`${space_grotesk_regular.className} hover:text-blue-400`}
+                                    onClick={() => headerCallback(0)}
+                                >
+                                    Jobs
+                                </Link>
+                            </>
+                        )}
                     </>
                 )}
 

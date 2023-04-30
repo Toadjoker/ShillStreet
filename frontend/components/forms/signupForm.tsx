@@ -11,7 +11,6 @@ type Inputs = {
     name: string
     email: string
 }
-
 const SignUpForm = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
     const [requesting, setReqesting] = useState<boolean>(false)
@@ -32,7 +31,7 @@ const SignUpForm = () => {
         if (isValid) {
             setReqesting(true)
             await registerRequest
-                .post("/users/register", data)
+                .post("/users/register/", data)
                 .then((response: any) => {
                     if (response) {
                         reset() // clear the inputs

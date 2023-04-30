@@ -22,7 +22,7 @@ const WaitlistBox = () => {
     const onSubmit: SubmitHandler<WaitListType> = async (data) => {
         setReqesting(true)
         await waitListRequest
-            .post("/users/join_waitlist", data)
+            .post("/users/join_waitlist/", data)
             .then((response: any) => {
                 if (response) {
                     reset() // clear form input when submit is successful

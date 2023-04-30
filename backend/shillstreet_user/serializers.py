@@ -12,13 +12,13 @@ class UserSerializer(serializers.ModelSerializer):
             'twitter_handle': {'required': False}
         }
 
-    def create(self, validated_data):
-        privateString = validated_data.pop('privateString', None)
-        instance = self.Meta.model(**validated_data)
-        if privateString is not None:
-            instance.set_password(privateString)
-        instance.save()
-        return instance
+    def save(self, **kwargs):
+        private_string = self.validated_data.pop('privateString', None)
+        user = super().save(**kwargs)
+        if private_string is not None:
+            user.set_password(private_string)
+            user.save()
+        return user
 
 
 class WaitListSerializer(serializers.ModelSerializer):

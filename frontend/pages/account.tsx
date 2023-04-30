@@ -33,13 +33,13 @@ const AccountOverview = () => {
                 </p>
 
                 {/* top card */}
-                <div className="bg-purple-900 w-full rounded-lg p-2 px-14 h-40 text-white">
+                <div className="bg-purple-900 w-full rounded-lg p-2 h-40 text-white flex justify-center space-x-20">
                     {/* user avatar and wallet address container */}
-                    <div className="bg-red-300 w-40 flex flex-col items-center justify-center space-y-5">
+                    <div className="w-36 flex flex-col items-center justify-center space-y-5">
                         <div className="bg-shillStreetBlue flex items-center justify-center h-20 w-20 rounded-full border-4 border-shillStreetGrey">
                             <Image
                                 src="/images/avatar-icon.svg"
-                                alt="right-icon"
+                                alt="avatar"
                                 width={40}
                                 height={40}
                                 unoptimized={true}
@@ -50,14 +50,43 @@ const AccountOverview = () => {
                         </span>
                     </div>
 
-                    <div></div>
-
-                    {/* <p className={`${space_grotesk_semibold.className} font-bold text-2xl`}>
-                        $12,981
-                    </p> */}
-                    {/* <p className={`${space_grotesk_light.className}text-gray-200 text-xs -mt-4`}>
-                        Total Value Locked
-                    </p> */}
+                    <div className="flex space-x-12 items-center">
+                        <div className="flex flex-col text-center">
+                            <span className={`${space_grotesk_light.className}`}>
+                                Revenue Earned (USDC)
+                            </span>
+                            <div className="flex items-center space-x-3 justify-center">
+                                <span className="bg-shillStreetGrey">
+                                    <Image
+                                        src="/images/dollar-sign.svg"
+                                        alt="dollar-sign"
+                                        width={20}
+                                        height={20}
+                                        unoptimized={true}
+                                    />
+                                </span>
+                                <span className={`${space_grotesk_semibold.className} my-3`}>
+                                    $250.00
+                                </span>
+                            </div>
+                        </div>
+                        <div className="flex flex-col text-center">
+                            <span className={`${space_grotesk_light.className}`}>
+                                Reach Generated
+                            </span>
+                            <span className={`${space_grotesk_semibold.className} my-3`}>
+                                27,369
+                            </span>
+                        </div>
+                        <div className="flex flex-col text-center">
+                            <span className={`${space_grotesk_light.className}`}>
+                                Average Thread Value
+                            </span>
+                            <span className={`${space_grotesk_semibold.className} my-3`}>
+                                $25.00
+                            </span>
+                        </div>
+                    </div>
                 </div>
 
                 {/* smart campaign cards container */}

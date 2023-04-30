@@ -65,7 +65,7 @@ class RequestTwitterVerification(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def post(self, request):
+    def get(self, request):
         user = request.user
         return Response(user.id)
 

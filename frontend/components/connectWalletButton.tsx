@@ -1,5 +1,6 @@
-import { useConnect } from "wagmi"
-import { press_start_2P, space_grotesk_medium } from "../utils/customFont"
+import { useMemo } from "react"
+import { useConnect, useAccount, useSignMessage } from "wagmi"
+import { space_grotesk_medium } from "../utils/customFont"
 import { Spinner } from "./"
 
 const ConnectWalletButton = ({ buttonTitle, requesting }: any) => {

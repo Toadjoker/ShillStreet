@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { useRouter } from "next/router"
 import { space_grotesk_regular } from "../utils/customFont"
 
 // sample data
@@ -100,71 +101,79 @@ const sampleData = [
     },
 ]
 
-const Table = () => (
-    <div className="bg-shillStreetGrey max-h-80 overflow-y-auto mx-auto border-4 border-white rounded-xl w-full">
-        <table
-            className={`${space_grotesk_regular.className} w-full text-sm text-center text-gray-500 dark:text-gray-400`}
-        >
-            <thead className="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
-                <tr>
-                    <th scope="col" colSpan={2} className="px-6 py-3">
-                        <span className="font-semibold text-white">Active Jobs (0)</span>
-                        <br />
-                        <span className="text-xs mt-2">Campaign</span>
-                    </th>
-                    <th scope="col" colSpan={2} className="px-6 py-3">
-                        <span className="font-semibold text-white">Completed Jobs</span>
-                        <br />
-                        <span className="text-xs mt-2">Time Accepted</span>
-                    </th>
-                    <th scope="col" colSpan={2} className="px-6 py-3">
-                        <span className="font-semibold text-white">Job Activity</span>
-                        <br />
-                        <span className="text-xs mt-2">Reach Generated</span>
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                        <br />
-                        <span className="text-xs mt-2">Thread Earnings</span>
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                        <br />
-                        <span className="text-xs">Share of Campaign Earned</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {sampleData.map((item) => (
-                    <tr
-                        key={item.index}
-                        className="bg-transparent border-b hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer overflow-y-auto"
-                    >
-                        <td
-                            scope="row"
-                            colSpan={2}
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white pl-20"
-                        >
-                            <Image
-                                src={item.campaign}
-                                alt="campaign-logo"
-                                width={50}
-                                height={50}
-                                unoptimized={true}
-                            />
-                        </td>
-                        <td colSpan={2} className="px-6 py-4">
-                            {item.timeAccepted.date} <br />
-                            {item.timeAccepted.time}
-                        </td>
-                        <td colSpan={2} className="px-6 py-4">
-                            {item.reachGenerated}
-                        </td>
-                        <td className="px-6 py-4">{item.threadEarnings}</td>
-                        <td className="px-6 py-4">{item.shareOfCampaignEarned}</td>
+const Table = () => {
+    const router = useRouter()
+    const handleNavigationToDetails = (item: any) => {
+        router.push(`/account/campaigns/${item.index}`)
+    }
+
+    return (
+        <div className="bg-shillStreetGrey max-h-80 overflow-y-auto mx-auto border-4 border-white rounded-xl w-full">
+            <table
+                className={`${space_grotesk_regular.className} w-full text-sm text-center text-gray-500 dark:text-gray-400`}
+            >
+                <thead className="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                    <tr>
+                        <th scope="col" colSpan={2} className="px-6 py-3">
+                            <span className="font-semibold text-white">Active Jobs (0)</span>
+                            <br />
+                            <span className="text-xs mt-2">Campaign</span>
+                        </th>
+                        <th scope="col" colSpan={2} className="px-6 py-3">
+                            <span className="font-semibold text-white">Completed Jobs</span>
+                            <br />
+                            <span className="text-xs mt-2">Time Accepted</span>
+                        </th>
+                        <th scope="col" colSpan={2} className="px-6 py-3">
+                            <span className="font-semibold text-white">Job Activity</span>
+                            <br />
+                            <span className="text-xs mt-2">Reach Generated</span>
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            <br />
+                            <span className="text-xs mt-2">Thread Earnings</span>
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            <br />
+                            <span className="text-xs">Share of Campaign Earned</span>
+                        </th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>
-)
+                </thead>
+                <tbody>
+                    {sampleData.map((item) => (
+                        <tr
+                            key={item.index}
+                            onClick={() => handleNavigationToDetails(item)}
+                            className="bg-transparent border-b hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer overflow-y-auto"
+                        >
+                            <td
+                                scope="row"
+                                colSpan={2}
+                                className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white pl-20"
+                            >
+                                <Image
+                                    src={item.campaign}
+                                    alt="campaign-logo"
+                                    width={50}
+                                    height={50}
+                                    unoptimized={true}
+                                />
+                            </td>
+                            <td colSpan={2} className="px-6 py-4">
+                                {item.timeAccepted.date} <br />
+                                {item.timeAccepted.time}
+                            </td>
+                            <td colSpan={2} className="px-6 py-4">
+                                {item.reachGenerated}
+                            </td>
+                            <td className="px-6 py-4">{item.threadEarnings}</td>
+                            <td className="px-6 py-4">{item.shareOfCampaignEarned}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    )
+}
 
 export default Table

@@ -19,6 +19,39 @@ const CardSampleData: any = [
     { index: 2, title: "Earnings", duration: "Past 30 Days", value: "$125" },
 ]
 
+const TopCardTextContentSampleData: any = [
+    {
+        index: 0,
+        title: "Revenue Earned (USDC)",
+        value: "$250.00",
+    },
+    { index: 1, title: "Reach Generated", value: " 27,369" },
+    { index: 2, title: "Average Thread Value", value: "$25.00" },
+]
+
+const TopCardTextContent = ({ index, title, value }: any) => (
+    <div key={index} className="flex space-x-12 items-center">
+        <div className="flex flex-col text-center">
+            <span className={`${space_grotesk_light.className}`}>{title}</span>
+            <div className="flex items-center space-x-3 justify-center">
+                {/* only show the dollar sign for revenue earned title */}
+                {title === "Revenue Earned (USDC)" && (
+                    <span className="bg-shillStreetGrey">
+                        <Image
+                            src="/images/dollar-sign.svg"
+                            alt="dollar-sign"
+                            width={20}
+                            height={20}
+                            unoptimized={true}
+                        />
+                    </span>
+                )}
+                <span className={`${space_grotesk_semibold.className} my-3`}>{value}</span>
+            </div>
+        </div>
+    </div>
+)
+
 const AccountOverview = () => {
     return (
         <MainLayout>
@@ -50,43 +83,13 @@ const AccountOverview = () => {
                         </span>
                     </div>
 
-                    <div className="flex space-x-12 items-center">
-                        <div className="flex flex-col text-center">
-                            <span className={`${space_grotesk_light.className}`}>
-                                Revenue Earned (USDC)
-                            </span>
-                            <div className="flex items-center space-x-3 justify-center">
-                                <span className="bg-shillStreetGrey">
-                                    <Image
-                                        src="/images/dollar-sign.svg"
-                                        alt="dollar-sign"
-                                        width={20}
-                                        height={20}
-                                        unoptimized={true}
-                                    />
-                                </span>
-                                <span className={`${space_grotesk_semibold.className} my-3`}>
-                                    $250.00
-                                </span>
-                            </div>
-                        </div>
-                        <div className="flex flex-col text-center">
-                            <span className={`${space_grotesk_light.className}`}>
-                                Reach Generated
-                            </span>
-                            <span className={`${space_grotesk_semibold.className} my-3`}>
-                                27,369
-                            </span>
-                        </div>
-                        <div className="flex flex-col text-center">
-                            <span className={`${space_grotesk_light.className}`}>
-                                Average Thread Value
-                            </span>
-                            <span className={`${space_grotesk_semibold.className} my-3`}>
-                                $25.00
-                            </span>
-                        </div>
-                    </div>
+                    {TopCardTextContentSampleData.map((item) => (
+                        <TopCardTextContent
+                            key={item.index}
+                            title={item.title}
+                            value={item.value}
+                        />
+                    ))}
                 </div>
 
                 {/* overview cards container */}
@@ -101,6 +104,8 @@ const AccountOverview = () => {
                         </li>
                     ))}
                 </div>
+
+                <div className="bg-shillStreetGrey flex w-52 rounded-3xl h-auto text-white border-4 border-white overflow-hidden"></div>
             </section>
         </MainLayout>
     )

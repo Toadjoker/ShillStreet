@@ -1,5 +1,10 @@
 import Link from "next/link"
-import { space_grotesk_bold, space_grotesk_regular } from "../utils/customFont"
+import Image from "next/image"
+import {
+    space_grotesk_bold,
+    space_grotesk_regular,
+    space_grotesk_light,
+} from "../utils/customFont"
 import ProgressBar from "./progressBar"
 
 type landingMiniCardProps = {
@@ -69,19 +74,26 @@ export const SmartCampaignCard = ({
 
 export const OverviewCard = ({ title, duration, value }: overviewCardProps) => {
     return (
-        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white">
-            <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
-            <div className={`${space_grotesk_regular.className} mt-4`}>
-                <p className="text-sm">Duration: ${duration}</p>
-                <p className="text-sm">Value: {value}</p>
+        <div className="bg-shillStreetGrey flex w-52 rounded-3xl h-auto text-white border-4 border-white overflow-hidden">
+            <div className="ml-3 mr-2 mt-5">
+                <Image
+                    src="/images/flag-icon.svg"
+                    alt="flag-icon"
+                    width={30}
+                    height={30}
+                    unoptimized={true}
+                />
             </div>
-            {/* progress bar and content container */}
-            <div>
+            <div className="flex flex-col w-full overflow-hidden mr-5 text-center">
                 <div
-                    className={`${space_grotesk_regular.className} flex justify-between text-xs mb-2`}
+                    className={`${space_grotesk_light.className} flex items-center justify-between pt-2`}
                 >
-                    <span>Utilzation</span>
+                    <p className="text-xs">{title}</p>
+                    <p className="text-xs">{duration}</p>
                 </div>
+                <h4 className={`${space_grotesk_bold.className} text-lg text-center -mt-1 -ml-5`}>
+                    {value}
+                </h4>
             </div>
         </div>
     )

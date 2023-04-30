@@ -33,7 +33,7 @@ const AccountOverview = () => {
                 </p>
 
                 {/* top card */}
-                <div className="bg-purple-900 w-full rounded-lg p-2 h-40 text-white flex justify-center space-x-20">
+                <div className="bg-purple-900 w-full rounded-lg p-2 h-40 text-white flex justify-center space-x-20 shadow-lg">
                     {/* user avatar and wallet address container */}
                     <div className="w-36 flex flex-col items-center justify-center space-y-5">
                         <div className="bg-shillStreetBlue flex items-center justify-center h-20 w-20 rounded-full border-4 border-shillStreetGrey">
@@ -89,8 +89,8 @@ const AccountOverview = () => {
                     </div>
                 </div>
 
-                {/* smart campaign cards container */}
-                {/* <div className="my-5 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
+                {/* overview cards container */}
+                <div className="my-5 mx-auto flex w-full justify-center space-x-20">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none">
                             <OverviewCard
@@ -100,7 +100,7 @@ const AccountOverview = () => {
                             />
                         </li>
                     ))}
-                </div> */}
+                </div>
             </section>
         </MainLayout>
     )

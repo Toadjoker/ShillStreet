@@ -1,6 +1,5 @@
 import Image from "next/image"
-import { MainLayout } from "../components"
-import { LandingMiniCard } from "../components/cards"
+import { MainLayout, LandingMiniCard } from "../components"
 import {
     space_grotesk_bold,
     space_grotesk_regular,

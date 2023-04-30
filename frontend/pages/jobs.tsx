@@ -1,5 +1,4 @@
-import { MainLayout } from "../components"
-import { SmartCampaignCard } from "../components/cards"
+import { MainLayout, SmartCampaignCard } from "../components"
 import {
     space_grotesk_light,
     space_grotesk_medium,

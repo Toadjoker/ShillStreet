@@ -1,6 +1,5 @@
 import Image from "next/image"
-import { MainLayout } from "../components"
-import { OverviewCard } from "../components/cards"
+import { MainLayout, Table, OverviewCard } from "../components"
 import {
     space_grotesk_light,
     space_grotesk_medium,
@@ -66,19 +65,19 @@ const AccountOverview = () => {
                 </p>
 
                 {/* top card */}
-                <div className="bg-purple-900 w-full rounded-lg p-2 h-40 text-white flex justify-center space-x-20 shadow-lg">
+                <div className="bg-purple-900 w-full rounded-lg py-2 h-24 text-white flex justify-center space-x-20 shadow-lg">
                     {/* user avatar and wallet address container */}
-                    <div className="w-36 flex flex-col items-center justify-center space-y-5">
-                        <div className="bg-shillStreetBlue flex items-center justify-center h-20 w-20 rounded-full border-4 border-shillStreetGrey">
+                    <div className="w-36 flex flex-col items-center justify-center space-y-2">
+                        <div className="bg-shillStreetBlue flex items-center justify-center h-14 w-14 rounded-full border-4 border-shillStreetGrey">
                             <Image
                                 src="/images/avatar-icon.svg"
                                 alt="avatar"
-                                width={40}
-                                height={40}
+                                width={25}
+                                height={25}
                                 unoptimized={true}
                             />
                         </div>
-                        <span className={`${space_grotesk_light.className}text-gray-200`}>
+                        <span className={`${space_grotesk_light.className}text-gray-200 text-xs`}>
                             0x000....89862
                         </span>
                     </div>
@@ -105,7 +104,8 @@ const AccountOverview = () => {
                     ))}
                 </div>
 
-                <div className="bg-shillStreetGrey flex w-52 rounded-3xl h-auto text-white border-4 border-white overflow-hidden"></div>
+                {/* table */}
+                <Table />
             </section>
         </MainLayout>
     )

@@ -28,7 +28,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     walletAddress = models.CharField(max_length=255, unique=True)
     email = models.EmailField(max_length=255, unique=True)
-    privateString = models.CharField(max_length=255)
+    privateString = models.CharField(max_length=255, null=False)
     twitter_handle = models.CharField(max_length=255, unique=True, null=True)
     is_twitterBinded = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

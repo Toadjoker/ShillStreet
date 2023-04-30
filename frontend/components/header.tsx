@@ -81,7 +81,7 @@ const Header = ({ headerCallback }: any) => {
                         ) : (
                             <>
                                 <Link
-                                    href="/"
+                                    href="/landing"
                                     className={`${space_grotesk_regular.className} hover:text-blue-400`}
                                     onClick={() => headerCallback(0)}
                                 >

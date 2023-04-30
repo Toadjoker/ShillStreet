@@ -14,6 +14,12 @@ type smartCampaignCardProps = {
     utilization: number
 }
 
+type overviewCardProps = {
+    title: string
+    duration: string
+    value: string
+}
+
 export const LandingMiniCard = ({ title, subtitle }: landingMiniCardProps) => {
     return (
         <div
@@ -56,6 +62,26 @@ export const SmartCampaignCard = ({
                 >
                     View Campaign
                 </Link>
+            </div>
+        </div>
+    )
+}
+
+export const OverviewCard = ({ title, duration, value }: overviewCardProps) => {
+    return (
+        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white">
+            <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
+            <div className={`${space_grotesk_regular.className} mt-4`}>
+                <p className="text-sm">Duration: ${duration}</p>
+                <p className="text-sm">Value: {value}</p>
+            </div>
+            {/* progress bar and content container */}
+            <div>
+                <div
+                    className={`${space_grotesk_regular.className} flex justify-between text-xs mb-2`}
+                >
+                    <span>Utilzation</span>
+                </div>
             </div>
         </div>
     )

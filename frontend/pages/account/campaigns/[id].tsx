@@ -1,3 +1,4 @@
+import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import Link from "next/link"
@@ -8,17 +9,19 @@ import {
     space_grotesk_regular,
     space_grotesk_semibold,
 } from "../../../utils/customFont"
+import { useSelector } from "react-redux"
 
 const img = "https://icodrops.com/wp-content/uploads/2021/06/dopex_logo.png"
 const CampaignDetails = () => {
     const router = useRouter()
-    const { id } = router.query
+    const state = useSelector((state: any) => state)
+    const { campaign } = state.campaignsReducer
 
     return (
         <MainLayout>
             <section className="h-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                 <div className="py-10 h-full px-48">
-                    <div className="flex h-20 overflow-hidden items-center space-x-6">
+                    <div className="flex overflow-hidden items-center space-x-6">
                         <Link
                             href="/account/overview"
                             className="bg-shillStreetGrey w-6 h-6 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
@@ -32,13 +35,14 @@ const CampaignDetails = () => {
                             />
                         </Link>
                         <div className="flex items-center">
-                            <div className="w-20 h-20 rounded-full overflow-hidden mr-5">
+                            <div className="w-20 h-20 rounded-full mr-5 mt-3">
                                 <Image
-                                    src={img}
+                                    src={campaign?.campaign}
                                     alt="avatar"
-                                    width={100}
-                                    height={100}
+                                    width={150}
+                                    height={150}
                                     unoptimized={true}
+                                    className="rounded-full"
                                 />
                             </div>
                             <h4

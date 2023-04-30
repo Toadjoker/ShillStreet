@@ -4,6 +4,8 @@ import "antd/dist/reset.css"
 import { WagmiConfig, createClient } from "wagmi"
 import { getDefaultProvider } from "ethers"
 import { InjectedConnector } from "wagmi/connectors/injected"
+import { Provider } from "react-redux"
+import store from "../redux/configureStore"
 
 const client = createClient({
     provider: getDefaultProvider(),
@@ -26,7 +28,9 @@ export default function App({ Component, pageProps }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <WagmiConfig client={client}>
-                <Component {...pageProps} />
+                <Provider store={store}>
+                    <Component {...pageProps} />
+                </Provider>
             </WagmiConfig>
         </>
     )

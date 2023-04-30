@@ -1,6 +1,6 @@
 import tweepy
 from .credentials import *
-from models import *
+from .models import *
 
 #Create API using credentials file and return the API object
 def create_api_client():

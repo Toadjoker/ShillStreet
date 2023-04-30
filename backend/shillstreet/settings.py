@@ -44,13 +44,13 @@ INSTALLED_APPS = [
     'twitterAPI',
     'channels',
 ]
-#Configuring CORS and Django Channels
+# Configuring CORS and Django Channels
 ASGI_APPLICATION = 'shillstreet.routing.application'
 
 CHANNEL_LAYERS = {
-    "default" : {
-        "BACKEND" : "channels.layers.InMemoryChannelLayer",
-        'CONFIG' : {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer",
+        'CONFIG': {
             'hosts': [('localhost', 6379)],
         },
     },
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -124,6 +125,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/

@@ -57,7 +57,7 @@ const Header = ({ headerCallback }: any) => {
                                         unoptimized={true}
                                     />
                                 </Link>
-                                <Link href="/account" className="flex space-x-2">
+                                <Link href="/account/overview" className="flex space-x-2">
                                     <span
                                         className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
                                     >

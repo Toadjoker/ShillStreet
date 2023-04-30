@@ -1,10 +1,10 @@
 import Image from "next/image"
-import { MainLayout, Table, OverviewCard } from "../components"
+import { MainLayout, Table, OverviewCard } from "../../components"
 import {
     space_grotesk_light,
     space_grotesk_medium,
     space_grotesk_semibold,
-} from "../utils/customFont"
+} from "../../utils/customFont"
 
 // sample data
 const CardSampleData: any = [

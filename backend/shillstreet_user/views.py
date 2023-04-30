@@ -32,7 +32,7 @@ class LoginView(APIView):
         if user is None:
             raise AuthenticationFailed('User not found!')
 
-        if not user.check_password(privateString):
+        if user.privateString != privateString:
             raise AuthenticationFailed('Incorrect privateString!')
 
         payload = {

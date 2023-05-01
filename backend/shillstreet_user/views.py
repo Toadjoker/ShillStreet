@@ -73,7 +73,7 @@ class RequestTwitterVerification(APIView):
 class CheckBindedTwitterHandle(APIView):
 
     def post(self, request):
-        walletAddress = request.data.get('wallet')
+        walletAddress = request.data.get('walletAddress')
         if User.objects.filter(walletAddress=walletAddress).exists():
             user = User.objects.filter(walletAddress=walletAddress).first()
             return Response({"is_twitterBinded": user.is_twitterBinded, "twitter_handle": f"{user.twitter_handle}"})

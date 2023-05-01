@@ -60,7 +60,6 @@ const ConnectTwitterForm = () => {
         try {
             const token = Cookies.get("jwt")
             const response = await fetch("https://api.shillstreet.com/users/request/", {
-                method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -81,13 +80,17 @@ const ConnectTwitterForm = () => {
     }
     const checkTwitterHandle = async () => {
         try {
-            const token = Cookies.get("jwt")
             const response = await fetch("https://api.shillstreet.com/users/checkTwitterBinded/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
                 body: JSON.stringify({
                     walletAddress: address,
                 }),
             })
             const data = await response.json()
+            console.log(data)
             if (data.is_twitterBinded) {
                 setTwitterHandle(data.twitter_handle)
             }

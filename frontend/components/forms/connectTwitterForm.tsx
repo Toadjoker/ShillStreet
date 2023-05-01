@@ -46,6 +46,8 @@ const ConnectTwitterForm = () => {
                     `Twitter handle: ${data.twitter_handle} connected Successful!`
                 )
                 checkTwitterHandle()
+            } else {
+                Alert(AlertType.error, `Not Logged in!`)
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {
@@ -69,9 +71,9 @@ const ConnectTwitterForm = () => {
                 },
             })
             const data = await response.json()
-            if (data.twitter_handle === "") {
+            if (data.twitter_handle == null) {
                 Alert(AlertType.success, `Twitter handle Unbinded Successful!`)
-                checkTwitterHandle()
+                setTwitterHandle("")
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {

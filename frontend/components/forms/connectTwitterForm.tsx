@@ -56,6 +56,33 @@ const ConnectTwitterForm = () => {
             setIsBindnig(false)
         }
     }
+
+    const unbindConnection = async () => {
+        setIsBindnig(true)
+        try {
+            const token = Cookies.get("jwt")
+            const response = await fetch("https://api.shillstreet.com/users/unbind_twitter/", {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+            })
+            const data = await response.json()
+            if (data.twitter_handle === "") {
+                Alert(AlertType.success, `Twitter handle Unbinded Successful!`)
+                checkTwitterHandle()
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                return
+            }
+            console.error(error)
+        } finally {
+            setIsBindnig(false)
+        }
+    }
+
     const request = async () => {
         try {
             const token = Cookies.get("jwt")
@@ -113,8 +140,19 @@ const ConnectTwitterForm = () => {
     }, [address, isBindnig])
     return (
         <>
-            {!!!twitterHandle ? (
-                <div className="text-white">{twitterHandle}</div>
+            {!!twitterHandle ? (
+                <>
+                    <div className="text-white">
+                        Your Connected Twitter Account is : {twitterHandle}
+                    </div>
+                    <button
+                        className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                        type="submit"
+                        onClick={() => unbindConnection()}
+                    >
+                        {isRequesting ? <Spinner width={20} height={20} /> : "Unbind Twitter"}
+                    </button>
+                </>
             ) : (
                 <>
                     <div className="flex items-center justify-between my-10">

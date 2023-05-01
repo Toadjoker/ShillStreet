@@ -112,7 +112,7 @@ class UnbindTwitterView(APIView):
 
     def post(self, request):
         user = request.user
-        user.twitter_handle = ""
+        user.twitter_handle = None
         user.is_twitterBinded = False
         user.save()
 

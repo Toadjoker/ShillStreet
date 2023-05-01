@@ -42,7 +42,13 @@ const ConnectTwitterForm = () => {
                 }),
             })
             const data = await response.json()
-            console.log(data)
+            console.log(data.twitter_handle)
+            if (data.twitter_handle) {
+                Alert(
+                    AlertType.success,
+                    `Twitter handle: ${data.twitter_handle} connected Successful!`
+                )
+            }
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 return

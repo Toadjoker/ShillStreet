@@ -1,19 +1,15 @@
-import { useMemo, useState } from "react"
-import { useForm, SubmitHandler } from "react-hook-form"
-import { ConnectWalletButton } from "../"
-import { useAccount, useSignMessage, useDisconnect } from "wagmi"
-import { RegisterType } from "../../utils/types"
-import { registerRequest } from "../../utils/apiRequests"
-import { press_start_2P } from "../../utils/customFont"
+import { useMemo, useState, useEffect } from "react"
 import { Spinner, Alert, AlertType } from "../"
 import Cookies from "js-cookie"
 import { space_grotesk_medium } from "../../utils/customFont"
-
+import { useAccount, useSignMessage } from "wagmi"
 const ConnectTwitterForm = () => {
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [isBindnig, setIsBindnig] = useState<boolean>(false)
     const [isConnecting, setIsConnecting] = useState<boolean>(false)
+    const [twitterHandle, setTwitterHandle] = useState<string>("")
     const [url, setUrl] = useState<string>("")
+    const { address, isConnected } = useAccount()
     const createConnection = async () => {
         try {
             setIsRequesting(true)
@@ -29,6 +25,7 @@ const ConnectTwitterForm = () => {
     }
 
     const bindConnection = async () => {
+        setIsBindnig(true)
         try {
             const token = Cookies.get("jwt")
             const response = await fetch("https://api.shillstreet.com/users/bind/", {
@@ -48,18 +45,22 @@ const ConnectTwitterForm = () => {
                     AlertType.success,
                     `Twitter handle: ${data.twitter_handle} connected Successful!`
                 )
+                checkTwitterHandle()
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 return
             }
             console.error(error)
+        } finally {
+            setIsBindnig(false)
         }
     }
     const request = async () => {
         try {
             const token = Cookies.get("jwt")
             const response = await fetch("https://api.shillstreet.com/users/request/", {
+                method: "POST",
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -78,6 +79,25 @@ const ConnectTwitterForm = () => {
             console.error(error)
         }
     }
+    const checkTwitterHandle = async () => {
+        try {
+            const token = Cookies.get("jwt")
+            const response = await fetch("https://api.shillstreet.com/users/checkTwitterBinded/", {
+                body: JSON.stringify({
+                    walletAddress: address,
+                }),
+            })
+            const data = await response.json()
+            if (data.is_twitterBinded) {
+                setTwitterHandle(data.twitter_handle)
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                return
+            }
+            console.error(error)
+        }
+    }
     const openTwitterPopup = (ssId: string) => {
         console.log(ssId)
         const url = `https://twitter.com/intent/tweet?text=Hey%20everyone!%20I%20wanted%20to%20let%20you%20know%20about%20a%20great%20platform%20called%20@ShillStreet%20that%20I've%20been%20using.%20It's%20been%20really%20helpful%20for%20me%20and%20I%20think%20you%20should%20check%20it%20out%20too.%20ssid:${ssId}.%20You%20can%20learn%20more%20about%20it%20at%20https://shillstreet.com.`
@@ -85,40 +105,53 @@ const ConnectTwitterForm = () => {
             "width=600,height=400,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes"
         window.open(url, "twitterShare", windowFeatures)
     }
+    useEffect(() => {
+        checkTwitterHandle()
+    }, [address, isBindnig])
     return (
         <>
-            <div className="flex items-center justify-between my-10">
-                <p
-                    className={`${space_grotesk_medium.className} font-bold text-xl text-center mt-5`}
-                >
-                    Connect Twitter
-                </p>
-                <button
-                    className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
-                    type="submit"
-                    onClick={() => createConnection()}
-                >
-                    {isRequesting ? <Spinner width={20} height={20} /> : "Connect Twitter"}
-                </button>
-            </div>
-            <div className="flex items-center justify-between my-10">
-                {isConnecting && (
-                    <>
-                        <input
-                            className="text-black"
-                            placeholder="Your Tweet Link"
-                            onChange={handleEmailChange}
-                        ></input>
+            {!!!twitterHandle ? (
+                <div className="text-white">{twitterHandle}</div>
+            ) : (
+                <>
+                    <div className="flex items-center justify-between my-10">
+                        <p
+                            className={`${space_grotesk_medium.className} font-bold text-xl text-center mt-5`}
+                        >
+                            Connect Twitter
+                        </p>
                         <button
                             className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                             type="submit"
-                            onClick={() => bindConnection()}
+                            onClick={() => createConnection()}
                         >
-                            {isBindnig ? <Spinner width={20} height={20} /> : "Verify Twitter"}
+                            {isRequesting ? <Spinner width={20} height={20} /> : "Connect Twitter"}
                         </button>
-                    </>
-                )}
-            </div>
+                    </div>
+                    <div className="flex items-center justify-between my-10">
+                        {isConnecting && (
+                            <>
+                                <input
+                                    className="text-black"
+                                    placeholder="Your Tweet Link"
+                                    onChange={handleEmailChange}
+                                ></input>
+                                <button
+                                    className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                                    type="submit"
+                                    onClick={() => bindConnection()}
+                                >
+                                    {isBindnig ? (
+                                        <Spinner width={20} height={20} />
+                                    ) : (
+                                        "Verify Twitter"
+                                    )}
+                                </button>
+                            </>
+                        )}
+                    </div>
+                </>
+            )}
         </>
     )
 }

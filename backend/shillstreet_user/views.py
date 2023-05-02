@@ -89,7 +89,7 @@ class BindTwitterView(APIView):
         user = request.user
         url = request.data.get('url')
         content, twitter_handle = readTweet(url)
-        if f"{135487456845 + user.id}" not in content:
+        if f"{135487456845 + int(user.id)}" not in content:
             return Response({"error": "Wrong Tweet"}, status=400)
         if not twitter_handle:
             return Response({"error": "Twitter handle is required"}, status=400)

@@ -3,7 +3,7 @@ import { MainLayout, WaitlistBox, Modal } from "../components"
 import { SignUpForm } from "../components/forms"
 
 export default function Landing() {
-    const [isShowModal, setIsShowModal] = useState<boolean>(false)
+    const [isShowModal, setIsShowModal] = useState<boolean>(true)
     // const handleHeaderCallback = (data: any) => {
     //     // 0 means register
     //     if (data === 0) {

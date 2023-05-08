@@ -98,3 +98,12 @@ export const OverviewCard = ({ title, duration, value }: overviewCardProps) => {
         </div>
     )
 }
+
+export const Paper = ({ children }: any) => (
+    <div className="bg-white overflow-x-hidden overflow-y-auto flex items-center justify-center rounded-xl shadow-md mx-10 -mt-28 md:-mt-auto">
+        <div className="relative w-full h-full max-w-2xl md:h-auto p-5">
+            {/* paper content */}
+            <div className="my-5 h-auto flex justify-center">{children}</div>
+        </div>
+    </div>
+)

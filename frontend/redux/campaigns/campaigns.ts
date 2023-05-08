@@ -13,9 +13,20 @@ const initialState: any = {
             date: "23-03-29",
             time: "10:08:17",
         },
+        title: "Poison Finance",
+        vaultSize: "2,000",
+        threadComplete: 13,
+        utilization: 97.5,
         reachGenerated: "1,753 Users",
         threadEarnings: "$21.50 USDC",
         shareOfCampaignEarned: "1.25%",
+        impressions: "50,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 2,
@@ -25,9 +36,17 @@ const initialState: any = {
             date: "23-03-25",
             time: "12:23:10",
         },
+        title: "Pepe's Game", vaultSize: "1,000", threadComplete: 6, utilization: 52.43,
         reachGenerated: "1,934 Users",
         threadEarnings: "$22.70 USDC",
         shareOfCampaignEarned: "1.10%",
+        impressions: "10,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles",
     },
     {
         id: 3,
@@ -37,9 +56,17 @@ const initialState: any = {
             date: "23-03-17",
             time: "5:45:28",
         },
+        title: "Jane's DAO", vaultSize: "3,500", threadComplete: 22, utilization: 74.5,
         reachGenerated: "2,849 Users",
         threadEarnings: "$27.23 USDC",
         shareOfCampaignEarned: "0.79%",
+        impressions: "20,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 4,
@@ -49,9 +76,17 @@ const initialState: any = {
             date: "23-03-12",
             time: "2:15:54",
         },
+        title: "Combo Pay", vaultSize: "4,000", threadComplete: 2, utilization: 10,
         reachGenerated: "1,129 Users",
         threadEarnings: "$19.44 USDC",
         shareOfCampaignEarned: "2.87%",
+        impressions: "50,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 5,
@@ -61,9 +96,17 @@ const initialState: any = {
             date: "23-03-29",
             time: "10:08:17",
         },
+        title: "Finix", vaultSize: "2,500", threadComplete: 12, utilization: 17.8,
         reachGenerated: "1,753 Users",
         threadEarnings: "$21.50 USDC",
         shareOfCampaignEarned: "1.25%",
+        impressions: "5,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 6,
@@ -73,9 +116,17 @@ const initialState: any = {
             date: "23-03-25",
             time: "12:23:10",
         },
+        title: "Culint", vaultSize: "8,000", threadComplete: 16, utilization: 89.6,
         reachGenerated: "1,934 Users",
         threadEarnings: "$22.70 USDC",
         shareOfCampaignEarned: "1.10%",
+        impressions: "35,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 7,
@@ -85,9 +136,17 @@ const initialState: any = {
             date: "23-03-17",
             time: "5:45:28",
         },
+        title: "CTex", vaultSize: "8,000", threadComplete: 16, utilization: 45.0,
         reachGenerated: "2,849 Users",
         threadEarnings: "$27.23 USDC",
         shareOfCampaignEarned: "0.79%",
+        impressions: "15,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
     {
         id: 8,
@@ -97,9 +156,17 @@ const initialState: any = {
             date: "23-03-12",
             time: "2:15:54",
         },
+        title: "Winop", vaultSize: "8,000", threadComplete: 16, utilization: 50.6,
         reachGenerated: "1,129 Users",
         threadEarnings: "$19.44 USDC",
         shareOfCampaignEarned: "2.87%",
+        impressions: "20,000",
+        threadDetails: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+        tokenomics: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
+        products: "• Single Staking Options Vaults (SSOVs) <br />\
+        • Options Liquiditu Pools <br />\
+        • Atlantic Options <br />• Atlantic Straddles"
     },
 ],
 };
@@ -115,10 +182,7 @@ export const setCampaignAction = (payload : any) => ({
   payload,
 });
 
-export const getSingleCampaignAction = (payload : any) => ({
-  type: GET_SINGLE_CAMPAIGN,
-  payload,
-});
+
 
 // reducer
 export const campaignsReducer = (state: any = initialState, action: any = undefined) => {
@@ -131,11 +195,7 @@ export const campaignsReducer = (state: any = initialState, action: any = undefi
     case SET_CAMPAIGN:
       return {
         ...state,
-        campaign: action.payload,
-      };
-    case GET_SINGLE_CAMPAIGN:
-      return {
-        campaigns: [...state.campaigns.filter((campaign) => campaign.id === action.payload.id)]
+        campaign: state.campaigns.filter((campaign) => campaign.id === action.payload)[0],
       };
 
     default:

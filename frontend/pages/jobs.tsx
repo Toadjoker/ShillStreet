@@ -4,24 +4,12 @@ import {
     space_grotesk_medium,
     space_grotesk_semibold,
 } from "../utils/customFont"
-
-// sample data
-const CardSampleData: any = [
-    {
-        index: 0,
-        title: "Poison Finance",
-        valutSize: "2,000",
-        threadComplete: 13,
-        utilization: 97.5,
-    },
-    { index: 1, title: "Pepe's Game", valutSize: "1,000", threadComplete: 6, utilization: 52.43 },
-    { index: 2, title: "Jane's DAO", valutSize: "3,500", threadComplete: 22, utilization: 74.5 },
-    { index: 3, title: "Combo Pay", valutSize: "4,000", threadComplete: 2, utilization: 10 },
-    { index: 4, title: "Finix", valutSize: "2,500", threadComplete: 12, utilization: 17.8 },
-    { index: 5, title: "Culint", valutSize: "8,000", threadComplete: 16, utilization: 89.6 },
-]
+import { useSelector } from "react-redux"
 
 const JobListing = () => {
+    const state = useSelector((state: any) => state)
+    const { campaigns } = state.campaignsReducer
+
     return (
         <MainLayout>
             <section className="bg-shillStreetBlue flex flex-col flex-grow px-52 pt-10 overflow-hidden">
@@ -43,11 +31,12 @@ const JobListing = () => {
 
                 {/* smart campaign cards container */}
                 <div className="my-5 max-h-160 overflow-y-auto mx-auto justify-center grid grid-cols-2 gap-6 w-full">
-                    {CardSampleData.map((item: any) => (
-                        <li key={item.index} className="list-none">
+                    {campaigns.map((item: any) => (
+                        <li key={item.id} className="list-none">
                             <SmartCampaignCard
+                                id={item.id}
                                 title={item.title}
-                                valutSize={item.valutSize}
+                                vaultSize={item.vaultSize}
                                 threadComplete={item.threadComplete}
                                 utilization={item.utilization}
                             />

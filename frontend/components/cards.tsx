@@ -1,5 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
+import { useDispatch } from "react-redux"
+import { setCampaignAction } from "../redux/campaigns/campaigns"
+
 import {
     space_grotesk_bold,
     space_grotesk_regular,
@@ -13,8 +16,9 @@ type landingMiniCardProps = {
 }
 
 type smartCampaignCardProps = {
+    id: string
     title: string
-    valutSize: number
+    vaultSize: number
     threadComplete: number
     utilization: number
 }
@@ -37,16 +41,24 @@ export const LandingMiniCard = ({ title, subtitle }: landingMiniCardProps) => {
 }
 
 export const SmartCampaignCard = ({
+    id,
     title,
-    valutSize,
+    vaultSize,
     threadComplete,
     utilization,
 }: smartCampaignCardProps) => {
+    const dispatch = useDispatch()
+
+    // this function dispatch to get a single campaign
+    const dispatchToStore = (id: any) => {
+        dispatch(setCampaignAction(id))
+    }
+
     return (
         <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white">
             <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
-                <p className="text-sm">Vault Size: ${valutSize}</p>
+                <p className="text-sm">Vault Size: ${vaultSize}</p>
                 <p className="text-sm">Threads Complete: {threadComplete}</p>
             </div>
             {/* progress bar and content container */}
@@ -62,7 +74,8 @@ export const SmartCampaignCard = ({
             </div>
             <div className="mt-5 flex justify-center">
                 <Link
-                    href="#"
+                    onClick={() => dispatchToStore(id)}
+                    href={`/campaigns/${id}`}
                     className={`${space_grotesk_regular.className} bg-white rounded-lg p-2 text-gray-900 hover:bg-gray-200 text-sm`}
                 >
                     View Campaign

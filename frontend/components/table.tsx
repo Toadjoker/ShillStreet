@@ -8,8 +8,8 @@ const Table = () => {
     const router = useRouter()
     const dispatch = useDispatch()
     const handleNavigationToDetails = (item: any) => {
-        dispatch(setCampaignAction(item))
-        router.push(`/account/campaigns/${item.id}`)
+        dispatch(setCampaignAction(item.id))
+        router.push(`/campaigns/${item.id}`)
     }
 
     const state = useSelector((state: any) => state)
@@ -50,7 +50,7 @@ const Table = () => {
                 <tbody>
                     {campaigns.map((item) => (
                         <tr
-                            key={item.index}
+                            key={item.id}
                             onClick={() => handleNavigationToDetails(item)}
                             className="bg-transparent border-b hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer overflow-y-auto"
                         >

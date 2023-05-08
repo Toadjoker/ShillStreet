@@ -22,8 +22,8 @@ const CampaignDetails = () => {
             <section className="h-auto bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
                 <div className="py-10 h-full px-48">
                     <div className="flex overflow-hidden items-center space-x-6">
-                        <Link
-                            href="/jobs"
+                        <div
+                            onClick={() => router.back()}
                             className="bg-shillStreetGrey w-6 h-6 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
                         >
                             <Image
@@ -33,7 +33,7 @@ const CampaignDetails = () => {
                                 height={18}
                                 unoptimized={true}
                             />
-                        </Link>
+                        </div>
                         <div className="flex items-center">
                             <div className="w-20 h-20 rounded-full mr-5 mt-3">
                                 <Image

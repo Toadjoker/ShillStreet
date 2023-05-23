@@ -9,10 +9,10 @@ import Alert from './alert'
 import { AlertType } from './alert'
 import ProgressBar from './progressBar'
 import Table from './table'
-import { OverviewCard, SmartCampaignCard, LandingMiniCard } from './cards'
+import { OverviewCard, SmartCampaignCard, LandingMiniCard, Paper } from './cards'
 
 export {
     MainLayout, Header, WaitlistBox, Modal, ConnectWalletButton, 
     ConnectTwitterButton, Spinner, Alert, AlertType, ProgressBar, Table, 
-    OverviewCard, SmartCampaignCard, LandingMiniCard
+    OverviewCard, SmartCampaignCard, LandingMiniCard, Paper
 }

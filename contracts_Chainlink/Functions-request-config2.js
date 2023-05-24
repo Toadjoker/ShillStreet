@@ -4,7 +4,7 @@ const fs = require("fs")
 require("@chainlink/env-enc").config()
 
 
-let twitterID = "1234"
+let twitterID = "44196397"
 
 const Location = {
   Inline: 0,
@@ -47,6 +47,7 @@ const requestConfig = {
 
   secrets: {
     // DON level API Keys
+    twitterApiKey: process.env.TWITTER_API_KEY
   },
   // Per-node secrets objects assigned to each DON member.
   // When using per-node secrets, nodes can only use secrets which they have been assigned.

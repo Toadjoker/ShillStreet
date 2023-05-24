@@ -30,6 +30,7 @@ contract CampaignFactory is ConfirmedOwner {
     bytes memory secrets,
     string memory tweetInstructions,
     address stableCoinAddress,
+    address tweetValueAddress,
     uint256 verificationTime,
     uint64 subscriptionId,
     uint32 gasLimit
@@ -38,6 +39,7 @@ contract CampaignFactory is ConfirmedOwner {
     Campaign newCampaign = new Campaign(
       oracle,
       stableCoinAddress,
+      tweetValueAddress,
       forecastedCampaignBalance,
       approvalAlgorithm,
       secrets,

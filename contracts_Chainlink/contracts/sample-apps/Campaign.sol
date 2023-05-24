@@ -8,9 +8,13 @@ import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 interface IStableCoin is IERC20 {
-  function mint(address to, uint256 amount) external;
-
   function decimals() external returns (uint8);
+}
+
+interface ITweetValue {
+  function twitterIDtoTweetValue(string memory twitterID) external view returns (uint256);
+
+  function twitterIDToWalletAddress(string memory twitterID) external view returns (address);
 }
 
 contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterface {
@@ -23,6 +27,9 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
 
   //Stable coin contract address
   address public stableCoinAddress; // SimpleStableCoin address for payouts.
+
+  //Tweet Value contract address
+  address public tweetValueAddress; //
 
   //An array of Campaign's twitterID from a participationID;
   mapping(string => string) public participationIDtoTwitterID;
@@ -73,6 +80,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   constructor(
     address _oracle,
     address _stableCoinAddress,
+    address _tweetValueAddress,
     uint256 _forecastedCampaignBalance,
     string memory _approvalAlgorithm,
     bytes memory _secrets,
@@ -91,6 +99,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
     verificationTime = _verificationTime;
     subscriptionId = _subscriptionId;
     gasLimit = _gasLimit;
+    tweetValueAddress = _tweetValueAddress;
   }
 
   ///// PUBLIC FUNCTIONS ////
@@ -98,12 +107,17 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   function postTweet(string memory twitterID, string memory tweetURL) public {
     //Check that the sender has the private key corresponding to the twitterID
     //If the twitter ID is confirmed...
-    
+
     //The user's address can't be null
     require(msg.sender != address(0), "Sender address is null");
 
+    ITweetValue tweetValueInstance = ITweetValue(tweetValueAddress);
+    //Verify if the msg.sender address correspond to the twitter ID
+
+    address associatedWalletAddress = tweetValueInstance.twitterIDToWalletAddress(twitterID);
+    require(msg.sender == associatedWalletAddress, "The twitter ID is not associated with the message sender address");
     //Get twitterID's tweet Value;
-    uint256 tweetValue = 11;
+    uint256 tweetValue = tweetValueInstance.twitterIDtoTweetValue(twitterID);
 
     uint8 stcDecimals = IStableCoin(stableCoinAddress).decimals();
     uint256 amount = (tweetValue * 1 * 10 ** stcDecimals);

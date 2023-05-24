@@ -106,7 +106,7 @@ task("functions-getTweetValue", "Initiates a request from a Functions client con
     }
 
     const transactionEstimateGas = await clientContract.estimateGas.getTweetValue(
-      "http://twitter.com",
+      "44196397",
       "0xe219107D01768b4B540F97F858706676dDd483Ae",
       overrides
     )
@@ -241,7 +241,7 @@ task("functions-getTweetValue", "Initiates a request from a Functions client con
       // Initiate the on-chain request after all listeners are initialized
       console.log(`\nRequesting new data for TweetValue contract ${contractAddr} on network ${network.name}`)
       const requestTx = await clientContract.getTweetValue(
-        "http://twitter.com",
+        "44196397",
         "0xe219107D01768b4B540F97F858706676dDd483Ae",
         overrides
       )

@@ -19,6 +19,7 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
     const feedAmount = taskArgs.feedAmount
     const oracleAddress = networkConfig[network.name]["functionsOracleProxy"]
     const stcAddress = "0x5B6519217BB4cCaf78d87B546d8EDf06858d7f5E"
+    const tweetValueAddress = "0x5eb73AB5dC436eb923c258198a153F71a27BA7eb"
 
     console.log("\n__Compiling Contracts__")
     await run("compile")
@@ -45,7 +46,7 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
     // Deploy campaign
     const clientContractFactory = await ethers.getContractFactory("CampaignFactory")
     const clientContract = clientContractFactory.attach(campainFactoryContractAddress)
-    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, 1, 178, 300000)
+    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, tweetValueAddress, 1, 178, 300000)
 
     console.log(
       `\nWaiting ${VERIFICATION_BLOCK_CONFIRMATIONS} blocks for transaction ${deployCampaign.hash} to be confirmed...`

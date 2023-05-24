@@ -54,7 +54,7 @@ task("functions-simulate", "Simulates an end-to-end fulfillment locally for the 
     await registry.addConsumer(subscriptionId, client.address)
 
     // Build the parameters to make a request from the client contract
-    const unvalidatedRequestConfig = require("../../Functions-request-config.js")
+    const unvalidatedRequestConfig = require("../../Functions-request-config2.js")
     const requestConfig = getRequestConfig(unvalidatedRequestConfig)
     // Fetch the mock DON public key
     const DONPublicKey = await oracle.getDONPublicKey()

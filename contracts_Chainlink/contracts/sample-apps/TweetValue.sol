@@ -4,6 +4,7 @@ pragma solidity ^0.8.7;
 import {Functions, FunctionsClient} from "../dev/functions/FunctionsClient.sol";
 // import "@chainlink/contracts/src/v0.8/dev/functions/FunctionsClient.sol"; // Once published
 import {ConfirmedOwner} from "@chainlink/contracts/src/v0.8/ConfirmedOwner.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 /**
  * @title Functions Consumer contract
@@ -16,6 +17,7 @@ contract TweetValue is FunctionsClient, ConfirmedOwner {
   bytes32 public latestRequestId;
   bytes public latestResponse;
   bytes public latestError;
+  string lastTwitterIDRequested;
 
   // Script that verify the tweet's content
   string public source;
@@ -28,6 +30,10 @@ contract TweetValue is FunctionsClient, ConfirmedOwner {
 
   //GAS LIMIT
   uint32 public gasLimit;
+
+  uint256 public tweetValueTest;
+  string public twitterIDTest;
+  address public participantWalletAddressTest;
 
   /// STRUCT ///
   struct User {
@@ -67,6 +73,7 @@ contract TweetValue is FunctionsClient, ConfirmedOwner {
     args[0] = twitterID;
     if (args.length > 0) req.addArgs(args);
 
+    lastTwitterIDRequested = twitterID;
     bytes32 assignedReqID = sendRequest(req, subscriptionId, gasLimit);
     latestRequestId = assignedReqID;
 
@@ -88,34 +95,21 @@ contract TweetValue is FunctionsClient, ConfirmedOwner {
     latestResponse = response;
     latestError = err;
     emit OCRResponse(requestId, response, err);
-    uint256 tweetValue;
-    string memory twitterID;
+    bool nilErr = (err.length == 0);
 
-    assembly {
-      // extract the uint256 from the first 32 bytes of 'response'
-      tweetValue := mload(add(response, 0x20))
+    if (nilErr) {
+      uint256 tweetValue = abi.decode(response, (uint256));
 
-      // calculate the size of 'response' after the first 32 bytes
-      let size := sub(mload(response), 0x20)
+      // Get the participantWalletAddress
+      address participantWalletAddress;
+      participantWalletAddress = twitterIDToWalletAddress[lastTwitterIDRequested];
 
-      // create a new bytes array for 'twitterID' and copy the relevant section of 'response' into it
-      twitterID := mload(0x40)
-      mstore(0x40, add(twitterID, and(add(add(size, 0x20), 0x1f), not(0x1f))))
-      mstore(twitterID, size)
-      mstore(add(twitterID, 0x20), mload(add(response, 0x40)))
+      //Associate tweet value to user
+      twitterIDtoTweetValue[lastTwitterIDRequested] = tweetValue;
+
+      // Emit event
+      emit TweetValueRegistered(User(lastTwitterIDRequested, participantWalletAddress), tweetValue);
     }
-
-    twitterID = string(twitterID);
-
-    // Get the participantWalletAddress
-    address participantWalletAddress;
-    participantWalletAddress = twitterIDToWalletAddress[twitterID];
-
-    // Associate tweet value to user
-    twitterIDtoTweetValue[twitterID] = tweetValue;
-
-    // Emit event
-    emit TweetValueRegistered(User(twitterID, participantWalletAddress), tweetValue);
   }
 
   /**

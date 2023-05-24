@@ -92,6 +92,7 @@ async function getTweetInformation() {
     twitterRequest
   ])
 
+
   //console.log("raw response", twitterResponse)
 
   let author_id = twitterResponse.data.data.author_id

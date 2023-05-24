@@ -75,19 +75,19 @@ const twitterRequestUserData = Functions.makeHttpRequest({
   let numberFollowers = userDataResponse.data.data.public_metrics.followers_count
   
   // Calculate the sum of all averages for normalization
-  let total_average = reply_average + retweet_average + impression_average + like_average + numberFollowers;
+  let total_average = reply_average + retweet_average + like_average + numberFollowers;
 
   // Normalizing the values
   let norm_reply_average = reply_average / total_average;
   let norm_retweet_average = retweet_average / total_average;
-  let norm_impression_average = impression_average / total_average;
   let norm_like_average = like_average / total_average;
+  let norm_numberFollowers = numberFollowers / total_average;
   
 
   //let tweetCount = userDataResponse.data.data.public_metrics.tweet_count
 
   // Finally calculate the tweet value
-  let tweetValue = (norm_impression_average * 0.4 + norm_like_average * 0.2 + norm_retweet_average * 0.3 + norm_reply_average * 0.1)*numberFollowers;
+  let tweetValue = ((norm_like_average * 0.3 + norm_retweet_average * 0.4 + norm_reply_average * 0.1 + 0.2 *norm_numberFollowers) + 1)*impression_average;
   console.log(tweetValue)
 
   return (tweetValue)

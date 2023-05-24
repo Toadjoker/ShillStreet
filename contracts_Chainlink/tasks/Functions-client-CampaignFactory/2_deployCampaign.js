@@ -19,7 +19,7 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
     const feedAmount = taskArgs.feedAmount
     const oracleAddress = networkConfig[network.name]["functionsOracleProxy"]
     const stcAddress = "0x5B6519217BB4cCaf78d87B546d8EDf06858d7f5E"
-    const tweetValueAddress = "0x5eb73AB5dC436eb923c258198a153F71a27BA7eb"
+    const tweetValueAddress = "0x574A65A2Cc5388d0F72bba2f3039DC60f23F8589"
 
     console.log("\n__Compiling Contracts__")
     await run("compile")
@@ -42,7 +42,7 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
 
     //tweetInstructions
     const tweetInstructions = "Text Instructions : - Shoudn't contain any bad words or any insult - Should contain compliment about Chainlink"
-    const campainFactoryContractAddress = "0xa3e842bdDbcfD248a9d8083f0963183159f9F625"
+    const campainFactoryContractAddress = "0xC8790467a6F25782D914CEb72fFd0F4B5A21e42f"
     // Deploy campaign
     const clientContractFactory = await ethers.getContractFactory("CampaignFactory")
     const clientContract = clientContractFactory.attach(campainFactoryContractAddress)

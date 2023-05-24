@@ -4,7 +4,7 @@ const fs = require("fs")
 require("@chainlink/env-enc").config()
 
 
-let twitterID = "44196397"
+let twitterID = "3386139317"
 
 const Location = {
   Inline: 0,

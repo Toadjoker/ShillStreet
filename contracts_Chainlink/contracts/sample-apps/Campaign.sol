@@ -55,7 +55,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   //// HANDLE THE QUEUE ////
   //An array of Campaign's participations registered
   mapping(uint256 => Participation) public participationsRegistered;
-  mapping(string => uint256) participationNumberPerTwitterID;
+  mapping(string => uint256) public participationNumberPerTwitterID;
   uint256 public participationRegisteredIDcount;
 
   //Counter that says how many participants have been verified;

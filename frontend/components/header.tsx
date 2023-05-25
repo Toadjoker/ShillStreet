@@ -58,7 +58,8 @@ const Header = ({ headerCallback }: any) => {
                                     />
                                 </Link>
                                 <Link href="/account/overview" className="flex space-x-2">
-                                    <span
+                                    Account Overview
+                                    {/* <span
                                         className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
                                     >
                                         J
@@ -69,7 +70,7 @@ const Header = ({ headerCallback }: any) => {
                                         width={20}
                                         height={20}
                                         unoptimized={true}
-                                    />
+                                    /> */}
                                 </Link>
                                 <Link
                                     href="/account-setup"
@@ -81,7 +82,7 @@ const Header = ({ headerCallback }: any) => {
                         ) : (
                             <>
                                 <Link
-                                    href="/landing"
+                                    href="/"
                                     className={`${space_grotesk_regular.className} hover:text-blue-400`}
                                     onClick={() => headerCallback(0)}
                                 >

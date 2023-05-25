@@ -2,7 +2,7 @@ import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import Link from "next/link"
-import { MainLayout, ProgressBar } from "../../components"
+import { MainLayout, ProgressBar, Spinner } from "../../components"
 import {
     space_grotesk_light,
     space_grotesk_medium,
@@ -16,6 +16,21 @@ const CampaignDetails = () => {
     const router = useRouter()
     const state = useSelector((state: any) => state)
     const { campaign } = state.campaignsReducer
+    const [isRequesting, setIsRequesting] = useState<boolean>(false)
+    const [twitterURL, setTwitterURL] = useState<string>("")
+
+    const handleSendingTwitterURL = () => {
+        // the following are just place holders
+        try {
+            setIsRequesting(true)
+        } catch (error) {
+            console.log(error)
+        } finally {
+            setTimeout(() => {
+                setIsRequesting(false)
+            }, 2000)
+        }
+    }
 
     return (
         <MainLayout>
@@ -190,7 +205,7 @@ const CampaignDetails = () => {
                                 </div>
                             </div>
                             {/* right */}
-                            <div className="bg-shillStreetGrey w-1/3 h-72 text-white p-4 space-y-8">
+                            <div className="bg-shillStreetGrey w-1/3 h-96 text-white p-4 space-y-8">
                                 <div>
                                     <h4
                                         className={`${space_grotesk_semibold.className} font-semibold`}
@@ -236,7 +251,23 @@ const CampaignDetails = () => {
                                     >
                                         Twitter URL
                                     </h4>
-                                    <input className="bg-gray-200  h-8 w-full rounded-xl text-shillStreetGrey px-4" />
+                                    <input
+                                        className="bg-gray-200  h-8 w-full rounded-xl text-shillStreetGrey px-4"
+                                        onChange={(e: any) => setTwitterURL(e.target.value)}
+                                    />
+                                    <div className="flex justify-end">
+                                        <button
+                                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-md w-24 h-9 shadow-md hover:bg-blue-600 text-white mt-2`}
+                                            type="submit"
+                                            onClick={() => handleSendingTwitterURL()}
+                                        >
+                                            {isRequesting ? (
+                                                <Spinner width={20} height={20} />
+                                            ) : (
+                                                "Submit"
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,7 @@ const ConnectTwitterButton = ({ buttonTitle }: any) => {
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [isConnecting, setIsConnecting] = useState<boolean>(false)
     const createConnection = () => {
-        // the followssssssssssing are just place holders
+        // the following are just place holders
         try {
             setTimeout(() => {
                 setIsRequesting(true)

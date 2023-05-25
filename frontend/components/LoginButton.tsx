@@ -37,13 +37,18 @@ const LoginButton = () => {
             }
         }
     }
+    
     useMemo(() => {
+        console.log(address)
+        console.log(isConnected)
+        console.log(privateString)
         if (isConnected && privateString === undefined) {
             signMessage() // sign the message
         }
     }, [isConnected, privateString])
 
     useMemo(() => {
+        console.log(address)
         if (isSuccess) {
             const data = {
                 walletAddress: address,
@@ -54,15 +59,12 @@ const LoginButton = () => {
         }
     }, [isSuccess, address, privateString, onSubmit])
     return (
-        <div className="flex items-center justify-between my-10">
-            <p className={`${space_grotesk_medium.className} font-bold text-xl text-center mt-5`}>
-                Connect Wallet
-            </p>
+        <section className="flex items-center justify-between my-10">
             {/* only show the connect button if the address is undefined */}
             {address === undefined && (
-                <ConnectWalletButton buttonTitle="Log in" requesting={isLoading} />
+                <ConnectWalletButton buttonTitle="Connect Wallet" requesting={isLoading} />
             )}
-        </div>
+        </section>
     )
 }
 export default LoginButton

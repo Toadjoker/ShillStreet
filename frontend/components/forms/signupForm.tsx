@@ -4,8 +4,9 @@ import { ConnectWalletButton } from "../"
 import { useAccount, useSignMessage, useDisconnect } from "wagmi"
 import { RegisterType } from "../../utils/types"
 import { registerRequest } from "../../utils/apiRequests"
-import { press_start_2P } from "../../utils/customFont"
+import { space_grotesk_regular } from "../../utils/customFont"
 import { Spinner, Alert, AlertType } from "../"
+import Image from "next/image"
 
 type Inputs = {
     name: string
@@ -80,26 +81,43 @@ const SignUpForm = () => {
     }, [isSuccess, isValid])
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto">
-            <h3
-                className={`${press_start_2P.className} text-center font-semibold mb-5 text-gray-500`}
-            >
-                Sign Up
-            </h3>
+        <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto flex flex-col">
+            <div className="flex items-center justify-center">
+                <Image
+                    src="/images/shillStreetIcon.png"
+                    alt="shillstreet-logo"
+                    width={50}
+                    height={50}
+                    unoptimized={true}
+                    className="rounded-full"
+                />
+            </div>
+
+            <div className="mt-5">
+                <h3
+                    className={`${space_grotesk_regular.className} text-xl text-center font-semibold mb-5 text-gray-500`}
+                >
+                    Sign Up
+                </h3>
+                <p className="text-center text-gray-400 text-xs -mt-4">
+                    Please fill in the form and submit.
+                </p>
+            </div>
+
             <input
                 type="text"
                 placeholder="Your name"
-                className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("name", { required: "This field is required" })}
             />
             <input
                 type="email"
                 placeholder="youremail@example.com"
-                className={`${press_start_2P.className} text-xs md:text-sm lg:text-xs w-full h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
                 {...register("email", { required: "This field is required" })}
             />
 
-            <div className="flex justify-center items-center my-3 mt-10">
+            <div className="flex justify-center items-center my-3 mt-5">
                 {watch("name") != "" && watch("email") != "" && (
                     <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
                 )}

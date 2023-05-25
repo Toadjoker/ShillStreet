@@ -44,7 +44,7 @@ const Header = ({ headerCallback }: any) => {
                 )}
 
                 {/* only show the following if user is not on the waitlist page  */}
-                {router.pathname !== "/" && (
+                {/* {router.pathname !== "/" && (
                     <>
                         {router.pathname != "/account-setup" ? (
                             <>
@@ -58,8 +58,8 @@ const Header = ({ headerCallback }: any) => {
                                     />
                                 </Link>
                                 <Link href="/account/overview" className="flex space-x-2">
-                                    Account Overview
-                                    {/* <span
+                                    Account Overview */}
+                {/* <span
                                         className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
                                     >
                                         J
@@ -71,7 +71,7 @@ const Header = ({ headerCallback }: any) => {
                                         height={20}
                                         unoptimized={true}
                                     /> */}
-                                </Link>
+                {/* </Link>
                                 <Link
                                     href="/account-setup"
                                     className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
@@ -98,18 +98,27 @@ const Header = ({ headerCallback }: any) => {
                             </>
                         )}
                     </>
-                )}
+                )} */}
 
                 {/* show the register button if no connected */}
-                {/* {!isConnected && (
-                    <Link
-                        href="#"
-                        className={`${press_start_2P.className} hover:text-blue-400 text-xs`}
-                        onClick={() => headerCallback(0)}
-                    >
-                        Register
-                    </Link>
-                )} */}
+                {!isConnected && (
+                    <>
+                        <Link
+                            href="#"
+                            className={`${space_grotesk_regular.className} hover:text-blue-400`}
+                            onClick={() => headerCallback(0)}
+                        >
+                            Login
+                        </Link>
+                        <Link
+                            href="/signup"
+                            className={`${space_grotesk_regular.className} hover:text-blue-400`}
+                            onClick={() => headerCallback(0)}
+                        >
+                            Register
+                        </Link>
+                    </>
+                )}
             </nav>
         </section>
     )

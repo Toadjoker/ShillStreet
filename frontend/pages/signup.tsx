@@ -1,10 +1,10 @@
 import { MainLayout, Paper } from "../components"
 import { SignUpForm } from "../components/forms"
 
-export default function Index() {
+const Signup = () => {
     return (
         <MainLayout>
-            <section className="flex flex-col flex-grow w-full items-center justify-center bg-cloudBg bg-cover bg-center bg-no-repeat">
+            <section className="bg-shillStreetBlue flex flex-col flex-grow w-full items-center justify-center">
                 <Paper>
                     <SignUpForm />
                 </Paper>
@@ -12,3 +12,5 @@ export default function Index() {
         </MainLayout>
     )
 }
+
+export default Signup

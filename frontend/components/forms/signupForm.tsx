@@ -42,11 +42,27 @@ const SignUpForm = () => {
                 .catch((error: any) => {
                     if (error.response) {
                         disconnect() // disconnect the user
-                        Alert(
-                            AlertType.error,
-                            error.response?.data?.email[0],
-                            error.response?.data?.walletAddress[0]
-                        )
+                        if (error?.response?.data?.email !== undefined) {
+                            Alert(
+                                AlertType.error,
+                                "Account Already Exist!",
+                                error?.response?.data?.email[0]
+                            )
+                        }
+                        if (error?.response?.data?.walletAddress !== undefined) {
+                            Alert(
+                                AlertType.error,
+                                "Wallet Address Error!",
+                                error?.response?.data?.walletAddress[0]
+                            )
+                        }
+                        if (error?.response?.data?.privateString !== undefined) {
+                            Alert(
+                                AlertType.error,
+                                "Private String Error!",
+                                error?.response?.data?.privateString[0]
+                            )
+                        }
                     }
                 })
                 .finally(() => setReqesting(false))

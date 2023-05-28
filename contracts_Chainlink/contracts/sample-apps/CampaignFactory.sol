@@ -47,7 +47,8 @@ contract CampaignFactory is ConfirmedOwner {
       campaignIDCount,
       verificationTime,
       subscriptionId,
-      gasLimit
+      gasLimit,
+      msg.sender
     );
 
     require(token.transfer(address(newCampaign), forecastedCampaignBalance), "Token transfer failed");

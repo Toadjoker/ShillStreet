@@ -124,4 +124,12 @@ contract TweetValue is FunctionsClient, ConfirmedOwner {
   function addSimulatedRequestId(address oracleAddress, bytes32 requestId) public onlyOwner {
     addExternalRequest(oracleAddress, requestId);
   }
+
+  function setSource(string memory newSource) public onlyOwner {
+    source = newSource;
+  }
+
+  function setSecrets(bytes memory newSecrets) public onlyOwner {
+    secrets = newSecrets;
+  }
 }

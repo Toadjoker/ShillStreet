@@ -88,8 +88,9 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
     uint256 _campaignID,
     uint256 _verificationTime,
     uint64 _subscriptionId,
-    uint32 _gasLimit
-  ) FunctionsClient(_oracle) ConfirmedOwner(msg.sender) {
+    uint32 _gasLimit,
+    address _owner
+  ) FunctionsClient(_oracle) ConfirmedOwner(_owner) {
     stableCoinAddress = _stableCoinAddress;
     forecastedCampaignBalance = _forecastedCampaignBalance;
     approvalAlgorithm = _approvalAlgorithm;
@@ -217,6 +218,10 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
 
   function setTweetInstructions(string memory newTweetInstructions) public onlyOwner {
     tweetInstructions = newTweetInstructions;
+  }
+
+  function setVerificationTime(uint256 newVerificationTime) public onlyOwner {
+    verficationTime = newVerificationTime;
   }
 
   //// INTERNAL FUNCTIONS ////

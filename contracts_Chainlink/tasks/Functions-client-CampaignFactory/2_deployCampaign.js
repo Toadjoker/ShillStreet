@@ -18,8 +18,8 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
 
     const feedAmount = taskArgs.feedAmount
     const oracleAddress = networkConfig[network.name]["functionsOracleProxy"]
-    const stcAddress = "0x5B6519217BB4cCaf78d87B546d8EDf06858d7f5E"
-    const tweetValueAddress = "0x574A65A2Cc5388d0F72bba2f3039DC60f23F8589"
+    const stcAddress = "0x76661e0c9A35304CF4C69E47abfB6EB44925dF5A"
+    const tweetValueAddress = "0x66cAA4900921921DFAf54d79d2c45f2bBb08b35e"
 
     console.log("\n__Compiling Contracts__")
     await run("compile")
@@ -42,11 +42,11 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
 
     //tweetInstructions
     const tweetInstructions = "Text Instructions : - Shoudn't contain any bad words or any insult - Should contain compliment about Chainlink"
-    const campainFactoryContractAddress = "0xC8790467a6F25782D914CEb72fFd0F4B5A21e42f"
+    const campainFactoryContractAddress = "0xC036022cCF181f31c6745b61417d640794897453"
     // Deploy campaign
     const clientContractFactory = await ethers.getContractFactory("CampaignFactory")
     const clientContract = clientContractFactory.attach(campainFactoryContractAddress)
-    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, tweetValueAddress, 1, 178, 300000)
+    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, tweetValueAddress, 1, 337, 300000)
 
     console.log(
       `\nWaiting ${VERIFICATION_BLOCK_CONFIRMATIONS} blocks for transaction ${deployCampaign.hash} to be confirmed...`

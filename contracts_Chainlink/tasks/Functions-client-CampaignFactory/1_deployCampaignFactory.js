@@ -16,7 +16,7 @@ task("functions-deploy-campaignFactory", "Deploys the campaignFactory contract")
 
     const feedAmount = taskArgs.feedAmount
     const oracleAddress = networkConfig[network.name]["functionsOracleProxy"]
-    const stcAddress = "0x5B6519217BB4cCaf78d87B546d8EDf06858d7f5E"
+    const stcAddress = "0x76661e0c9A35304CF4C69E47abfB6EB44925dF5A"
     const tweetInstructions = "Mention the discovery of America"
 
     console.log("\n__Compiling Contracts__")

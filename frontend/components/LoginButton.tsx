@@ -37,12 +37,13 @@ const LoginButton = () => {
             }
         }
     }
-    
+
     useMemo(() => {
-        console.log(address)
-        console.log(isConnected)
-        console.log(privateString)
-        if (isConnected && privateString === undefined) {
+        // console.log(address)
+        // console.log(isConnected)
+        // console.log(privateString)
+        const token = Cookies.get("jwt")
+        if (isConnected && privateString === undefined && !token) {
             signMessage() // sign the message
         }
     }, [isConnected, privateString])

@@ -28,7 +28,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://shillstreet.com',
+]
 # Application definition
 
 INSTALLED_APPS = [

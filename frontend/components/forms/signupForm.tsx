@@ -15,6 +15,7 @@ type Inputs = {
 const SignUpForm = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
     const [requesting, setReqesting] = useState<boolean>(false)
+    const [signUp, setSignUp] = useState<boolean>(false)
     const { disconnect } = useDisconnect()
     const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
         message: "default shill street sign message",
@@ -65,7 +66,9 @@ const SignUpForm = () => {
                         }
                     }
                 })
-                .finally(() => setReqesting(false))
+                .finally(() => {
+                    setReqesting(false), setSignUp(false)
+                })
         }
     }
 
@@ -84,10 +87,10 @@ const SignUpForm = () => {
     }
 
     useMemo(() => {
-        if (isConnected && data === undefined) {
+        if (isConnected && data === undefined && signUp) {
             signMessage() // sign the message
         }
-    }, [isConnected, data])
+    }, [isConnected, data, signUp])
 
     useMemo(() => {
         if (isSuccess) {
@@ -133,7 +136,10 @@ const SignUpForm = () => {
                 {...register("email", { required: "This field is required" })}
             />
 
-            <div className="flex justify-center items-center my-3 mt-5">
+            <div
+                className="flex justify-center items-center my-3 mt-5"
+                onClick={() => setSignUp(true)}
+            >
                 {watch("name") != "" && watch("email") != "" && (
                     <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
                 )}

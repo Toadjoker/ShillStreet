@@ -6,9 +6,10 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'name', 'email', 'walletAddress',
-                  'privateString', 'twitter_handle']
+                  'privateString', 'twitter_handle', 'twitter_user_id']
         extra_kwargs = {
-            'twitter_handle': {'required': False}
+            'twitter_handle': {'required': False},
+            'twitter_user_id': {'required': False}
         }
 
 

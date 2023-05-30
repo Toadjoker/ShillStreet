@@ -7,7 +7,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .serializers import UserSerializer, WaitListSerializer
 from .authentication import JWTAuthentication
 from .models import User, WaitList
-from .readTweet import readTweet
+from .readTweetViaApi import readTweet
 from datetime import datetime, timedelta
 import requests
 import jwt
@@ -88,9 +88,11 @@ class BindTwitterView(APIView):
     def post(self, request):
         user = request.user
         url = request.data.get('url')
-        content, twitter_handle = readTweet(url)
-        if f"{135487456845 + int(user.id)}" not in content:
+        tweet_content, twitter_user_id, twitter_handle = readTweet(url)
+
+        if f"{135487456845 + int(user.id)}" not in tweet_content:
             return Response({"error": "Wrong Tweet"}, status=400)
+
         if not twitter_handle:
             return Response({"error": "Twitter handle is required"}, status=400)
 
@@ -99,6 +101,7 @@ class BindTwitterView(APIView):
             return Response({"error": "This Twitter handle is already in use"}, status=400)
 
         user.twitter_handle = twitter_handle
+        user.twitter_user_id = twitter_user_id
         user.is_twitterBinded = True
         user.save()
 

@@ -14,5 +14,11 @@ export const waitListRequest = {
 
 export const LoginRequest = {
     post: (url: string, postData: LoginType) =>
-        axiosInstance.post<LoginType>(url, postData).then(axiosResponseBody),
+        axiosInstance
+            .post<LoginType>(url, postData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(axiosResponseBody),
 }

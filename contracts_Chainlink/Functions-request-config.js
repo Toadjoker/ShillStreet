@@ -4,10 +4,10 @@ const fs = require("fs")
 require("@chainlink/env-enc").config()
 
 
-let tweetInstructions = "Tweet Instructions : - Should contain link - Should say something about Chainlink"
-let tweetURL = "1661059564593201184"
+let tweetInstructions = "\nText context: Chainlink BUILD aims to accelerate the growth of early-stage and established projects within the Chainlink ecosystem by providing enhanced access to Chainlink services and technical support in exchange for commitments of network fees and other incentives to Chainlink service providers, such as stakers. This alignment of economic incentives between communities helps foster the mutual, long-term success of both ecosystems. \n\nText Instructions : 1.Should include a Basic Overview of Build program, What is it?\n"
+let tweetURL = "1661071292664037376"
 let participationWalletAddress = "0xe219107D01768b4B540F97F858706676dDd483Ae"
-let twitterID = "44196397"
+let twitterID = "1530530365"
 let verifiedCounter = "1"
 
 const Location = {

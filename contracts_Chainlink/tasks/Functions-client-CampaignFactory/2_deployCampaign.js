@@ -19,7 +19,7 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
     const feedAmount = taskArgs.feedAmount
     const oracleAddress = networkConfig[network.name]["functionsOracleProxy"]
     const stcAddress = "0x76661e0c9A35304CF4C69E47abfB6EB44925dF5A"
-    const tweetValueAddress = "0x66cAA4900921921DFAf54d79d2c45f2bBb08b35e"
+    const tweetValueAddress = "0xe47ED937bEB276d36f61Faa32822EA95bCBBc0c9"
 
     console.log("\n__Compiling Contracts__")
     await run("compile")
@@ -41,12 +41,15 @@ task("functions-deploy-campaignCF", "Deploys a through the CampaignFactory contr
     const realAmount = feedAmountBigNumber.mul(BigNumber.from(10).pow(stcDecimals));
 
     //tweetInstructions
-    const tweetInstructions = "Text Instructions : - Shoudn't contain any bad words or any insult - Should contain compliment about Chainlink"
-    const campainFactoryContractAddress = "0xC036022cCF181f31c6745b61417d640794897453"
+    const tweetInstructions = "Text Instructions : - Shoudn't contain any bad words or any insult - Should be written in french -Should speak about a ancient bat"
+    const campainFactoryContractAddress = "0x6Ae2B45BEF3942BD23d51F4036DfE21101235130"
     // Deploy campaign
     const clientContractFactory = await ethers.getContractFactory("CampaignFactory")
     const clientContract = clientContractFactory.attach(campainFactoryContractAddress)
-    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, tweetValueAddress, 1, 337, 300000)
+    let verificationTime = 120 //2minutes
+    let subscription_ID = 337
+    let gasLimit = 300000
+    const deployCampaign = await clientContract.deployCampaign(realAmount, request.secrets ?? [], tweetInstructions, stcAddress, tweetValueAddress, verificationTime , subscription_ID)
 
     console.log(
       `\nWaiting ${VERIFICATION_BLOCK_CONFIRMATIONS} blocks for transaction ${deployCampaign.hash} to be confirmed...`

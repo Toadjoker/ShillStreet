@@ -7,13 +7,13 @@ const twitterID = args[1]
 const tweetInstructions = args[2]
 const verifiedCounter = parseInt(args[3])
 
-const initialPrompt = "Act like an tweet analyser expert. Does the following Text content follows ALL the following instructions? Say 1 if it follows ALL the following instructions and 0 otherwise. If the text contains other informations that the given instructions, write 0"
+const initialPrompt = "Your task : Act like a text analyser expert. Does the following text content follows ALL the following text instructions considering the following text context? Say 1 if it follows ALL the following instructions and 0 otherwise. If the text contains other informations than the given instructions, write 0 \n"
 
 //CHECK TWITTER ID CORRESPONDS TO TWEET ID
 
 let tweetInfo = await getTweetInformation();
 if (tweetInfo.author_id == twitterID){
-  let prompt = initialPrompt + tweetInstructions + "Text content:" + tweetInfo.tweetContent
+  let prompt = initialPrompt + tweetInstructions + "\nText content:" + tweetInfo.tweetContent
   console.log(prompt);
   tweetInfo.tweetContent
   const approved = await getGPTweetApproval(prompt)

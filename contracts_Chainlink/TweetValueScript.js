@@ -22,7 +22,7 @@ async function getTweetValue(twitterID) {
   }
 
   const twitterRequestTweetData = Functions.makeHttpRequest({
-    url: `https://api.twitter.com/2/users/${twitterID}/tweets?tweet.fields=public_metrics&max_results=5`,
+    url: `https://api.twitter.com/2/users/${twitterID}/tweets?tweet.fields=public_metrics&max_results=10`,
     method: "GET",
     headers: {
         'Authorization': `Bearer ${secrets.twitterApiKey}`
@@ -73,7 +73,7 @@ const twitterRequestUserData = Functions.makeHttpRequest({
   let impression_average = impression_count / tweetsList.length
   let like_average = like_count / tweetsList.length
   let numberFollowers = userDataResponse.data.data.public_metrics.followers_count
-  
+
   // Calculate the sum of all averages for normalization
   let total_average = reply_average + retweet_average + like_average + numberFollowers;
 
@@ -82,7 +82,6 @@ const twitterRequestUserData = Functions.makeHttpRequest({
   let norm_retweet_average = retweet_average / total_average;
   let norm_like_average = like_average / total_average;
   let norm_numberFollowers = numberFollowers / total_average;
-  
 
   //let tweetCount = userDataResponse.data.data.public_metrics.tweet_count
 

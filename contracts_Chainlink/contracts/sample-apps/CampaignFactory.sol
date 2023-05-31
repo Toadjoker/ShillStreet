@@ -12,10 +12,10 @@ contract CampaignFactory is ConfirmedOwner {
   uint256 public campaignIDCount;
 
   //Approval algorithm
-  string approvalAlgorithm;
+  string public approvalAlgorithm;
 
   //Oracle address
-  address oracle;
+  address public oracle;
 
   //// MAPPING ////
   mapping(uint256 => Campaign) public campaignDeployed;
@@ -32,8 +32,7 @@ contract CampaignFactory is ConfirmedOwner {
     address stableCoinAddress,
     address tweetValueAddress,
     uint256 verificationTime,
-    uint64 subscriptionId,
-    uint32 gasLimit
+    uint64 subscriptionId
   ) public onlyOwner {
     IStableCoin token = IStableCoin(stableCoinAddress);
     Campaign newCampaign = new Campaign(
@@ -47,7 +46,6 @@ contract CampaignFactory is ConfirmedOwner {
       campaignIDCount,
       verificationTime,
       subscriptionId,
-      gasLimit,
       msg.sender
     );
 

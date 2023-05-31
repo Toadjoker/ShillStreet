@@ -49,9 +49,6 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   //Subscription ID in the billing smart contract
   uint64 public subscriptionId;
 
-  //GAS LIMIT
-  uint32 public gasLimit;
-
   //// HANDLE THE QUEUE ////
   //An array of Campaign's participations registered
   mapping(uint256 => Participation) public participationsRegistered;
@@ -88,7 +85,6 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
     uint256 _campaignID,
     uint256 _verificationTime,
     uint64 _subscriptionId,
-    uint32 _gasLimit,
     address _owner
   ) FunctionsClient(_oracle) ConfirmedOwner(_owner) {
     stableCoinAddress = _stableCoinAddress;
@@ -99,16 +95,12 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
     campaignID = _campaignID;
     verificationTime = _verificationTime;
     subscriptionId = _subscriptionId;
-    gasLimit = _gasLimit;
     tweetValueAddress = _tweetValueAddress;
   }
 
   ///// PUBLIC FUNCTIONS ////
 
   function postTweet(string memory twitterID, string memory tweetURL) public {
-    //Check that the sender has the private key corresponding to the twitterID
-    //If the twitter ID is confirmed...
-
     //The user's address can't be null
     require(msg.sender != address(0), "Sender address is null");
 
@@ -185,7 +177,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
 
       if (argsWithInstructions.length > 0) req.addArgs(argsWithInstructions);
 
-      bytes32 assignedReqID = sendRequest(req, subscriptionId, gasLimit);
+      bytes32 assignedReqID = sendRequest(req, subscriptionId, 300000);
 
       //Increment verified counter
       verifiedCounter++;
@@ -212,7 +204,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   //In order to feed the campaignBalance
   function addForecastedBalance(uint256 amount) public onlyOwner {
     IStableCoin token = IStableCoin(stableCoinAddress);
-    require(token.transfer(address(this), amount), "Token transfer failed");
+    require(token.transferFrom(msg.sender, address(this), amount), "Token transfer failed");
     forecastedCampaignBalance += amount;
   }
 
@@ -221,7 +213,7 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
   }
 
   function setVerificationTime(uint256 newVerificationTime) public onlyOwner {
-    verficationTime = newVerificationTime;
+    verificationTime = newVerificationTime;
   }
 
   //// INTERNAL FUNCTIONS ////
@@ -284,7 +276,8 @@ contract Campaign is FunctionsClient, ConfirmedOwner, AutomationCompatibleInterf
    */
   function _payTweetCreator(string memory twitterID, address participationWalletAddress, uint256 amountDue) internal {
     IStableCoin token = IStableCoin(stableCoinAddress);
-    require(token.transfer(participationWalletAddress, amountDue), "Token transfer failed");
-    emit TweetCreatorPaid(twitterID, participationWalletAddress, amountDue);
+    require(token.transfer(participationWalletAddress, (amountDue * 90) / 100), "Token transfer failed");
+    require(token.transfer(owner(), (amountDue * 10) / 100), "Token transfer failed");
+    emit TweetCreatorPaid(twitterID, participationWalletAddress, (amountDue * 90) / 100);
   }
 }

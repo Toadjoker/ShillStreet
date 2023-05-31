@@ -11,6 +11,7 @@ from .readTweetViaApi import readTweet
 from datetime import datetime, timedelta
 import requests
 import jwt
+from django.http import Http404
 # Create your views here.
 
 
@@ -140,6 +141,25 @@ class LogoutView(APIView):
             'message': 'success'
         }
         return response
+
+
+class GetTweeterUserId(APIView):
+    def post(self, request):
+        walletAddress = request.data.get('walletAddress')
+        if not walletAddress:
+            return Response({"message": "walletAddress not provided"}, status=400)
+        try:
+            user = User.objects.get(walletAddress=walletAddress)
+        except User.DoesNotExist:
+            return Response({"message": "user not registered"}, status=404)
+        
+        response_data = {
+            "message": "found",
+            "walletAddress": walletAddress,
+            "twitter_user_id": user.twitter_user_id
+        }
+        return Response(response_data)
+
 
 
 class DeleteUser(APIView):

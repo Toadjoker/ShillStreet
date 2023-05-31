@@ -19,7 +19,9 @@ class RegisterView(APIView):
         serializer = UserSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response(serializer.data)
+        data = serializer.data
+        data.pop('privateString', None)
+        return Response(data)
 
 
 class LoginView(APIView):
@@ -57,8 +59,10 @@ class UserView(APIView):
 
     def get(self, request):
         user = request.user
-        serializer = UserSerializer(user, exclude=['privateString'])
-        return Response(serializer.data)
+        serializer = UserSerializer(user)
+        data = serializer.data
+        data.pop('privateString', None)
+        return Response(data)
 
 
 class RequestTwitterVerification(APIView):
@@ -105,8 +109,10 @@ class BindTwitterView(APIView):
         user.is_twitterBinded = True
         user.save()
 
-        serializer = UserSerializer(user, exclude=['privateString'])
-        return Response(serializer.data)
+        serializer = UserSerializer(user)
+        data = serializer.data
+        data.pop('privateString', None)
+        return Response(data)
 
 
 class UnbindTwitterView(APIView):
@@ -119,8 +125,10 @@ class UnbindTwitterView(APIView):
         user.is_twitterBinded = False
         user.save()
 
-        serializer = UserSerializer(user, exclude=['privateString'])
-        return Response(serializer.data)
+        serializer = UserSerializer(user)
+        data = serializer.data
+        data.pop('privateString', None)
+        return Response(data)
 
 
 class LogoutView(APIView):

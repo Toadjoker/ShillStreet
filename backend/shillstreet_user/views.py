@@ -57,7 +57,7 @@ class UserView(APIView):
 
     def get(self, request):
         user = request.user
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(user, exclude=['privateString'])
         return Response(serializer.data)
 
 
@@ -105,7 +105,7 @@ class BindTwitterView(APIView):
         user.is_twitterBinded = True
         user.save()
 
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(user, exclude=['privateString'])
         return Response(serializer.data)
 
 
@@ -119,7 +119,7 @@ class UnbindTwitterView(APIView):
         user.is_twitterBinded = False
         user.save()
 
-        serializer = UserSerializer(user)
+        serializer = UserSerializer(user, exclude=['privateString'])
         return Response(serializer.data)
 
 

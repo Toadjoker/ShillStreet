@@ -4,6 +4,9 @@ import { useRouter } from "next/router"
 import { press_start_2P, space_grotesk_regular } from "../utils/customFont"
 import { useDisconnect, useAccount } from "wagmi"
 import LoginButton from "./LoginButton"
+import { useState, useEffect } from "react"
+import { AuthRequest } from "../utils/apiRequests"
+import Cookies from "js-cookie"
 
 /**
  *
@@ -11,10 +14,34 @@ import LoginButton from "./LoginButton"
  * @returns jsx
  */
 const Header = ({ headerCallback }: any) => {
+    // import { useState, useEffect } from "react"
+    // import { AuthRequest } from "../utils/apiRequests"
+    // import Cookies from "js-cookie"
+    const [userAddressOnline, setUserAddressOnline] = useState<string>("")
+    const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
+    const [userTwitterId, setUserTwitterId] = useState<string>("")
+
+    const onSubmit = async () => {
+        try {
+            const token = Cookies.get("jwt")
+            const response = await AuthRequest.get("/users/user/", token)
+            if (response) {
+                console.log(response)
+                setUserAddressOnline(response.walletAddress)
+                setUserTwitterHandle(response.twitter_handle)
+                setUserTwitterId(response.twitter_user_id)
+            }
+        } catch (error) {
+            if (error.response) {
+            }
+        }
+    }
+    useEffect(() => {
+        onSubmit()
+    }, [])
     const router = useRouter()
     const { disconnect } = useDisconnect()
     const { isConnected, address } = useAccount()
-
     return (
         <section className="bg-gray-800 h-24 flex items-center justify-between px-3 md:px-20">
             {/* site logo */}
@@ -36,7 +63,10 @@ const Header = ({ headerCallback }: any) => {
                         </p>
                         {/* logout button */}
                         <button
-                            onClick={() => disconnect()}
+                            onClick={() => {
+                                disconnect()
+                                Cookies.remove("jwt", { secure: true, sameSite: "none" })
+                            }}
                             className="hover:text-blue-600 hover:shadow-2xl cursor-pointer"
                         >
                             Logout
@@ -56,9 +86,10 @@ const Header = ({ headerCallback }: any) => {
                                     unoptimized={true}
                                 />
                             </Link>
-                            <Link href="/account/overview" className="flex space-x-2">
-                                Account Overview
-                                {/* <span
+                            {address && userAddressOnline && (
+                                <Link href={`/account/${address}`} className="flex space-x-2">
+                                    Account Overview
+                                    {/* <span
                                         className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
                                     >
                                         J
@@ -70,7 +101,8 @@ const Header = ({ headerCallback }: any) => {
                                         height={20}
                                         unoptimized={true}
                                     /> */}
-                            </Link>
+                                </Link>
+                            )}
                             <Link
                                 href="/account-setup"
                                 className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}

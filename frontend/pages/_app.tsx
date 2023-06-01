@@ -1,21 +1,58 @@
 import Head from "next/head"
 import "../styles/globals.css"
 import "antd/dist/reset.css"
-import { WagmiConfig, createClient } from "wagmi"
+import { WagmiConfig, configureChains, createConfig } from "wagmi"
+import { sepolia } from "wagmi/chains"
 import { getDefaultProvider } from "ethers"
 import { InjectedConnector } from "wagmi/connectors/injected"
+import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
 import { Provider } from "react-redux"
 import store from "../redux/configureStore"
+import { connectorsForWallets } from "@rainbow-me/rainbowkit"
+import "@rainbow-me/rainbowkit/styles.css"
+import {
+    injectedWallet,
+    argentWallet,
+    braveWallet,
+    ledgerWallet,
+    trustWallet,
+    imTokenWallet,
+    omniWallet,
+    metaMaskWallet,
+    walletConnectWallet,
+} from "@rainbow-me/rainbowkit/wallets"
+import { publicProvider } from "@wagmi/core/providers/public"
+const { chains, publicClient } = configureChains(
+    [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ sepolia],
+    [publicProvider()]
+)
 
-const client = createClient({
-    provider: getDefaultProvider(),
-    connectors: [
-        new InjectedConnector({
-            options: {
-                shimDisconnect: true,
-            },
-        }),
-    ],
+const connectors = connectorsForWallets([
+    {
+        groupName: "Recommended",
+        wallets: [
+            injectedWallet({ chains }),
+            metaMaskWallet({ chains }),
+            walletConnectWallet({ chains }),
+        ],
+    },
+    {
+        groupName: "Others",
+        wallets: [
+            trustWallet({ chains }),
+            braveWallet({ chains }),
+            ledgerWallet({ chains }),
+            argentWallet({ chains }),
+            omniWallet({ chains }),
+            imTokenWallet({ chains }),
+        ],
+    },
+])
+
+const wagmiConfig = createConfig({
+    autoConnect: true,
+    connectors,
+    publicClient,
 })
 
 export default function App({ Component, pageProps }) {
@@ -27,10 +64,12 @@ export default function App({ Component, pageProps }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <WagmiConfig client={client}>
-                <Provider store={store}>
-                    <Component {...pageProps} />
-                </Provider>
+            <WagmiConfig config={wagmiConfig}>
+                <RainbowKitProvider chains={chains}>
+                    <Provider store={store}>
+                        <Component {...pageProps} />
+                    </Provider>
+                </RainbowKitProvider>
             </WagmiConfig>
         </>
     )

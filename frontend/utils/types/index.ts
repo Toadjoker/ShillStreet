@@ -14,3 +14,7 @@ export type LoginType = {
     walletAddress: string
     privateString: string
 }
+
+export type TwitterIdType = {
+    walletAddress: string
+}

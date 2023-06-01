@@ -29,6 +29,7 @@ const SignUpForm = () => {
         reset,
         formState: { errors },
     } = useForm<Inputs>()
+    
     const onSubmit: SubmitHandler<RegisterType> = async (data) => {
         if (isValid) {
             setReqesting(true)

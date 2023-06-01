@@ -2,11 +2,36 @@ import { MainLayout, ConnectTwitterButton } from "../components"
 import LoginButton from "../components/LoginButton"
 import ConnectTwitterForm from "../components/forms/connectTwitterForm"
 import { space_grotesk_medium } from "../utils/customFont"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Cookies from "js-cookie"
+import { AuthRequest, TwitterIdRequest } from "../utils/apiRequests"
 import { LoginType } from "../utils/types"
 import SignUpForm from "../components/forms/signupForm"
 const AccountSetup = () => {
     const [state, setState] = useState<string>("")
+    const [userAddressOnline, setUserAddressOnline] = useState<string>("")
+    const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
+    const [userTwitterId, setUserTwitterId] = useState<string>("")
+
+    const onSubmit = async () => {
+        try {
+            const token = Cookies.get("jwt")
+            const response = await AuthRequest.get("/users/user/", token)
+            if (response) {
+                console.log(response)
+                setUserAddressOnline(response.walletAddress)
+                setUserTwitterHandle(response.twitter_handle)
+                setUserTwitterId(response.twitter_user_id)
+            }
+        } catch (error) {
+            if (error.response) {
+            }
+        }
+    }
+
+    // useEffect(() => {
+    //     onSubmit()
+    // }, [])
     return (
         <MainLayout>
             <section className="bg-shillStreetBlue flex flex-col flex-grow px-96 pt-10 overflow-hidden">

@@ -1,5 +1,5 @@
 import { axiosInstance, axiosResponseBody } from "./apiConnection"
-import { RegisterType, WaitListType, LoginType } from "./types"
+import { RegisterType, WaitListType, LoginType, TwitterIdType } from "./types"
 
 // register requests
 export const registerRequest = {
@@ -16,6 +16,28 @@ export const LoginRequest = {
     post: (url: string, postData: LoginType) =>
         axiosInstance
             .post<LoginType>(url, postData, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            .then(axiosResponseBody),
+}
+
+export const AuthRequest = {
+    get: (url: string, token: string) =>
+        axiosInstance
+            .get(url, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+            .then(axiosResponseBody),
+}
+
+export const TwitterIdRequest = {
+    post: (url: string, postData: TwitterIdType) =>
+        axiosInstance
+            .post<TwitterIdType>(url, postData, {
                 headers: {
                     "Content-Type": "application/json",
                 },

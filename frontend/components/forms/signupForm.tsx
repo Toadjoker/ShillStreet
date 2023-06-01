@@ -11,7 +11,10 @@ import Image from "next/image"
 type Inputs = {
     name: string
     email: string
+    walletAddress: string
+    privateString: string
 }
+
 const SignUpForm = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
     const [requesting, setReqesting] = useState<boolean>(false)
@@ -29,7 +32,7 @@ const SignUpForm = () => {
         reset,
         formState: { errors },
     } = useForm<Inputs>()
-    
+
     const onSubmit: SubmitHandler<RegisterType> = async (data) => {
         if (isValid) {
             setReqesting(true)
@@ -74,7 +77,7 @@ const SignUpForm = () => {
     }
 
     const setPostData = (address?: string, privateString?: string) => {
-        if (address != "" && privateString != "") {
+        if (address && privateString) {
             // prepare post data
             const postData: RegisterType = {
                 name: watch("name"),

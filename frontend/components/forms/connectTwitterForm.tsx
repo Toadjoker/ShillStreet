@@ -3,7 +3,13 @@ import { Spinner, Alert, AlertType } from "../"
 import Cookies from "js-cookie"
 import { space_grotesk_medium } from "../../utils/customFont"
 import { useAccount, useSignMessage } from "wagmi"
-const ConnectTwitterForm = () => {
+
+type ConnectTwitterFormProps = {
+    userName: string
+    email: string
+}
+
+const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [isBindnig, setIsBindnig] = useState<boolean>(false)
     const [isConnecting, setIsConnecting] = useState<boolean>(false)
@@ -50,10 +56,10 @@ const ConnectTwitterForm = () => {
                 Alert(AlertType.error, `Not Logged in!`)
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                return
-            }
-            console.error(error)
+            // if (error.response && error.response.status === 401) {
+            //     return
+            // }
+            // console.error(error)
         } finally {
             setIsBindnig(false)
         }
@@ -76,9 +82,9 @@ const ConnectTwitterForm = () => {
                 setTwitterHandle("")
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                return
-            }
+            // if (error.response && error.response.status === 401) {
+            //     return
+            // }
             console.error(error)
         } finally {
             setIsBindnig(false)
@@ -101,9 +107,9 @@ const ConnectTwitterForm = () => {
                 }, 2000)
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                return
-            }
+            // if (error.response && error.response.status === 401) {
+            //     return
+            // }
             console.error(error)
         }
     }
@@ -124,9 +130,9 @@ const ConnectTwitterForm = () => {
                 setTwitterHandle(data.twitter_handle)
             }
         } catch (error) {
-            if (error.response && error.response.status === 401) {
-                return
-            }
+            // if (error.response && error.response.status === 401) {
+            //     return
+            // }
             console.error(error)
         }
     }
@@ -142,9 +148,11 @@ const ConnectTwitterForm = () => {
     }, [address, isBindnig])
     return (
         <>
+            <div className="text-white mb-5">Your Account User Name is : {userName}</div>
+            <div className="text-white mb-5">Your Account Email is : {email}</div>
             {!!twitterHandle ? (
                 <>
-                    <div className="text-white">
+                    <div className="text-white mb-5">
                         Your Connected Twitter Account is : {twitterHandle}
                     </div>
                     <button

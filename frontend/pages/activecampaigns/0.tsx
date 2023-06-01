@@ -1,6 +1,4 @@
 import { useRouter } from "next/router"
-import Image from "next/image"
-import Link from "next/link"
 import { MainLayout, ProgressBar, Spinner } from "../../components"
 import {
     space_grotesk_light,
@@ -10,14 +8,15 @@ import {
 } from "../../utils/customFont"
 import { useSelector } from "react-redux"
 import { useContractRead, useAccount, useContractWrite, usePrepareContractWrite } from "wagmi"
-import campapaignsContract from "../../constants/CAMPAIGN_ABI.json"
-import { useState, useEffect, useMemo } from "react"
-import { AuthRequest, TwitterIdRequest } from "../../utils/apiRequests"
-import Cookies from "js-cookie"
-import tweetValueContract from "../../constants/TWEET_VALUE.json"
+import { useState, useEffect } from "react"
+import { TwitterIdRequest } from "../../utils/apiRequests"
 import { SubmitHandler } from "react-hook-form"
 import { TwitterIdType } from "../../utils/types"
 import { Alert, AlertType } from "../../components/"
+
+import Image from "next/image"
+import Link from "next/link"
+import campapaignsContract from "../../constants/CAMPAIGN_ABI.json"
 
 const img = "https://icodrops.com/wp-content/uploads/2021/06/dopex_logo.png"
 const CampaignDetails = () => {

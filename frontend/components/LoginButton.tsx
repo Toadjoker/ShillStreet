@@ -30,11 +30,11 @@ const LoginButton = () => {
                 Alert(AlertType.success, "Login Success!")
             }
         } catch (error) {
-            if (error.response) {
-                Alert(AlertType.error, error.response.data.detail)
-            } else {
-                Alert(AlertType.error, "An error occurred while logging in. Please try again.")
-            }
+            // if (error.response) {
+            //     Alert(AlertType.error, error.response.data.detail)
+            // } else {
+            //     Alert(AlertType.error, "An error occurred while logging in. Please try again.")
+            // }
         }
     }
 
@@ -52,8 +52,8 @@ const LoginButton = () => {
         console.log(address)
         if (isSuccess) {
             const data = {
-                walletAddress: address,
-                privateString: privateString,
+                walletAddress: address ?? "defaultWalletAddress",
+                privateString: privateString ?? "defaultPrivateString",
             }
             onSubmit(data)
             console.log(data)

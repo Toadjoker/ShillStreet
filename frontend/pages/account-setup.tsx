@@ -6,32 +6,42 @@ import { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import { AuthRequest, TwitterIdRequest } from "../utils/apiRequests"
 import { LoginType } from "../utils/types"
+import { useAccount } from "wagmi"
 import SignUpForm from "../components/forms/signupForm"
 const AccountSetup = () => {
-    const [state, setState] = useState<string>("")
+    const [state, setState] = useState<string>("login")
+    const [userName, setUserName] = useState<string>("")
+    const [userEmail, setUserEmail] = useState<string>("")
     const [userAddressOnline, setUserAddressOnline] = useState<string>("")
     const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
-
+    const [needLogin, setNeedLogin] = useState<boolean>(true)
+    const { isConnected } = useAccount()
     const onSubmit = async () => {
         try {
             const token = Cookies.get("jwt")
-            const response = await AuthRequest.get("/users/user/", token)
-            if (response) {
-                console.log(response)
-                setUserAddressOnline(response.walletAddress)
-                setUserTwitterHandle(response.twitter_handle)
-                setUserTwitterId(response.twitter_user_id)
+            if (token) {
+                const response = await AuthRequest.get("/users/user/", token)
+                if (response) {
+                    console.log(response)
+                    setNeedLogin(false)
+                    setUserAddressOnline(response.walletAddress)
+                    setUserName(response.name)
+                    setUserEmail(response.email)
+                    setUserTwitterHandle(response.twitter_handle)
+                    setUserTwitterId(response.twitter_user_id)
+                }
+            } else {
             }
         } catch (error) {
-            if (error.response) {
-            }
+            // if (error.response) {
+            // }
         }
     }
 
-    // useEffect(() => {
-    //     onSubmit()
-    // }, [])
+    useEffect(() => {
+        onSubmit()
+    }, [])
     return (
         <MainLayout>
             <section className="bg-shillStreetBlue flex flex-col flex-grow px-96 pt-10 overflow-hidden">
@@ -43,35 +53,36 @@ const AccountSetup = () => {
                         Account Setup
                     </h3>
                 </div>
-
-                <div className="flex flex-col items-center justify-center ">
-                    <div className="bg-shillStreetGrey flex items-center rounded-xl p-2 px-14 text-white border-4 border-white">
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
-                            onClick={() => setState("login")}
-                        >
-                            Login
-                        </button>
-                        <button
-                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
-                            onClick={() => setState("signup")}
-                        >
-                            Signup
-                        </button>
+                {needLogin && (
+                    <div className="flex flex-col items-center justify-center ">
+                        <div className="bg-shillStreetGrey flex items-center rounded-xl p-2 px-14 text-white border-4 border-white">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
+                                onClick={() => setState("login")}
+                            >
+                                Login
+                            </button>
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
+                                onClick={() => setState("signup")}
+                            >
+                                Signup
+                            </button>
+                        </div>
                     </div>
-                </div>
-
-                {state != "" &&
-                    (state === "login" ? (
-                        <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-1/2 mt-14 text-white border-4 border-white">
-                            <LoginButton />
-                            <ConnectTwitterForm />
-                        </div>
-                    ) : (
-                        <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-1/3 mt-14 text-white border-4 border-white">
-                            <SignUpForm />
-                        </div>
-                    ))}
+                )}
+                {state == "login" ? (
+                    <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-1/2 mt-14 text-white border-4 border-white">
+                        <LoginButton />
+                        {isConnected && (
+                            <ConnectTwitterForm userName={userName} email={userEmail} />
+                        )}
+                    </div>
+                ) : (
+                    <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-1/3 mt-14 text-white border-4 border-white">
+                        <SignUpForm />
+                    </div>
+                )}
             </section>
         </MainLayout>
     )

@@ -1,10 +1,9 @@
 import Head from "next/head"
+import { AppProps } from "next/app"
 import "../styles/globals.css"
 import "antd/dist/reset.css"
 import { WagmiConfig, configureChains, createConfig } from "wagmi"
 import { sepolia } from "wagmi/chains"
-import { getDefaultProvider } from "ethers"
-import { InjectedConnector } from "wagmi/connectors/injected"
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
 import { Provider } from "react-redux"
 import store from "../redux/configureStore"
@@ -22,10 +21,7 @@ import {
     walletConnectWallet,
 } from "@rainbow-me/rainbowkit/wallets"
 import { publicProvider } from "@wagmi/core/providers/public"
-const { chains, publicClient } = configureChains(
-    [/*chain.mainnet, chain.polygon, chain.polygonMumbai,*/ sepolia],
-    [publicProvider()]
-)
+const { chains, publicClient } = configureChains([sepolia], [publicProvider()])
 
 const connectors = connectorsForWallets([
     {
@@ -55,7 +51,7 @@ const wagmiConfig = createConfig({
     publicClient,
 })
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
             <Head>

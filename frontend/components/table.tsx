@@ -9,7 +9,11 @@ const Table = () => {
     const dispatch = useDispatch()
     const handleNavigationToDetails = (item: any) => {
         dispatch(setCampaignAction(item.id))
-        router.push(`/campaigns/${item.id}`)
+        if (item.id == 0) {
+            router.push(`/activecampaigns/${item.id}`)
+        } else {
+            router.push(`/campaigns/${item.id}`)
+        }
     }
 
     const state = useSelector((state: any) => state)
@@ -23,7 +27,7 @@ const Table = () => {
                 <thead className="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
                     <tr>
                         <th scope="col" colSpan={2} className="px-6 py-3">
-                            <span className="font-semibold text-white">Active Jobs (0)</span>
+                            <span className="font-semibold text-white">Active Jobs (1)</span>
                             <br />
                             <span className="text-xs mt-2">Campaign</span>
                         </th>
@@ -48,7 +52,7 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {campaigns.map((item) => (
+                    {campaigns.map((item: any) => (
                         <tr
                             key={item.id}
                             onClick={() => handleNavigationToDetails(item)}

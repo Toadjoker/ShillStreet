@@ -72,11 +72,7 @@ const AccountOverview = () => {
                     setUserTwitterId(response.twitter_user_id)
                 }
             }
-        } catch (error) {
-            if (error.response) {
-            } else {
-            }
-        }
+        } catch (error) {}
     }
 
     const setPostData = (address: string) => {
@@ -93,8 +89,6 @@ const AccountOverview = () => {
     let truncatedUserAddress = ""
     useEffect(() => {
         if (address) {
-            truncatedUserAddress =
-                address.substring(0, 5) + "..." + address.substring(address.length - 5)
             setPostData(address)
         }
     }, [address])
@@ -172,7 +166,7 @@ const AccountOverview = () => {
                         </span>
                     </div>
 
-                    {TopCardTextContentSampleData.map((item) => (
+                    {TopCardTextContentSampleData.map((item: any) => (
                         <TopCardTextContent
                             key={item.index}
                             title={item.title}

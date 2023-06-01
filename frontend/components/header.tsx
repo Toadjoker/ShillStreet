@@ -7,41 +7,53 @@ import LoginButton from "./LoginButton"
 import { useState, useEffect } from "react"
 import { AuthRequest } from "../utils/apiRequests"
 import Cookies from "js-cookie"
-
+import { AxiosError } from "axios"
+import { Spinner, Alert, AlertType } from "./"
 /**
  *
  * @param headerCallback: is a number. 0 means Register & 1 means Login
  * @returns jsx
  */
 const Header = ({ headerCallback }: any) => {
-    // import { useState, useEffect } from "react"
-    // import { AuthRequest } from "../utils/apiRequests"
-    // import Cookies from "js-cookie"
+    const router = useRouter()
+    const { disconnect } = useDisconnect()
+    const { isConnected, address } = useAccount()
     const [userAddressOnline, setUserAddressOnline] = useState<string>("")
     const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
-
+    const [isConnecting, setIsConnecting] = useState<boolean>(false)
     const onSubmit = async () => {
         try {
             const token = Cookies.get("jwt")
-            const response = await AuthRequest.get("/users/user/", token)
-            if (response) {
-                console.log(response)
-                setUserAddressOnline(response.walletAddress)
-                setUserTwitterHandle(response.twitter_handle)
-                setUserTwitterId(response.twitter_user_id)
+            if (token) {
+                const response = await AuthRequest.get("/users/user/", token)
+                if (response) {
+                    console.log(response)
+                    if (response.walletAddress) {
+                        setIsConnecting(true)
+                        setUserAddressOnline(response.walletAddress)
+                        setUserTwitterHandle(response.twitter_handle)
+                        setUserTwitterId(response.twitter_user_id)
+                    } else {
+                        setIsConnecting(false)
+                        disconnect()
+                        Cookies.remove("jwt", { secure: true, sameSite: "none" })
+                        Alert(AlertType.error, "You need to log in!")
+                    }
+                }
             }
         } catch (error) {
-            if (error.response) {
+            const axiosError = error as AxiosError
+            if (axiosError.response) {
             }
         }
     }
     useEffect(() => {
-        onSubmit()
-    }, [])
-    const router = useRouter()
-    const { disconnect } = useDisconnect()
-    const { isConnected, address } = useAccount()
+        if (isConnected) {
+            onSubmit()
+        }
+    }, [isConnected])
+
     return (
         <section className="bg-gray-800 h-24 flex items-center justify-between px-3 md:px-20">
             {/* site logo */}
@@ -56,15 +68,18 @@ const Header = ({ headerCallback }: any) => {
             </Link>
             {/* navigation */}
             <nav className="text-white space-x-5 flex items-center">
-                {isConnected && (
+                {isConnecting && (
                     <div className="flex items-center">
                         <p className="bg-blue-500 p-2 rounded-full w-auto mx-3 mt-4">
-                            {address.slice(0, 10)}...
+                            {userAddressOnline.slice(0, 10)}...
                         </p>
-                        {/* logout button */}
                         <button
                             onClick={() => {
                                 disconnect()
+                                setUserAddressOnline("")
+                                setUserTwitterHandle("")
+                                setUserTwitterId("")
+                                setIsConnecting(false)
                                 Cookies.remove("jwt", { secure: true, sameSite: "none" })
                             }}
                             className="hover:text-blue-600 hover:shadow-2xl cursor-pointer"
@@ -86,7 +101,7 @@ const Header = ({ headerCallback }: any) => {
                                     unoptimized={true}
                                 />
                             </Link>
-                            {address && userAddressOnline && (
+                            {userAddressOnline && (
                                 <Link href={`/account/${address}`} className="flex space-x-2">
                                     Account Overview
                                     {/* <span

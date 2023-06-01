@@ -1,4 +1,3 @@
-import { useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import Image from "next/image"
 import Link from "next/link"
@@ -10,27 +9,123 @@ import {
     space_grotesk_semibold,
 } from "../../utils/customFont"
 import { useSelector } from "react-redux"
+import { useContractRead, useAccount, useContractWrite, usePrepareContractWrite } from "wagmi"
+import campapaignsContract from "../../constants/CAMPAIGN_ABI.json"
+import { useState, useEffect, useMemo } from "react"
+import { AuthRequest, TwitterIdRequest } from "../../utils/apiRequests"
+import Cookies from "js-cookie"
+import tweetValueContract from "../../constants/TWEET_VALUE.json"
+import { SubmitHandler } from "react-hook-form"
+import { TwitterIdType } from "../../utils/types"
+import { Alert, AlertType } from "../../components/"
 
 const img = "https://icodrops.com/wp-content/uploads/2021/06/dopex_logo.png"
 const CampaignDetails = () => {
     const router = useRouter()
     const state = useSelector((state: any) => state)
     const { campaign } = state.campaignsReducer
+    const { isConnected, address } = useAccount()
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [twitterURL, setTwitterURL] = useState<string>("")
+    const [tweetId, setTweetId] = useState<string>("")
+    const [userTwitterId, setUserTwitterId] = useState<string>("0")
+    const [participationIDcountInString, setparticipationIDcountInString] = useState<string>("")
+    const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
+        useState<number>(0)
 
-    const handleSendingTwitterURL = () => {
+    // contract write function
+    const { config } = usePrepareContractWrite({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "postTweet",
+        args: [userTwitterId, tweetId],
+    })
+
+    const { write: sendContractInteraction } = useContractWrite(config)
+
+    // const read function
+    const { data: forecastedCampaignBalance } = useContractRead({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "forecastedCampaignBalance",
+        chainId: 11155111,
+        watch: true,
+    })
+
+    const { data: participationIDcount } = useContractRead({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "participationIDcount",
+        chainId: 11155111,
+        watch: true,
+    })
+    const getTwitterId: SubmitHandler<TwitterIdType> = async (data) => {
+        try {
+            const response = await TwitterIdRequest.post("/users/get_twitter_id/", data)
+            if (response) {
+                console.log(response)
+                if (response.message == "found") {
+                    setUserTwitterId(response.twitter_user_id)
+                }
+            }
+        } catch (error) {}
+    }
+
+    const setPostData = (address: string) => {
+        if (address != "") {
+            // prepare post data
+            const postData: TwitterIdType = {
+                walletAddress: address,
+            }
+            // invoke the submission with the data to post
+            getTwitterId(postData)
+        }
+    }
+
+    const handleSendingTwitterURL = async () => {
         // the following are just place holders
         try {
             setIsRequesting(true)
+            if (sendContractInteraction && userTwitterId) {
+                sendContractInteraction()
+            } else {
+                Alert(AlertType.error, "You need to log in!")
+            }
         } catch (error) {
-            console.log(error)
+            // console.log(error)
         } finally {
             setTimeout(() => {
                 setIsRequesting(false)
             }, 2000)
         }
     }
+
+    useEffect(() => {
+        if (address && isConnected) {
+            setPostData(address)
+        }
+    }, [address])
+
+    useEffect(() => {
+        const splitURL = twitterURL.split("/")
+        setTweetId(splitURL[splitURL.length - 1])
+    }, [twitterURL])
+
+    useEffect(() => {
+        const splitURL = twitterURL.split("/")
+        setTweetId(splitURL[splitURL.length - 1])
+    }, [twitterURL])
+
+    useEffect(() => {
+        if (forecastedCampaignBalance) {
+            setForecastedCampaignBalanceInString(
+                parseInt(forecastedCampaignBalance.toString()) / 10 ** 18
+            )
+        }
+        if (participationIDcount) {
+            setparticipationIDcountInString(participationIDcount.toString())
+        }
+    }, [forecastedCampaignBalance, participationIDcount])
 
     return (
         <MainLayout>
@@ -106,17 +201,27 @@ const CampaignDetails = () => {
                                         </p>
                                     </div>
                                     <div>
-                                        <div
-                                            className={`${space_grotesk_light.className} text-xs flex justify-between`}
-                                        >
-                                            <p>Funds Utilized</p>
-                                            <p>{campaign?.utilization}%</p>
-                                        </div>
-                                        <ProgressBar value={campaign?.utilization} />
+                                        {forecastedCampaignBalanceInString && (
+                                            <div
+                                                className={`${space_grotesk_light.className} text-xs flex justify-between`}
+                                            >
+                                                <p>Funds Left</p>
+                                                <p>{forecastedCampaignBalanceInString} USDC</p>
+                                            </div>
+                                        )}
+                                        {participationIDcountInString && (
+                                            <div
+                                                className={`${space_grotesk_light.className} text-xs flex justify-between`}
+                                            >
+                                                <p>Participants joined</p>
+                                                <p>{participationIDcountInString} user</p>
+                                            </div>
+                                        )}
+                                        <ProgressBar value={participationIDcountInString} />
                                         <span
                                             className={`${space_grotesk_light.className} flex justify-end text-xs`}
                                         >
-                                            {campaign?.threadEarnings}{" "}
+                                            {/* {campaign?.threadEarnings}{" "} */}
                                             {/* 2.352.35 / 3.500 USDC */}
                                         </span>
                                     </div>

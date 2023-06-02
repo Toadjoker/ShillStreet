@@ -146,9 +146,7 @@ const SignUpForm = () => {
                 className="flex justify-center items-center my-3 mt-5"
                 onClick={() => setSignUp(true)}
             >
-                {watch("name") != "" && watch("email") != "" && (
-                    <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
-                )}
+                <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
             </div>
         </form>
     )

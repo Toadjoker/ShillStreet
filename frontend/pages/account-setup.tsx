@@ -73,14 +73,14 @@ const AccountSetup = () => {
                 )}
                 <div className="flex justify-center items-center">
                     {state == "login" ? (
-                        <div className="bg-shillStreetGrey w-1/2 rounded-xl p-2 px-14 h-22 flex justify-center mt-14 text-white border-4 border-white">
+                        <div className="bg-shillStreetGrey w-1/2 rounded-xl p-2 px-14 h-22 flex justify-center mt-10 text-white border-4 border-white">
                             <LoginButton />
                             {isConnected && (
                                 <ConnectTwitterForm userName={userName} email={userEmail} />
                             )}
                         </div>
                     ) : (
-                        <div className="bg-shillStreetGrey w-1/2 rounded-xl py-2 px-14 h-auto mt-14 text-white border-4 border-white">
+                        <div className="bg-shillStreetGrey w-1/2 rounded-xl py-2 px-14 h-auto mt-10 mb-14 text-white border-4 border-white">
                             <SignUpForm />
                         </div>
                     )}

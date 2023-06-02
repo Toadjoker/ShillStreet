@@ -1,3 +1,4 @@
+import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useRouter } from "next/router"
@@ -89,33 +90,21 @@ const Header = ({ headerCallback }: any) => {
                     </div>
                 )}
 
+                <Link
+                    href="https://shillstreet.gitbook.io/shillstreet/"
+                    className={`${space_grotesk_regular.className} hover:text-blue-400`}
+                    onClick={() => headerCallback(0)}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    View Docs
+                </Link>
                 <>
                     {router.pathname != "/account-setup" ? (
                         <>
-                            <Link href="#">
-                                <Image
-                                    src="/images/notification-bell.svg"
-                                    alt="notification-bell-icon"
-                                    width={25}
-                                    height={25}
-                                    unoptimized={true}
-                                />
-                            </Link>
                             {userAddressOnline && (
                                 <Link href={`/account/${address}`} className="flex space-x-2">
                                     Account Overview
-                                    {/* <span
-                                        className={`${space_grotesk_regular.className} bg-green-500 p-1 rounded-full h-6 w-6 text-center text-xs`}
-                                    >
-                                        J
-                                    </span>
-                                    <Image
-                                        src="/images/chevron-down-white.svg"
-                                        alt="chevron-down"
-                                        width={20}
-                                        height={20}
-                                        unoptimized={true}
-                                    /> */}
                                 </Link>
                             )}
                             <Link
@@ -144,27 +133,6 @@ const Header = ({ headerCallback }: any) => {
                         </>
                     )}
                 </>
-
-                {/* show the register button if no connected */}
-                {/* {!isConnected && (
-                    <> */}
-                {/* <Link
-                            href="#"
-                            className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                            onClick={() => headerCallback(0)}
-                        >
-                            Login
-                        </Link> */}
-                {/* <LoginButton />
-                        <Link
-                            href="/signup"
-                            className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                            onClick={() => headerCallback(0)}
-                        >
-                            Register
-                        </Link>
-                    </>
-                )} */}
             </nav>
         </section>
     )

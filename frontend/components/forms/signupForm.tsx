@@ -104,7 +104,7 @@ const SignUpForm = () => {
     }, [isSuccess, isValid])
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="-mt-5 w-auto flex flex-col">
+        <form onSubmit={handleSubmit(onSubmit)} className="-mt-8 w-auto flex flex-col">
             <div className="flex items-center justify-center">
                 <Image
                     src="/images/shillStreetIcon.png"
@@ -127,18 +127,20 @@ const SignUpForm = () => {
                 </p>
             </div>
 
-            <input
-                type="text"
-                placeholder="Your name"
-                className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
-                {...register("name", { required: "This field is required" })}
-            />
-            <input
-                type="email"
-                placeholder="youremail@example.com"
-                className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
-                {...register("email", { required: "This field is required" })}
-            />
+            <div className="flex flex-col items-center justify-center">
+                <input
+                    type="text"
+                    placeholder="Your name"
+                    className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                    {...register("name", { required: "This field is required" })}
+                />
+                <input
+                    type="email"
+                    placeholder="youremail@example.com"
+                    className={`${space_grotesk_regular.className} text-xs md:text-sm w-72 h-12 md:h-10 lg:h-10 rounded-sm p-4 text-gray-500 border-2 border-gray-400 my-4`}
+                    {...register("email", { required: "This field is required" })}
+                />
+            </div>
 
             <div
                 className="flex justify-center items-center my-3 mt-5"

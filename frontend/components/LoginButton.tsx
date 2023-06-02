@@ -60,7 +60,7 @@ const LoginButton = () => {
         }
     }, [isSuccess, address, privateString, onSubmit])
     return (
-        <section className="flex items-center justify-between my-10">
+        <section className="flex items-center justify-between my-5">
             {/* only show the connect button if the address is undefined */}
             {address === undefined && (
                 <ConnectWalletButton buttonTitle="Connect Wallet" requesting={isLoading} />

@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Header from "../header"
+import Footer from "../footer"
 type Props = {
     children: JSX.Element
 }
@@ -17,6 +18,7 @@ const MainLayout = ({ children }: Props) => {
         <section className="h-screen flex flex-col">
             <Header headerCallback={handleHeaderCallback} />
             {children}
+            <Footer />
         </section>
     )
 }

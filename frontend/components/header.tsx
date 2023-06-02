@@ -93,7 +93,6 @@ const Header = ({ headerCallback }: any) => {
                 <Link
                     href="https://shillstreet.gitbook.io/shillstreet/"
                     className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                    onClick={() => headerCallback(0)}
                     rel="noopener noreferrer"
                     target="_blank"
                 >
@@ -103,7 +102,7 @@ const Header = ({ headerCallback }: any) => {
                     {router.pathname != "/account-setup" ? (
                         <>
                             {userAddressOnline && (
-                                <Link href={`/account/${address}`} className="flex space-x-2">
+                                <Link href={`/account/${address}`} className={`${space_grotesk_regular.className} flex space-x-2`}>
                                     Account Overview
                                 </Link>
                             )}

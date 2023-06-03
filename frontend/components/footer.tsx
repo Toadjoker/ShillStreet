@@ -4,7 +4,7 @@ import { space_grotesk_regular } from "../utils/customFont"
 
 const Footer = () => {
     return (
-        <div className="bg-gray-800 h-24 flex items-center justify-between py-4 px-3 md:px-20">
+        <div className="bg-gray-800 h-24 flex items-center justify-between py-4 px-3 md:px-20 border-t-2 border-t-cyan-50">
             <div className="flex space-x-3">
                 <Link
                     href="https://discord.gg/bcbUYfBF"

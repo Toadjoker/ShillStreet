@@ -61,7 +61,7 @@ const Header = ({ headerCallback }: any) => {
     }, [isConnected])
 
     return (
-        <section className="bg-gray-800 h-24 flex items-center justify-between px-3 md:px-20">
+        <section className="bg-gray-800 h-24 flex items-center justify-between px-3 md:px-20 border-b-2 border-b-cyan-50">
             {/* site logo */}
             <Link href="/" className=" text-white text-xs md:text-xl font-semibold cursor-pointer">
                 <Image
@@ -77,6 +77,12 @@ const Header = ({ headerCallback }: any) => {
                 <>
                     {router.pathname != "/account-setup" ? (
                         <>
+                            <Link
+                                href="/account-setup"
+                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                            >
+                                Launch App
+                            </Link>
                             {userAddressOnline && (
                                 <Link
                                     href={`/account/${address}`}
@@ -85,12 +91,6 @@ const Header = ({ headerCallback }: any) => {
                                     Jobs
                                 </Link>
                             )}
-                            <Link
-                                href="/account-setup"
-                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
-                            >
-                                Launch App
-                            </Link>
                         </>
                     ) : (
                         <>

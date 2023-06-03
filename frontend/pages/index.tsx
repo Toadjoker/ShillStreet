@@ -25,8 +25,8 @@ const Index = () => {
 
   useEffect(() => {
     const video = document.getElementById("infiniteVideo");
-    if (video) {
-      video.play();
+    if (video && video instanceof HTMLVideoElement) {
+        video.play();
     }
   }, []);
 
@@ -69,7 +69,7 @@ const Index = () => {
                     </div>
                 </div>
                 <div className="flex justify-center items-center flex-col border-b ">
-                <h3 className={`${space_grotesk_bold.className} pt-8 text-shillStreetBlue text-3xl md:text-4xl lg:text-7xl tracking-wide`}>Interesting KPIs</h3>
+                <h3 className={`${space_grotesk_bold.className} pt-8 text-shillStreetBlue text-3xl md:text-4xl lg:text-7xl tracking-wide`}> KPIs</h3>
                 <div className="flex justify-center items-center flex-col md:flex-row h-full w-full">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none p-6">

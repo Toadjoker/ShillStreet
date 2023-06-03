@@ -15,6 +15,12 @@ type landingMiniCardProps = {
     subtitle: string
 }
 
+type teamCardProps = {
+    title: string
+    subtitle: string
+    img: string
+}
+
 type smartCampaignCardProps = {
     id: string
     title: string
@@ -32,13 +38,27 @@ type overviewCardProps = {
 export const LandingMiniCard = ({ title, subtitle }: landingMiniCardProps) => {
     return (
         <div
-            className={`${space_grotesk_regular.className} bg-shillStreetGrey w-60 h-24 flex flex-col items-center justify-center text-white font-semibold text-center`}
+            className={`${space_grotesk_regular.className} bg-shillStreetBlue w-60 h-24 sm:h-auto flex flex-col items-center justify-center text-blue font-semibold text-center rounded-2xl`}
         >
-            <p className="text-xl pt-5">${title}</p>
-            <p className="text-lg">{subtitle}</p>
+            <p className="text-base md:text-xl pt-5">{title}</p>
+            <p className="text-base  md:text-lg pb-1">{subtitle}</p>
         </div>
     )
 }
+
+export const TeamCard = ({ title, subtitle, img }:teamCardProps) => {
+    return (
+        <div className=" max-w-sm">
+            <img className="w-50 h-auto rounded-full" src={img} />
+            <div className="px-6 py-4 flex items-center flex-col flex-center">
+                <div className="font-bold text-xl text-white mb-2">{title}</div>
+                <div className= "text-xl text-white mb-2">{subtitle}</div>
+
+            </div>
+        </div>
+    )
+}
+
 
 export const SmartCampaignCard = ({
     id,
@@ -55,7 +75,7 @@ export const SmartCampaignCard = ({
     }
 
     return (
-        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white">
+        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white ">
             <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
                 <p className="text-sm">Vault Size: ${vaultSize}</p>

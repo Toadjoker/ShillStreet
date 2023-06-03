@@ -61,7 +61,7 @@ const Header = ({ headerCallback }: any) => {
     }, [isConnected])
 
     return (
-        <section className="bg-gray-800 h-24 flex items-center justify-between px-3 md:px-20 border-b-2 border-b-cyan-50">
+        <section className="fixed top-0 left-0 right-0 z-10 bg-gray-800 h-16 flex items-center justify-between px-3 md:px-20 border-b">
             {/* site logo */}
             <Link href="/" className=" text-white text-xs md:text-xl font-semibold cursor-pointer">
                 <Image
@@ -79,14 +79,14 @@ const Header = ({ headerCallback }: any) => {
                         <>
                             <Link
                                 href="/account-setup"
-                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md `}
                             >
                                 Launch App
                             </Link>
                             {userAddressOnline && (
                                 <Link
                                     href={`/account/${address}`}
-                                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                    className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
                                 >
                                     Jobs
                                 </Link>
@@ -96,7 +96,7 @@ const Header = ({ headerCallback }: any) => {
                         <>
                             <Link
                                 href="/"
-                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
                                 onClick={() => headerCallback(0)}
                             >
                                 Home
@@ -104,7 +104,7 @@ const Header = ({ headerCallback }: any) => {
                             {isConnecting && (
                                 <Link
                                     href={`/account/${address}`}
-                                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                    className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
                                 >
                                     Jobs
                                 </Link>
@@ -114,7 +114,7 @@ const Header = ({ headerCallback }: any) => {
                 </>
                 <Link
                     href="https://shillstreet.gitbook.io/shillstreet/"
-                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                    className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md border-2 border-white`}
                     rel="noopener noreferrer"
                     target="_blank"
                 >

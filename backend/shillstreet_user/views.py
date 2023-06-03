@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import AuthenticationFailed
 
+from .getTwitterValue import get_follower_count, getTwtterIdFromAddress, getTweetValue
 from .serializers import UserSerializer, WaitListSerializer
 from .authentication import JWTAuthentication
 from .models import User, WaitList
@@ -152,7 +153,7 @@ class GetTweeterUserId(APIView):
             user = User.objects.get(walletAddress=walletAddress)
         except User.DoesNotExist:
             return Response({"message": "user not registered"}, status=404)
-        
+
         response_data = {
             "message": "found",
             "walletAddress": walletAddress,
@@ -160,6 +161,23 @@ class GetTweeterUserId(APIView):
         }
         return Response(response_data)
 
+
+class GetTweeterValue(APIView):
+    def post(self, request):
+        walletAddress = request.data.get('walletAddress')
+        if not walletAddress:
+            return Response({"message": "walletAddress not provided"}, status=400)
+        try:
+            user = User.objects.get(walletAddress=walletAddress)
+        except User.DoesNotExist:
+            return Response({"message": "user not registered"}, status=404)
+
+        twitterID = user.twitter_user_id
+        if int(get_follower_count(twitterID)) >= 500:
+            getTweetValue(twitterID, walletAddress)
+            return Response({"message": "success"})
+        else:
+            return Response({"message": "less than 500 followers"})
 
 
 class DeleteUser(APIView):

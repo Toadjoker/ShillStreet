@@ -10,7 +10,7 @@ const Footer = () => {
                     href="https://discord.gg/bcbUYfBF"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="bg-shillStreetBlue text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
                 >
                     <Image
                         src="/images/icons8-discord.svg"
@@ -24,7 +24,7 @@ const Footer = () => {
                     href="https://twitter.com/ShillStreet"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="bg-shillStreetBlue text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
                 >
                     <Image
                         src="/images/icons8-twitter.svg"
@@ -36,7 +36,7 @@ const Footer = () => {
                 </Link>
                 <Link
                     href="https://shillstreet.gitbook.io/shillstreet/"
-                    className="bg-shillStreetBlue text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
                     rel="noopener noreferrer"
                     target="_blank"
                 >

@@ -15,11 +15,11 @@ const CardSampleData: any = [
 const Index = () => {
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow p-24">
+            <section className="bg-gray-800 flex flex-col flex-grow p-24">
                 <div className="flex justify-between h-1/2 w-full">
                     <div>
                         <h3
-                            className={`${space_grotesk_bold.className} text-shillStreetGrey text-7xl tracking-wide`}
+                            className={`${space_grotesk_bold.className} text-shillStreetBlue text-7xl tracking-wide`}
                         >
                             ShillStreet
                         </h3>

@@ -23,6 +23,11 @@ const Header = ({ headerCallback }: any) => {
     const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
     const [isConnecting, setIsConnecting] = useState<boolean>(false)
+    let truncatedUserAddress
+    if (address) {
+        truncatedUserAddress =
+            address.substring(0, 5) + "..." + address.substring(address.length - 5)
+    }
     const onSubmit = async () => {
         try {
             const token = Cookies.get("jwt")
@@ -69,10 +74,57 @@ const Header = ({ headerCallback }: any) => {
             </Link>
             {/* navigation */}
             <nav className="text-white space-x-5 flex items-center">
+                <>
+                    {router.pathname != "/account-setup" ? (
+                        <>
+                            {userAddressOnline && (
+                                <Link
+                                    href={`/account/${address}`}
+                                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                >
+                                    Jobs
+                                </Link>
+                            )}
+                            <Link
+                                href="/account-setup"
+                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                            >
+                                Launch App
+                            </Link>
+                        </>
+                    ) : (
+                        <>
+                            <Link
+                                href="/"
+                                className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                onClick={() => headerCallback(0)}
+                            >
+                                Home
+                            </Link>
+                            {isConnecting && (
+                                <Link
+                                    href={`/account/${address}`}
+                                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                                >
+                                    Jobs
+                                </Link>
+                            )}
+                        </>
+                    )}
+                </>
+                <Link
+                    href="https://shillstreet.gitbook.io/shillstreet/"
+                    className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                >
+                    View Docs
+                </Link>
                 {isConnecting && (
                     <div className="flex items-center">
-                        <p className="bg-blue-500 p-2 rounded-full w-auto mx-3 mt-4">
-                            {userAddressOnline.slice(0, 10)}...
+                        <p className=" p-2 w-auto mx-3 text-2xl rounded-md mt-4 ml-8 mr-4">|</p>
+                        <p className="bg-shillStreetBlue p-2 w-auto mx-3 rounded-md border-2 mt-4 ml-8 mr-4">
+                            {truncatedUserAddress}
                         </p>
                         <button
                             onClick={() => {
@@ -83,55 +135,12 @@ const Header = ({ headerCallback }: any) => {
                                 setIsConnecting(false)
                                 Cookies.remove("jwt", { secure: true, sameSite: "none" })
                             }}
-                            className="hover:text-blue-600 hover:shadow-2xl cursor-pointer"
+                            className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white ml-2`}
                         >
                             Logout
                         </button>
                     </div>
                 )}
-
-                <Link
-                    href="https://shillstreet.gitbook.io/shillstreet/"
-                    className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                >
-                    View Docs
-                </Link>
-                <>
-                    {router.pathname != "/account-setup" ? (
-                        <>
-                            {userAddressOnline && (
-                                <Link href={`/account/${address}`} className={`${space_grotesk_regular.className} flex space-x-2`}>
-                                    Account Overview
-                                </Link>
-                            )}
-                            <Link
-                                href="/account-setup"
-                                className={`${space_grotesk_regular.className} bg-blue-800 hover:bg-blue-900 p-2 rounded-md border-2 border-white`}
-                            >
-                                Launch App
-                            </Link>
-                        </>
-                    ) : (
-                        <>
-                            <Link
-                                href="/"
-                                className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                                onClick={() => headerCallback(0)}
-                            >
-                                Home
-                            </Link>
-                            <Link
-                                href="/jobs"
-                                className={`${space_grotesk_regular.className} hover:text-blue-400`}
-                                onClick={() => headerCallback(0)}
-                            >
-                                Jobs
-                            </Link>
-                        </>
-                    )}
-                </>
             </nav>
         </section>
     )

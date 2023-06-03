@@ -138,7 +138,7 @@ const AccountOverview = () => {
 
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow px-52 pt-10 overflow-hidden">
+            <section className="bg-gray-800 flex flex-col flex-grow px-52 pt-10 overflow-hidden">
                 <h3
                     className={`${space_grotesk_medium.className} text-white text-3xl font-semibold tracking-wide`}
                 >

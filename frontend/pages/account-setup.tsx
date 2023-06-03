@@ -44,7 +44,7 @@ const AccountSetup = () => {
     }, [])
     return (
         <MainLayout>
-            <section className="bg-shillStreetBlue flex flex-col flex-grow px-96 pt-10 overflow-hidden">
+            <section className="bg-gray-800 flex flex-col flex-grow px-96 pt-10 overflow-hidden">
                 {/* top title card */}
                 <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-14 text-white border-4 border-white mb-10">
                     <h3

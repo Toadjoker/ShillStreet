@@ -178,9 +178,12 @@ class GetTweeterValue(APIView):
             return Response({"message": "user not registered"}, status=404)
 
         twitterID = user.twitter_user_id
-        if int(get_follower_count(twitterID)) >= 10:
-            getTweetValue(twitterID, walletAddress)
-            return Response({"message": "success"})
+        if int(get_follower_count(twitterID)) >= 500:
+            result = getTweetValue(twitterID, walletAddress)
+            if result:
+                return Response({"message": "success"})
+            else:
+                return Response({"message": "failed"})
         else:
             return Response({"message": "less than 500 followers"})
 

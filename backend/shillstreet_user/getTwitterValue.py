@@ -34,11 +34,11 @@ def getTweetValue(twitterID, address):
         tran_hash)
     status = transaction_receipt["status"]
     if status == 1:
-        print("Transaction succeeded")
+        return True
     elif status == 0:
-        print("Transaction failed")
+        return False
     else:
-        print("Unknown transaction status")
+        return False
 
 
 def getTwtterIdFromAddress(address):

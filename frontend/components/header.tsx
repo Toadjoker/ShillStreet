@@ -23,6 +23,7 @@ const Header = ({ headerCallback }: any) => {
     const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
     const [isConnecting, setIsConnecting] = useState<boolean>(false)
+    
     let truncatedUserAddress
     if (address) {
         truncatedUserAddress =
@@ -74,8 +75,8 @@ const Header = ({ headerCallback }: any) => {
             </Link>
             {/* navigation */}
             <nav className="text-white space-x-5 flex items-center">
-                <>
-                    {router.pathname != "/account-setup" ? (
+            <>
+                    {!isConnecting && router.pathname != "/account-setup" ? (
                         <>
                             <Link
                                 href="/account-setup"
@@ -88,7 +89,7 @@ const Header = ({ headerCallback }: any) => {
                                     href={`/account/${address}`}
                                     className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
                                 >
-                                    Jobs
+                                    Account
                                 </Link>
                             )}
                         </>
@@ -102,12 +103,20 @@ const Header = ({ headerCallback }: any) => {
                                 Home
                             </Link>
                             {isConnecting && (
+                                <div>
                                 <Link
                                     href={`/account/${address}`}
                                     className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
                                 >
-                                    Jobs
+                                    Account
                                 </Link>
+                                <Link
+                                    href={`/jobs`}
+                                    className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md`}
+                                    >
+                                    Campaigns
+                                </Link>
+                                </div>
                             )}
                         </>
                     )}

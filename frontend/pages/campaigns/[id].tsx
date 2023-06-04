@@ -56,6 +56,7 @@ const CampaignDetails = () => {
                             <div className="w-20 h-20 rounded-full mr-5 mt-3">
                                 <Image
                                     src={campaign?.campaign}
+                                    alt=""
                                     width={110}
                                     height={110}
                                     unoptimized={true}
@@ -157,7 +158,7 @@ const CampaignDetails = () => {
                                     >
                                         Thread Instructions
                                     </h3>
-                                    {campaign?.threadDetails.map((detail, index) => (
+                                    {campaign?.threadDetails.map((detail:any, index:any) => (
                                     <p key={index} className={`${space_grotesk_regular.className}`}>
                                         {detail}
                                     </p>

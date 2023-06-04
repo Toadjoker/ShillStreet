@@ -18,7 +18,8 @@ module.exports = {
                 shillStreetBlue: "#07A5C3",
                 shillStreetGrey: "#323232",
                 twitterBlue: "#1DA1F2",
-                twitterBackGround:"#151C2B"
+                twitterBackGround:"#151C2B",
+                twitterDisabledBlue:"#1D9BF0",
             },
             height: {
                 76: "18rem",

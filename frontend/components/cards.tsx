@@ -27,6 +27,7 @@ type smartCampaignCardProps = {
     vaultSize: number
     threadComplete: number
     utilization: number
+    state : string
 }
 
 type overviewCardProps = {
@@ -63,6 +64,7 @@ export const TeamCard = ({ title, subtitle, img }:teamCardProps) => {
 export const SmartCampaignCard = ({
     id,
     title,
+    state,
     vaultSize,
     threadComplete,
     utilization,
@@ -74,12 +76,15 @@ export const SmartCampaignCard = ({
         dispatch(setCampaignAction(id))
     }
 
+    // Determine if the campaign is deployed or not
+    const isDeployed = state !== "Not deployed yet";
+
     return (
-        <div className="bg-shillStreetGrey w-full rounded-3xl p-2 px-14 h-60 text-white border-4 border-white ">
-            <h3 className={`${space_grotesk_bold.className} text-2xl text-center`}>{title}</h3>
+        <div className="w-full rounded-3xl mt-2 mb-2 p-2 px-14 h-full text-white border border-white ">
+            <h3 className={`${space_grotesk_bold.className} text-twitterBlue text-2xl text-center`}>{title}</h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
-                <p className="text-sm">Vault Size: ${vaultSize}</p>
-                <p className="text-sm">Threads Complete: {threadComplete}</p>
+                <p className="text-sm text-white">Vault Size: {vaultSize}</p>
+                <p className="text-sm text-white">Threads Completed: {threadComplete}</p>
             </div>
             {/* progress bar and content container */}
             <div>
@@ -94,10 +99,9 @@ export const SmartCampaignCard = ({
             </div>
             <div className="mt-5 flex justify-center">
                 <Link
-                    onClick={() => dispatchToStore(id)}
+                    onClick={isDeployed ? () => dispatchToStore(id) : undefined}
                     href={`/campaigns/${id}`}
-                    className={`${space_grotesk_regular.className} bg-white rounded-lg p-2 text-gray-900 hover:bg-gray-200 text-sm`}
-                >
+                    className={`${space_grotesk_regular.className} rounded-lg p-2 text-gray-900 text-sm ${isDeployed ? 'bg-twitterBlue hover:bg-gray-200 text-white' : 'bg-twitterDisabledBlue cursor-not-allowed text-white'}`}>
                     View Campaign
                 </Link>
             </div>

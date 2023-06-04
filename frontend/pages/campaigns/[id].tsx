@@ -31,15 +31,18 @@ const CampaignDetails = () => {
             }, 2000)
         }
     }
-
+    console.log(campaign?.campaign)
     return (
         <MainLayout>
-            <section className="h-screen bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
-                <div className="py-10 h-full px-48">
-                    <div className="flex overflow-hidden items-center space-x-6">
+            <section className="bg-gray-800 flex flex-col flex-grow mt-14 pt-14 w-full">
+                <h4 className={`${space_grotesk_semibold.className} ml-10 text-3xl text-shillStreetBlue mt-3`}>
+                    Campaign overview
+                </h4>
+                <div className="bg-twitterBackGround  rounded-2xl h-full m-10">
+                    <div className="flex items-center space-x-6  pt-3 pb-4">
                         <div
                             onClick={() => router.back()}
-                            className="bg-shillStreetGrey w-6 h-6 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                            className="bg-shillStreetGrey ml-6 w-6 h-6 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
                         >
                             <Image
                                 src="/images/chevron-left.svg"
@@ -49,13 +52,12 @@ const CampaignDetails = () => {
                                 unoptimized={true}
                             />
                         </div>
-                        <div className="flex items-center">
+                        <div className="flex justify-center items-center">
                             <div className="w-20 h-20 rounded-full mr-5 mt-3">
                                 <Image
                                     src={campaign?.campaign}
-                                    alt="avatar"
-                                    width={150}
-                                    height={150}
+                                    width={110}
+                                    height={110}
                                     unoptimized={true}
                                     className="rounded-full"
                                 />
@@ -68,93 +70,72 @@ const CampaignDetails = () => {
                         </div>
                     </div>
 
-                    <div className="h-auto mt-5 ml-20">
-                        <div className="bg-shillStreetGrey w-full p-2 px-14 h-16 text-white">
-                            <p className={`${space_grotesk_semibold.className} font-bold text-lg`}>
-                                ${campaign?.vaultSize}
-                            </p>
-                            <p
-                                className={`${space_grotesk_light.className}text-gray-200 text-xs -mt-3`}
-                            >
-                                Total Value Locked
-                            </p>
-                        </div>
-                        <div className="mt-5 flex h-auto">
+                    <div className="h-auto mt-5 ml-14">
+                        <div className="mt-5 h-auto justify-center space-x-3 flex justify-center flex-col items-center md:items-center md:space-x-3 md:flex-row md:justify-center  ">
                             {/* left */}
-                            <div className="w-2/3 mb-20 mx-20 text-white space-y-3">
+                            <div className="w-2/3 mb-20  text-white space-y-3  border rounded-2xl ">
+                    
                                 {/* section 1 */}
                                 <div>
                                     <h3
-                                        className={`${space_grotesk_semibold.className} font-semibold text-2xl`}
+                                        className={`${space_grotesk_semibold.className}font-semibold text-2xl p-3 border-b`}
                                     >
-                                        About {campaign?.title}
+                                        About {campaign?.title} campaign
+                                    </h3>
+                                <div className="p-7">
+                                    <h3
+                                        className={`${space_grotesk_semibold.className} text-twitterBlue font-semibold text-lg`}
+                                    >
+                                        Campaign Information
                                     </h3>
                                     <div
                                         className={`${space_grotesk_semibold.className} text-sm flex`}
                                     >
-                                        <p className="w-67">Campaign Size</p>
+                                        <p className="w-67">Total value locked (TVL)</p>
                                         <p className="flex justify-start">
-                                            ${campaign?.vaultSize}
+                                            {campaign?.vaultSize}
                                         </p>
                                     </div>
                                     <div
                                         className={`${space_grotesk_semibold.className} text-sm flex`}
                                     >
-                                        <p className="w-1/2">Target Reach</p>
-                                        <p className="w-1/2 flex justify-end">
-                                            {campaign?.impressions} Impressions
+                                        <p className="w-67">Campaign current balance</p>
+                                        <p className="flex justify-start">
+                                            {campaign?.currentBalance}
                                         </p>
                                     </div>
-                                    <div>
+                                    <div
+                                        className={`${space_grotesk_semibold.className} text-sm flex`}
+                                    >
+                                    </div>
+                                    <div className="mb-10 ">
                                         <div
-                                            className={`${space_grotesk_light.className} text-xs flex justify-between`}
+                                            className={`${space_grotesk_light.className}text-xs flex justify-between`}
                                         >
                                             <p>Funds Utilized</p>
                                             <p>{campaign?.utilization}%</p>
                                         </div>
                                         <ProgressBar value={campaign?.utilization} />
-                                        <span
-                                            className={`${space_grotesk_light.className} flex justify-end text-xs`}
-                                        >
-                                            {campaign?.threadEarnings}{" "}
-                                            {/* 2.352.35 / 3.500 USDC */}
-                                        </span>
+                                    
                                     </div>
-                                </div>
+                                
 
                                 {/* section 2 */}
                                 <div>
                                     <h3
-                                        className={`${space_grotesk_semibold.className} font-semibold text-2xl`}
+                                        className={`${space_grotesk_semibold.className} text-twitterBlue font-semibold text-lg`}
                                     >
-                                        Thread Details
+                                        {campaign?.title} Overview
                                     </h3>
                                     <p className={`${space_grotesk_regular.className}`}>
-                                        {campaign?.threadDetails}
+                                        {campaign?.overview}
                                     </p>
                                     <div
                                         className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                     >
-                                        <p>View the Dopex Docs to learn more</p>
+                                        <p>View the Chainlink CCIP documentation to learn more</p>
                                         <Link
-                                            href="#"
-                                            className="bg-purple-600 w-5 h-5 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
-                                        >
-                                            <Image
-                                                src="/images/chevron-right.svg"
-                                                alt="chevron-right"
-                                                width={15}
-                                                height={15}
-                                                unoptimized={true}
-                                            />
-                                        </Link>
-                                    </div>
-                                    <div
-                                        className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
-                                    >
-                                        <p>View Samble Thread</p>
-                                        <Link
-                                            href="#"
+                                            href="https://blog.chain.link/cross-chain-bridge/?_ga=2.251032590.903498201.1685827149-1065892986.1683128058&_gac=1.83568100.1684330817.CjwKCAjw9pGjBhB-EiwAa5jl3MkSG4fj59oTB_RHYn9gd_kH2juOFOPB8pacXKAj-YqEuNbJcxYItBoCvWQQAvD_BwE"
                                             className="bg-purple-600 w-5 h-5 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
                                         >
                                             <Image
@@ -169,68 +150,53 @@ const CampaignDetails = () => {
                                 </div>
 
                                 {/* section 3 */}
+
                                 <div>
                                     <h3
-                                        className={`${space_grotesk_semibold.className} font-semibold text-lg`}
+                                        className={`${space_grotesk_semibold.className} text-lg font-semibold text-twitterBlue`}
                                     >
-                                        {campaign?.title} Overview
+                                        Thread Instructions
                                     </h3>
-                                    <p className={`${space_grotesk_regular.className}`}>
-                                        {campaign?.overview}
+                                    {campaign?.threadDetails.map((detail, index) => (
+                                    <p key={index} className={`${space_grotesk_regular.className}`}>
+                                        {detail}
                                     </p>
-                                </div>
-
-                                {/* section 4 */}
-                                <div>
-                                    <h3
-                                        className={`${space_grotesk_semibold.className} font-semibold text-lg`}
+                                    ))}
+                                    <div
+                                        className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                     >
-                                        Tokenomics
-                                    </h3>
-                                    <span className={`${space_grotesk_regular.className}`}>
-                                        <p>{campaign?.tokenomics}</p>
-                                    </span>
+                                        <p>View Sample Thread</p>
+                                        <Link
+                                            href="#"
+                                            className="bg-purple-600 w-5 h-5 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                                        >
+                                            <Image
+                                                src="/images/chevron-right.svg"
+                                                alt="chevron-right"
+                                                width={15}
+                                                height={15}
+                                                unoptimized={true}
+                                            />
+                                        </Link>
+                                    </div>
                                 </div>
-
-                                {/* section 7 */}
-                                <div>
-                                    <h3
-                                        className={`${space_grotesk_semibold.className} font-semibold text-lg`}
-                                    >
-                                        {campaign?.title} Products
-                                    </h3>
-                                    <span className={`${space_grotesk_regular.className}`}>
-                                        {campaign?.products}
-                                    </span>
                                 </div>
                             </div>
+                            </div>
                             {/* right */}
-                            <div className="bg-shillStreetGrey w-1/3 h-96 text-white p-4 space-y-8">
+                            <div className="bg-twitterBlue ml-4 w-1/2 md:w-1/4 h-2/3 text-twitterBackGround p-4 mb-5 rounded-2xl space-y-8">
                                 <div>
                                     <h4
                                         className={`${space_grotesk_semibold.className} font-semibold`}
                                     >
-                                        Arbitrum
+                                        Sepolia campaign address
                                     </h4>
                                     <p
                                         className={`${space_grotesk_light.className} text-xs flex items-center space-x-2`}
                                     >
-                                        <span>
-                                            <Image
-                                                src="/images/wallet-icon.svg"
-                                                alt="wallet-icon"
-                                                width={18}
-                                                height={18}
-                                                unoptimized={true}
-                                            />
-                                        </span>
-                                        <span>
-                                            {"0x0a884564B8708B1dEFa90E99B146B3a142EFf06".slice(
-                                                0,
-                                                30
-                                            )}
-                                            ...
-                                        </span>
+                                        <h4 className="text-xs">
+                                        {campaign?.address}
+                                        </h4>
                                     </p>
                                 </div>
                                 <div>
@@ -242,7 +208,7 @@ const CampaignDetails = () => {
                                     <p className={`${space_grotesk_light.className} text-xs`}>
                                         Tweet a thread covering the required criteria and tell us
                                         where to find the thread, we will send your calculated
-                                        payment after 24hrs.
+                                        payment after 24hrs. (For hackaton testing, the verification time its at 2minutes)
                                     </p>
                                 </div>
                                 <div>
@@ -257,7 +223,7 @@ const CampaignDetails = () => {
                                     />
                                     <div className="flex justify-end">
                                         <button
-                                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-md w-24 h-9 shadow-md hover:bg-blue-600 text-white mt-2`}
+                                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBackGround p-2 rounded-md w-24 h-9 shadow-md hover:bg-blue-600 text-white mt-2`}
                                             type="submit"
                                             onClick={() => handleSendingTwitterURL()}
                                         >

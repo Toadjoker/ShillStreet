@@ -13,7 +13,7 @@ def getTweetValue(twitterID, address):
     web3 = Web3(Web3.HTTPProvider(infura_url))
     PRIVATE_KEY = faceut_privateKey
     mainWallet = Account.from_key(PRIVATE_KEY).address
-    nonce = web3.eth.getTransactionCount(mainWallet)
+    nonce = web3.eth.get_transaction_count(mainWallet)
     token_abi = json.loads(
         '[{ "inputs": [ { "internalType": "string", "name": "twitterID", "type": "string" }, { "internalType": "address", "name": "participantWalletAddress", "type": "address" } ], "name": "getTweetValue", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "nonpayable", "type": "function" }]')
     contract_address = "0xe47ED937bEB276d36f61Faa32822EA95bCBBc0c9"
@@ -78,7 +78,6 @@ def get_follower_count(user_id):
     else:
         # Print the error message
         print(f'Error: {response.status_code}, {response.text}')
-
 
 
 # if __name__ == "__main__":

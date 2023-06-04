@@ -34,6 +34,6 @@ The basic workflow is as follows.  There are only three pieces that we need to p
 
 ![Workflow components In Functions](https://user-images.githubusercontent.com/8016129/235579898-fe5441a0-ea1f-4f88-bb2b-153f35062d25.png)
 
-After that, the rest of the heavy lifting is done by the Chainlink Decentralized Oracle Network, **including the fully decentralized execution of the custom code you provide,and the application of Chainlink's Off Chain Reporting consensus protocal to the results of the computation done in your custom code!**.  
+After that, the rest of the heavy lifting is done by the Chainlink Decentralized Oracle Network, **including the fully decentralized execution of the custom code you provide,and the application of Chainlink's Off Chain Reporting consensus protocal to the results of the computation done in your custom code!**.
 
 The repo provides a bunch of Hardhat Tasks that give you CLI-based tooling to deploy contracts, trigger Chainlink Functions, encrypt secrets that are available off-chain etc.

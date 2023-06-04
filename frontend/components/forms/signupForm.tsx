@@ -104,8 +104,8 @@ const SignUpForm = () => {
     }, [isSuccess, isValid])
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="-mt-8 w-auto flex flex-col">
-            <div className="flex items-center justify-center">
+        <form onSubmit={handleSubmit(onSubmit)} className="-mt-8  w-full flex flex-col">
+            <div className="w-full flex items-center justify-center">
                 <Image
                     src="/images/shillStreetIcon.png"
                     alt="shillstreet-logo"
@@ -116,7 +116,7 @@ const SignUpForm = () => {
                 />
             </div>
 
-            <div className="mt-5">
+            <div className="w-full mt-5  ">
                 <h3
                     className={`${space_grotesk_regular.className} text-xl text-center font-semibold mb-5 text-gray-500`}
                 >
@@ -127,7 +127,7 @@ const SignUpForm = () => {
                 </p>
             </div>
 
-            <div className="flex flex-col items-center justify-center">
+            <div className="w-full flex flex-col items-center justify-center px-14">
                 <input
                     type="text"
                     placeholder="Your name"
@@ -143,7 +143,7 @@ const SignUpForm = () => {
             </div>
 
             <div
-                className="flex justify-center items-center my-3 mt-5"
+                className="w-full flex justify-center items-center mt-5 pt-3 border-t"
                 onClick={() => setSignUp(true)}
             >
                 <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />

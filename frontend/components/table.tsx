@@ -20,34 +20,23 @@ const Table = () => {
     const { campaigns } = state.campaignsReducer
 
     return (
-        <div className="bg-shillStreetGrey max-h-80 overflow-y-auto mx-auto border-4 border-white rounded-xl w-full">
+        <div className="overflow-x-auto rounded-2px w-full">
             <table
-                className={`${space_grotesk_regular.className} w-full text-sm text-center text-gray-500 dark:text-gray-400`}
+                className={`${space_grotesk_regular.className} max-h-30 w-full text-sm text-center text-gray-500 overflow-hidden rounded-2px dark:text-gray-400 rounded-2xl `}
             >
-                <thead className="text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                <thead className="text-white  bg-white dark:bg-twitterBlue dark:text-white ">
                     <tr>
                         <th scope="col" colSpan={2} className="px-6 py-3">
-                            <span className="font-semibold text-white">Active Jobs (1)</span>
-                            <br />
-                            <span className="text-xs mt-2">Campaign</span>
+                            <span className="font-semibold text-white">Campaign logo</span>
                         </th>
                         <th scope="col" colSpan={2} className="px-6 py-3">
-                            <span className="font-semibold text-white">Completed Jobs</span>
-                            <br />
-                            <span className="text-xs mt-2">Time Accepted</span>
+                            <span className="font-semibold text-white">Campaign name</span>
                         </th>
                         <th scope="col" colSpan={2} className="px-6 py-3">
-                            <span className="font-semibold text-white">Job Activity</span>
-                            <br />
-                            <span className="text-xs mt-2">Reach Generated</span>
+                            <span className="font-semibold text-white">Participation time</span>
                         </th>
-                        <th scope="col" className="px-6 py-3">
-                            <br />
-                            <span className="text-xs mt-2">Thread Earnings</span>
-                        </th>
-                        <th scope="col" className="px-6 py-3">
-                            <br />
-                            <span className="text-xs">Share of Campaign Earned</span>
+                        <th scope="col" colSpan={2} className="px-6 py-3">
+                            <span className="font-semibold text-white">Rewarded value</span>
                         </th>
                     </tr>
                 </thead>
@@ -55,8 +44,7 @@ const Table = () => {
                     {campaigns.map((item: any) => (
                         <tr
                             key={item.id}
-                            onClick={() => handleNavigationToDetails(item)}
-                            className="bg-transparent border-b hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer overflow-y-auto"
+                            className="bg-transparent border-b"
                         >
                             <td
                                 scope="row"

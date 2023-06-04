@@ -4,7 +4,7 @@ const fs = require("fs")
 require("@chainlink/env-enc").config()
 
 
-let tweetInstructions = "\nText context: Chainlink BUILD aims to accelerate the growth of early-stage and established projects within the Chainlink ecosystem by providing enhanced access to Chainlink services and technical support in exchange for commitments of network fees and other incentives to Chainlink service providers, such as stakers. This alignment of economic incentives between communities helps foster the mutual, long-term success of both ecosystems. \n\nText Instructions : 1.Should include a Basic Overview of Build program, What is it?\n"
+let tweetInstructions = "\nText context: Chainlink Functions provides your smart contracts with access to a trust-minimized compute infrastructure. Your smart contract sends your code to a Decentralized Oracle Network (DON), and each DON's oracle runs the same code in a serverless environment. The DON aggregates all the independent runs and returns the final result to your smart contract. Your code can be anything from simple computation to fetching data from API providers. Chainlink Functions provides access to off-chain computation without having to run and configure your own Chainlink Node. To pay for requests, you fund a subscription account with LINK. Your subscription is billed only when the DON fulfills your request. \n\nText Instructions : 1.Should include a Basic Overview of Build program, What is it?\n"
 let tweetURL = "1661071292664037376"
 let participationWalletAddress = "0xe219107D01768b4B540F97F858706676dDd483Ae"
 let twitterID = "1530530365"

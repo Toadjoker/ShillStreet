@@ -8,6 +8,8 @@ import { useAccount, useSignMessage } from "wagmi"
 import { useMemo } from "react"
 import { ConnectWalletButton } from "."
 
+
+
 const LoginButton = () => {
     const {
         data: privateString,
@@ -63,7 +65,7 @@ const LoginButton = () => {
         <section className="flex items-center justify-between my-5">
             {/* only show the connect button if the address is undefined */}
             {address === undefined && (
-                <ConnectWalletButton buttonTitle="Connect Wallet" requesting={isLoading} />
+                <ConnectWalletButton buttonTitle="Connect"  requesting={isLoading} />
             )}
         </section>
     )

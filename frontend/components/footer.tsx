@@ -4,13 +4,13 @@ import { space_grotesk_regular } from "../utils/customFont"
 
 const Footer = () => {
     return (
-        <div className="bg-gray-800 h-24 flex items-center justify-between py-4 px-3 md:px-20 border-t-2 border-t-cyan-50">
+        <div className="bg-shillStreetBlue h-15 flex items-center justify-between py-4 px-3 md:px-20 border-t-cyan-50">
             <div className="flex space-x-3">
                 <Link
                     href="https://discord.gg/bcbUYfBF"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-shillStreetBlue text-white text-xs md:text-xl font-semibold cursor-pointer border-b border-shillStreetGrey p-2 "
                 >
                     <Image
                         src="/images/icons8-discord.svg"
@@ -24,7 +24,7 @@ const Footer = () => {
                     href="https://twitter.com/ShillStreet"
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-shillStreetBlue text-white text-xs md:text-xl font-semibold cursor-pointer border-b border-shillStreetGrey p-2 "
                 >
                     <Image
                         src="/images/icons8-twitter.svg"
@@ -36,7 +36,7 @@ const Footer = () => {
                 </Link>
                 <Link
                     href="https://shillstreet.gitbook.io/shillstreet/"
-                    className="bg-white text-white text-xs md:text-xl font-semibold cursor-pointer p-2 rounded-full"
+                    className="bg-shillStreetBlue text-xs md:text-xl font-semibold cursor-pointer p-2  border-b border-shillStreetGrey"
                     rel="noopener noreferrer"
                     target="_blank"
                 >
@@ -49,7 +49,7 @@ const Footer = () => {
                     />
                 </Link>
             </div>
-            <p className={`${space_grotesk_regular.className} flex text-xs space-x-2 text-white`}>
+            <p className={`${space_grotesk_regular.className} flex text-xs  text-shillStreetGrey`}>
                 Copyright &copy;2023 shillstreet
             </p>
         </div>

@@ -18,7 +18,7 @@ def getTweetValue(twitterID, address):
         '[{ "inputs": [ { "internalType": "string", "name": "twitterID", "type": "string" }, { "internalType": "address", "name": "participantWalletAddress", "type": "address" } ], "name": "getTweetValue", "outputs": [ { "internalType": "bytes32", "name": "", "type": "bytes32" } ], "stateMutability": "nonpayable", "type": "function" }]')
     contract_address = "0xe47ED937bEB276d36f61Faa32822EA95bCBBc0c9"
     contract = web3.eth.contract(contract_address, abi=token_abi)
-    getTweet = contract.functions.getTweetValue(twitterID, address).buildTransaction(
+    getTweet = contract.functions.getTweetValue(twitterID, address).build_transaction(
         {
             "chainId": 11155111,
             'from': mainWallet,

@@ -171,14 +171,14 @@ class GetTweeterValue(APIView):
         walletAddress = request.data.get('walletAddress')
         if walletAddress != user.walletAddress:
             return Response({"message": "walletAddress not correct!"}, status=400)
-        
+
         try:
             user = User.objects.get(walletAddress=walletAddress)
         except User.DoesNotExist:
             return Response({"message": "user not registered"}, status=404)
 
         twitterID = user.twitter_user_id
-        if int(get_follower_count(twitterID)) >= 500:
+        if int(get_follower_count(twitterID)) >= 10:
             getTweetValue(twitterID, walletAddress)
             return Response({"message": "success"})
         else:

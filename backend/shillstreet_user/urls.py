@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RegisterView, LoginView, UserView, LogoutView, RequestTwitterVerification, CheckBindedTwitterHandle, GetTweeterUserId, BindTwitterView, UnbindTwitterView, WaitList
+from .views import RegisterView, LoginView, UserView, LogoutView, RequestTwitterVerification, GetTweeterValue, CheckBindedTwitterHandle, GetTweeterUserId, BindTwitterView, UnbindTwitterView, WaitList
 
 urlpatterns = [
     path('register/', RegisterView.as_view()),
@@ -11,6 +11,7 @@ urlpatterns = [
     path('get_twitter_id/', GetTweeterUserId.as_view()),
     path('bind/', BindTwitterView.as_view()),
     path('unbind_twitter/', UnbindTwitterView.as_view()),
-    path('join_waitlist/', WaitList.as_view())
+    path('join_waitlist/', WaitList.as_view()),
+    path('get_tweeterValue/', GetTweeterValue.as_view())
 
 ]

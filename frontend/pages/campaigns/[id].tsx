@@ -11,6 +11,8 @@ import {
 } from "../../utils/customFont"
 import { useSelector } from "react-redux"
 
+
+  
 const img = "https://icodrops.com/wp-content/uploads/2021/06/dopex_logo.png"
 const CampaignDetails = () => {
     const router = useRouter()
@@ -18,7 +20,7 @@ const CampaignDetails = () => {
     const { campaign } = state.campaignsReducer
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [twitterURL, setTwitterURL] = useState<string>("")
-
+    
     const handleSendingTwitterURL = () => {
         // the following are just place holders
         try {
@@ -168,7 +170,7 @@ const CampaignDetails = () => {
                                     >
                                         <p>View Sample Thread</p>
                                         <Link
-                                            href="#"
+                                            href="/images/Sample_Tweet.png" download
                                             className="bg-purple-600 w-5 h-5 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
                                         >
                                             <Image

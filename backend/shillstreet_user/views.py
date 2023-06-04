@@ -163,10 +163,15 @@ class GetTweeterUserId(APIView):
 
 
 class GetTweeterValue(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
+        user = request.user
         walletAddress = request.data.get('walletAddress')
-        if not walletAddress:
-            return Response({"message": "walletAddress not provided"}, status=400)
+        if walletAddress != user.walletAddress:
+            return Response({"message": "walletAddress not correct!"}, status=400)
+        
         try:
             user = User.objects.get(walletAddress=walletAddress)
         except User.DoesNotExist:

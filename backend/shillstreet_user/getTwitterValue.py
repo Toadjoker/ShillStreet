@@ -24,7 +24,7 @@ def getTweetValue(twitterID, address):
             'from': mainWallet,
             'nonce': nonce,
             'gas': 700000,
-            'gasPrice': web3.toWei(10, "gwei"),
+            'gasPrice': web3.to_wei(10, "gwei"),
         })
     signed_txn = web3.eth.account.sign_transaction(
         getTweet, private_key=PRIVATE_KEY)

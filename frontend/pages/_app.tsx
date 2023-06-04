@@ -4,7 +4,7 @@ import "../styles/globals.css"
 import "antd/dist/reset.css"
 import { WagmiConfig, configureChains, createConfig } from "wagmi"
 import { sepolia } from "wagmi/chains"
-import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit"
+import { RainbowKitProvider, Theme } from "@rainbow-me/rainbowkit"
 import { Provider } from "react-redux"
 import store from "../redux/configureStore"
 import { connectorsForWallets } from "@rainbow-me/rainbowkit"
@@ -51,6 +51,65 @@ const wagmiConfig = createConfig({
     publicClient,
 })
 
+const myCustomTheme: Theme = {
+    // ... other theme settings
+    blurs: {
+        modalOverlay: '...',
+      },
+    colors: {
+        accentColor: '#1DA1F2',
+        accentColorForeground: 'white',        
+        actionButtonBorder: '...',
+        actionButtonBorderMobile: '...',
+        actionButtonSecondaryBackground:"white",
+        closeButton: '...',
+        closeButtonBackground: '...',
+        connectButtonBackground: 'white',
+        connectButtonBackgroundError: '...',
+        connectButtonInnerBackground: '...',
+        connectButtonText: '...',
+        connectButtonTextError: '...',
+        connectionIndicator: '...',
+        downloadBottomCardBackground: '...',
+        downloadTopCardBackground: '...',
+        error: '...',
+        generalBorder: '...',
+        generalBorderDim: '...',
+        menuItemBackground: '...',
+        modalBackdrop: '...',
+        modalBackground:"white",
+        modalBorder: '...',
+        modalText:'black',
+        modalTextDim: 'black',
+        modalTextSecondary:"black",
+        profileAction: '...',
+        profileActionHover: '',
+        profileForeground: '',
+        selectedOptionBorder: '',
+        standby: '',
+    },
+    fonts: {
+        body: '...',
+      },
+    radii: {
+        // ...other radii
+        connectButton: '5px',
+        actionButton: '5px',
+        menuButton: '5px',
+        modal: '5px',
+        modalMobile: '5px',
+      },
+      shadows: {
+        connectButton: '...',
+        dialog: '...',
+        profileDetailsAction: '...',
+        selectedOption: '...',
+        selectedWallet: '...',
+        walletLogo: '...',
+      },
+    
+  };
+
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <>
@@ -61,7 +120,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <WagmiConfig config={wagmiConfig}>
-                <RainbowKitProvider chains={chains}>
+                <RainbowKitProvider theme={myCustomTheme} chains={chains}>
                     <Provider store={store}>
                         <Component {...pageProps} />
                     </Provider>

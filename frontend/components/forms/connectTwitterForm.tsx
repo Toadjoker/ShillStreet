@@ -156,7 +156,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                         Your Connected Twitter Account is : {twitterHandle}
                     </div>
                     <button
-                        className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                        className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                         type="submit"
                         onClick={() => unbindConnection()}
                     >
@@ -172,7 +172,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                             Connect Twitter
                         </p>
                         <button
-                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                             type="submit"
                             onClick={() => createConnection()}
                         >
@@ -188,7 +188,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                                     onChange={handleEmailChange}
                                 ></input>
                                 <button
-                                    className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-blue-500 p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                                    className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                                     type="submit"
                                     onClick={() => bindConnection()}
                                 >

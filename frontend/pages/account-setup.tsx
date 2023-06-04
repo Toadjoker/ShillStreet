@@ -44,26 +44,27 @@ const AccountSetup = () => {
     }, [])
     return (
         <MainLayout>
-            <section className="bg-gray-800 flex mt-14 pt-14 flex-col flex-grow px-96 overflow-hidden">
+            <section className="bg-gray-800 flex flex-col items-center justify-center flex-grow px-96 overflow-hidden">
                 {/* top title card */}
-                <div className="bg-shillStreetGrey w-full rounded-xl p-2 px-14 h-14 text-white border-4 border-white mb-10">
+                <div className="bg-twitterBackGround flex-col justify-center items-center border rounded-2xl"> 
+                <div className="w-full rounded-xl pt-3 p-2 px-14 h-14 text-white mb-10 ">
                     <h3
                         className={`${space_grotesk_medium.className} font-bold text-xl text-center`}
                     >
-                        Account Setup
+                        Account setup  
                     </h3>
                 </div>
                 {needLogin && (
-                    <div className="flex flex-col items-center justify-center ">
-                        <div className="bg-shillStreetGrey flex items-center rounded-xl p-2 px-14 text-white border-4 border-white">
+                    <div className="flex flex-col items-center justify-center">
+                        <div className="flex items-center justify-center rounded-xl p-2 pb-8 px-14 text-white">
                             <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
+                                className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
                                 onClick={() => setState("login")}
                             >
                                 Login
                             </button>
                             <button
-                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-2 ml-12 mr-12"
+                                className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
                                 onClick={() => setState("signup")}
                             >
                                 Signup
@@ -71,22 +72,24 @@ const AccountSetup = () => {
                         </div>
                     </div>
                 )}
-                <div className="flex justify-center items-center">
+                <div className="w-full flex justify-center border-t items-center">
                     {state == "login" ? (
-                        <div className="bg-shillStreetGrey w-1/2 rounded-xl p-2 px-14 h-22 flex justify-center mt-10 text-white border-4 border-white">
+                        <div className=" w-full px-14 h-22 flex justify-center text-white ">
                             <LoginButton />
                             {isConnected && (
                                 <ConnectTwitterForm userName={userName} email={userEmail} />
                             )}
                         </div>
                     ) : (
-                        <div className="bg-shillStreetGrey w-1/2 rounded-xl py-2 px-14 h-auto mt-10 mb-14 text-white border-4 border-white">
+                        <div className="w-full rounded-xl py-2 h-auto mt-10 text-white ">
                             <SignUpForm />
                         </div>
                     )}
                 </div>
+                </div>
             </section>
         </MainLayout>
+
     )
 }
 

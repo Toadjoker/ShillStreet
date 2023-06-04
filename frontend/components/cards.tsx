@@ -48,8 +48,8 @@ export const LandingMiniCard = ({ title, subtitle }: landingMiniCardProps) => {
 
 export const TeamCard = ({ title, subtitle, img }:teamCardProps) => {
     return (
-        <div className=" max-w-sm">
-            <img className="w-50 h-auto rounded-full" src={img} />
+        <div className="flex flex-col items-center justify-center max-w-sm">
+            <img className="w-24 h-auto rounded-full" src={img} />
             <div className="px-6 py-4 flex items-center flex-col flex-center">
                 <div className="font-bold text-xl text-white mb-2">{title}</div>
                 <div className= "text-xl text-white mb-2">{subtitle}</div>

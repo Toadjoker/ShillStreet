@@ -13,7 +13,8 @@ import {
 } from "../../utils/customFont"
 import { useRouter } from "next/router"
 import { useContractRead } from "wagmi"
-
+import { useAccount } from "wagmi"
+import { Spinner, Alert, AlertType } from "../../components/"
 // sample data
 const CardSampleData: any = [
     {
@@ -30,13 +31,14 @@ const AccountOverview = () => {
     // addresss
     const router = useRouter()
     const { useraddress } = router.query
+    const { address: connectedAddress } = useAccount()
     const address = Array.isArray(useraddress) ? useraddress[0] : useraddress
     // const { chain } = useNetwork()
 
     // const [userAddressOnline, setUserAddressOnline] = useState<string>("")
     // const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("0")
-
+    const [requestedTwitterValue, setSequestedTwitterValue] = useState<boolean>(false)
     // get twitterValue in hex
     const { data: twitterValue } = useContractRead({
         address: "0xe47ED937bEB276d36f61Faa32822EA95bCBBc0c9",
@@ -46,7 +48,7 @@ const AccountOverview = () => {
         watch: true,
         args: [userTwitterId],
     })
-
+    // console.log(twitterValue)
     // const onSubmit = async () => {
     //     try {
     //         const token = Cookies.get("jwt")
@@ -62,7 +64,37 @@ const AccountOverview = () => {
     //         }
     //     }
     // }
+    const gettwittervalue = async () => {
+        try {
+            const token = Cookies.get("jwt")
+            const response = await fetch(`https://api.shillstreet.com/users/get_tweeterValue/`, {
+                method: "POST",
 
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    walletAddress: useraddress,
+                }),
+            })
+
+            const responseText = await response.text()
+            const content = JSON.parse(responseText)
+            if (content.message == "success") {
+                Alert(
+                    AlertType.success,
+                    "Getting twiter value succes, please wait a minue to check back"
+                )
+                setSequestedTwitterValue(true)
+            } else {
+                Alert(AlertType.error, content.message)
+            }
+            console.log(content)
+        } catch (error) {
+            console.error("An error occurred while fetching user information:", error)
+        }
+    }
     const getTwitterId: SubmitHandler<TwitterIdType> = async (data) => {
         try {
             const response = await TwitterIdRequest.post("/users/get_twitter_id/", data)
@@ -101,8 +133,10 @@ const AccountOverview = () => {
     // }, [])
 
     // readTwitterValue
-
-    const twitterValueInString = twitterValue ? twitterValue.toString() : ""
+    let twitterValueInString
+    twitterValueInString = 0
+    twitterValueInString = twitterValue ? twitterValue.toString() : ""
+    const twitterValueInNumber = parseInt(twitterValueInString)
     const TopCardTextContentSampleData: any = [
         {
             index: 0,
@@ -110,7 +144,11 @@ const AccountOverview = () => {
             value: 0,
         },
         { index: 1, title: "Reach Generated", value: "Replace" },
-        { index: 2, title: "Thread Value", value: twitterValueInString },
+        {
+            index: 2,
+            title: "Thread Value",
+            value: twitterValueInString ? twitterValueInString : "?",
+        },
     ]
 
     const TopCardTextContent = ({ index, title, value }: any) => (
@@ -138,52 +176,64 @@ const AccountOverview = () => {
 
                 {/* top card */}
                 <div className="flex flex-col bg-twitterBackGround h-full p-3 rounded-2xl">
-                <div className="bg-purple-900 w-full rounded-lg py-2 h-24 text-white flex justify-center lg:space-x-20 sm:space-x-5 shadow-lg">
-                    {/* user avatar and wallet address container */}
-                    <div className="w-36 sm:w-24 flex flex-col items-center justify-center space-y-2">
-                        <div className="bg-twitterBlue flex items-center justify-center h-14 w-14 sm:h-10 sm:w-10 rounded-full border-shillStreetGrey">
-                            <Image
-                                src="/images/avatar-icon.svg"
-                                alt="avatar"
-                                width={25}
-                                height={25}
-                                unoptimized={true}
-                            />
+                    <div className="bg-purple-900 w-full rounded-lg py-2 h-24 text-white flex justify-center lg:space-x-20 sm:space-x-5 shadow-lg">
+                        {/* user avatar and wallet address container */}
+                        <div className="w-36 sm:w-24 flex flex-col items-center justify-center space-y-2">
+                            <div className="bg-twitterBlue flex items-center justify-center h-14 w-14 sm:h-10 sm:w-10 rounded-full border-shillStreetGrey">
+                                <Image
+                                    src="/images/avatar-icon.svg"
+                                    alt="avatar"
+                                    width={25}
+                                    height={25}
+                                    unoptimized={true}
+                                />
+                            </div>
+                            <span
+                                className={`${space_grotesk_light.className}text-gray-200 text-xs sm:text-xxs`}
+                            >
+                                {truncatedUserAddress}
+                            </span>
                         </div>
-                        <span className={`${space_grotesk_light.className}text-gray-200 text-xs sm:text-xxs`}>
-                            {truncatedUserAddress}
-                        </span>
-                    </div>
 
-                    {TopCardTextContentSampleData.map((item: any) => (
-                        <TopCardTextContent
-                            key={item.index}
-                            title={item.title}
-                            value={item.value}
-                        />
-                    ))}
-                </div>
-
-                {/* overview cards container */}
-                <div className="flex justify-center items-center flex-col space-y-10  mb-5 mt-5 md:flex-row md: md:space-y-0 md:space-x-20 h-full w-full">
-                    {CardSampleData.map((item: any) => (
-                        <li key={item.index} className="list-none">
-                            <OverviewCard
+                        {TopCardTextContentSampleData.map((item: any) => (
+                            <TopCardTextContent
+                                key={item.index}
                                 title={item.title}
-                                duration={item.duration}
                                 value={item.value}
                             />
-                        </li>
-                    ))}
-                </div>
-                <h2 className={`${space_grotesk_semibold.className} text-2xl text-center text-twitterBlue`}>
-                    Jobs achieved 
-                </h2>
-                {/* table */}
-                <Table />
-                </div>
+                        ))}
+                        {!requestedTwitterValue &&
+                            !twitterValueInString &&
+                            connectedAddress === useraddress && (
+                                <button
+                                    className="bg-blue-300 border-2 rounded"
+                                    onClick={() => gettwittervalue()}
+                                >
+                                    get twitter value
+                                </button>
+                            )}
+                    </div>
 
-                
+                    {/* overview cards container */}
+                    <div className="flex justify-center items-center flex-col space-y-10  mb-5 mt-5 md:flex-row md: md:space-y-0 md:space-x-20 h-full w-full">
+                        {CardSampleData.map((item: any) => (
+                            <li key={item.index} className="list-none">
+                                <OverviewCard
+                                    title={item.title}
+                                    duration={item.duration}
+                                    value={item.value}
+                                />
+                            </li>
+                        ))}
+                    </div>
+                    <h2
+                        className={`${space_grotesk_semibold.className} text-2xl text-center text-twitterBlue`}
+                    >
+                        Jobs achieved
+                    </h2>
+                    {/* table */}
+                    <Table />
+                </div>
             </section>
         </MainLayout>
     )

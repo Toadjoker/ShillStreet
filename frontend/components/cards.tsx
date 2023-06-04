@@ -111,24 +111,16 @@ export const SmartCampaignCard = ({
 
 export const OverviewCard = ({ title, duration, value }: overviewCardProps) => {
     return (
-        <div className="bg-shillStreetGrey flex w-52 rounded-3xl h-auto text-white border-4 border-white overflow-hidden">
-            <div className="ml-3 mr-2 mt-5">
-                <Image
-                    src="/images/flag-icon.svg"
-                    alt="flag-icon"
-                    width={30}
-                    height={30}
-                    unoptimized={true}
-                />
-            </div>
-            <div className="flex flex-col w-full overflow-hidden mr-5 text-center">
+        <div className="bg-twitterBackGround rounded-2xl h-auto text-white border border-white">
+           
+            <div className="flex jusitfy-center items-center flex-col w-full text-center">
                 <div
-                    className={`${space_grotesk_light.className} flex items-center justify-between pt-2`}
+                    className={`${space_grotesk_light.className} flex items-center justify-between p-2`}
                 >
-                    <p className="text-xs">{title}</p>
-                    <p className="text-xs">{duration}</p>
+                    <p className="text-xs text-twitterBlue">{title}</p>
+                    <p className="text-xs text-twitterBlue">{duration}</p>
                 </div>
-                <h4 className={`${space_grotesk_bold.className} text-lg text-center -mt-1 -ml-5`}>
+                <h4 className={`${space_grotesk_bold.className} text-lg text-center -mt-1 `}>
                     {value}
                 </h4>
             </div>

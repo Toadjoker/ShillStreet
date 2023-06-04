@@ -106,10 +106,10 @@ const AccountOverview = () => {
     const TopCardTextContentSampleData: any = [
         {
             index: 0,
-            title: "Revenue Earned (USDC)",
+            title: "Revenue Earned (STC)",
             value: 0,
         },
-        { index: 1, title: "Reach Generated", value: " 27,369" },
+        { index: 1, title: "Reach Generated", value: "Replace" },
         { index: 2, title: "Thread Value", value: twitterValueInString },
     ]
 
@@ -118,18 +118,6 @@ const AccountOverview = () => {
             <div className="flex flex-col text-center">
                 <span className={`${space_grotesk_light.className}`}>{title}</span>
                 <div className="flex items-center space-x-3 justify-center">
-                    {/* only show the dollar sign for revenue earned title */}
-                    {title === "Revenue Earned (USDC)" && (
-                        <span className="bg-shillStreetGrey">
-                            <Image
-                                src="/images/dollar-sign.svg"
-                                alt="dollar-sign"
-                                width={20}
-                                height={20}
-                                unoptimized={true}
-                            />
-                        </span>
-                    )}
                     <span className={`${space_grotesk_semibold.className} my-3`}>{value}</span>
                 </div>
             </div>
@@ -138,9 +126,9 @@ const AccountOverview = () => {
 
     return (
         <MainLayout>
-            <section className="bg-gray-800 flex flex-col flex-grow px-52 pt-10 overflow-hidden">
+            <section className="bg-gray-800 flex flex-col flex-grow p-20 pt-10 ">
                 <h3
-                    className={`${space_grotesk_medium.className} text-white text-3xl font-semibold tracking-wide`}
+                    className={`${space_grotesk_medium.className} text-shillStreetBlue mt-14 pt-14 text-3xl font-semibold tracking-wide`}
                 >
                     Account Overview
                 </h3>
@@ -149,10 +137,11 @@ const AccountOverview = () => {
                 </p>
 
                 {/* top card */}
-                <div className="bg-purple-900 w-full rounded-lg py-2 h-24 text-white flex justify-center space-x-20 shadow-lg">
+                <div className="flex flex-col bg-twitterBackGround h-full p-3 rounded-2xl">
+                <div className="bg-purple-900 w-full rounded-lg py-2 h-24 text-white flex justify-center lg:space-x-20 sm:space-x-5 shadow-lg">
                     {/* user avatar and wallet address container */}
-                    <div className="w-36 flex flex-col items-center justify-center space-y-2">
-                        <div className="bg-shillStreetBlue flex items-center justify-center h-14 w-14 rounded-full border-4 border-shillStreetGrey">
+                    <div className="w-36 sm:w-24 flex flex-col items-center justify-center space-y-2">
+                        <div className="bg-twitterBlue flex items-center justify-center h-14 w-14 sm:h-10 sm:w-10 rounded-full border-shillStreetGrey">
                             <Image
                                 src="/images/avatar-icon.svg"
                                 alt="avatar"
@@ -161,7 +150,7 @@ const AccountOverview = () => {
                                 unoptimized={true}
                             />
                         </div>
-                        <span className={`${space_grotesk_light.className}text-gray-200 text-xs`}>
+                        <span className={`${space_grotesk_light.className}text-gray-200 text-xs sm:text-xxs`}>
                             {truncatedUserAddress}
                         </span>
                     </div>
@@ -176,7 +165,7 @@ const AccountOverview = () => {
                 </div>
 
                 {/* overview cards container */}
-                <div className="my-5 mx-auto flex w-full justify-center space-x-20">
+                <div className="flex justify-center items-center flex-col space-y-10  mb-5 mt-5 md:flex-row md: md:space-y-0 md:space-x-20 h-full w-full">
                     {CardSampleData.map((item: any) => (
                         <li key={item.index} className="list-none">
                             <OverviewCard
@@ -187,9 +176,14 @@ const AccountOverview = () => {
                         </li>
                     ))}
                 </div>
-
+                <h2 className={`${space_grotesk_semibold.className} text-2xl text-center text-twitterBlue`}>
+                    Jobs achieved 
+                </h2>
                 {/* table */}
                 <Table />
+                </div>
+
+                
             </section>
         </MainLayout>
     )

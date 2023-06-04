@@ -158,7 +158,7 @@ const CampaignDetails = () => {
                                     >
                                         Thread Instructions
                                     </h3>
-                                    {campaign?.threadDetails.map((detail:any, index:any) => (
+                                    {campaign?.threadDetails && campaign?.threadDetails.map((detail:any, index:any) => (
                                     <p key={index} className={`${space_grotesk_regular.className}`}>
                                         {detail}
                                     </p>

@@ -50,7 +50,7 @@ const initialState: any = {
             shareOfCampaignEarned: "1.25%",
             impressions: "50,000",
             threadDetails:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+                ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc."],
             overview:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
             tokenomics:
@@ -79,9 +79,8 @@ const initialState: any = {
             shareOfCampaignEarned: "1.10%",
             impressions: "10,000",
             threadDetails:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
-            overview:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+            ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc."],
+        
             tokenomics:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
             products:
@@ -108,7 +107,7 @@ const initialState: any = {
             shareOfCampaignEarned: "0.79%",
             impressions: "20,000",
             threadDetails:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
+            ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc."],
             overview:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc.",
             tokenomics:

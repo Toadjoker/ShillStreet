@@ -151,7 +151,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
             <div className="mt-5 text-twitterBlue border border-white rounded p-3">
                 <div className=" mb-5 p-2 ">User Name : {userName}</div>
                 <div className=" p-2 ">Email : {email}</div>
-                {!!twitterHandle && (<div className="mb-5 p-2">Twitter Account : {twitterHandle}</div>)}
+                {!!twitterHandle && (<div className="p-2">Twitter Account : {twitterHandle}</div>)}
             </div>
             {!!twitterHandle ? (
                 <>

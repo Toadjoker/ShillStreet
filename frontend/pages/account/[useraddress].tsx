@@ -23,8 +23,8 @@ const CardSampleData: any = [
         duration: "Past 30 Days",
         value: "17th",
     },
-    { index: 1, title: "Threads", duration: "Past 30 Days", value: "12" },
-    { index: 2, title: "Earnings", duration: "Past 30 Days", value: "125 $STC" },
+    { index: 1, title: "Threads", duration: "Past 30 Days", value: "4" },
+    { index: 2, title: "Earnings", duration: "Past 30 Days", value: "1280 $STC" },
 ]
 
 const AccountOverview = () => {

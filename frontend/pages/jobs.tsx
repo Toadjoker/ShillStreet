@@ -9,7 +9,7 @@ import { useSelector } from "react-redux"
 const JobListing = () => {
     const state = useSelector((state: any) => state)
     const { campaigns } = state.campaignsReducer
-
+    
     return (
         <MainLayout>
             <section className="bg-gray-800  p-20 flex flex-col flex-grow mt-14 pt-14 w-full">

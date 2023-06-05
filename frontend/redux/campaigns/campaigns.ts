@@ -25,8 +25,9 @@ const initialState: any = {
             threadEarnings: "Replace",
             shareOfCampaignEarned: "1.25%",
             impressions: "50,000",
+            rewardedValue:"320 $STC",
             threadDetails:
-                ["1.Should","2.Should"],
+                ["-Should explain what CCIP empovers", "-Should provide documentation", "-Text should be less than 280 characters (tweet limit)"],
             overview:
                 "What is cross-chain interoperability? Cross-chain interoperability enables different blockchains to communicate with each other, giving smart contracts the ability to read and write data to and from other blockchains via cross-chain communication. A global standard for developers to easily build secure cross-chain services and applications. With a universal messaging interface, smart contracts can communicate across multiple blockchain networks, eliminating the need for developers to write custom code for building chain-specific integrations. CCIP opens up a new category of DeFi applications that can be built by developers for multi-chain ecosystems.",
             tokenomics:
@@ -47,8 +48,10 @@ const initialState: any = {
             utilization: 0,
             reachGenerated: "1,753 Users",
             threadEarnings: "$21.50 USDC",
+            rewardedValue:"320 $STC",
             shareOfCampaignEarned: "1.25%",
             impressions: "50,000",
+            threadValue:"200 $STC",
             threadDetails:
                 ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc."],
             overview:
@@ -77,6 +80,7 @@ const initialState: any = {
             reachGenerated: "1,934 Users",
             threadEarnings: "$22.70 USDC",
             shareOfCampaignEarned: "1.10%",
+            rewardedValue:"320 $STC",
             impressions: "10,000",
             threadDetails:
             ["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula. Nam nec metus sed massa dignissim rhoncus a condimentum nunc."],
@@ -104,6 +108,7 @@ const initialState: any = {
             utilization: 0,
             reachGenerated: "2,849 Users",
             threadEarnings: "$27.23 USDC",
+            rewardedValue:"320 $STC",
             shareOfCampaignEarned: "0.79%",
             impressions: "20,000",
             threadDetails:

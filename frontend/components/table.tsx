@@ -60,14 +60,13 @@ const Table = () => {
                                 />
                             </td>
                             <td colSpan={2} className="px-6 py-4">
+                                {item.title}
+                            </td>
+                            <td colSpan={2} className="px-6 py-4">
                                 {item.timeAccepted.date} <br />
                                 {item.timeAccepted.time}
                             </td>
-                            <td colSpan={2} className="px-6 py-4">
-                                {item.reachGenerated}
-                            </td>
-                            <td className="px-6 py-4">{item.threadEarnings}</td>
-                            <td className="px-6 py-4">{item.shareOfCampaignEarned}</td>
+                            <td className="px-6 py-4">{item.rewardedValue}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -71,7 +71,7 @@ const SignUpForm = () => {
                     }
                 })
                 .finally(() => {
-                    setReqesting(false), setSignUp(false)
+                    setRequesting(false), setSignUp(false)
                 })
         }
     }

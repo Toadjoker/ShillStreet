@@ -63,7 +63,7 @@ const CampaignDetails = () => {
         try {
             const response = await TwitterIdRequest.post("/users/get_twitter_id/", data)
             if (response) {
-                console.log(response)
+                // console.log(response)
                 if (response.message == "found") {
                     setUserTwitterId(response.twitter_user_id)
                 }
@@ -117,7 +117,7 @@ const CampaignDetails = () => {
     }, [twitterURL])
 
     useEffect(() => {
-        console.log(campaign)
+        // console.log(campaign)
         if (forecastedCampaignBalance) {
             setForecastedCampaignBalanceInString(
                 parseInt(forecastedCampaignBalance.toString()) / 10 ** 18
@@ -163,7 +163,7 @@ const CampaignDetails = () => {
         setCampaignData(campaignData)
     }, [forecastedCampaignBalanceInString, participationIDcountInString])
 
-    console.log(campaignData?.title)
+    // console.log(campaignData?.title)
     return (
         <MainLayout>
             {campaignData && (

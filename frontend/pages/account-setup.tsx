@@ -26,7 +26,7 @@ const AccountSetup = () => {
                 const response = await AuthRequest.get("/users/user/", token)
                 if (response) {
                     setState("login")
-                    console.log(response)
+                    // console.log(response)
                     setNeedLogin(false)
                     setUserAddressOnline(response.walletAddress)
                     setUserName(response.name)

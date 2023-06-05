@@ -25,7 +25,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
         } finally {
         }
     }
-    console.log(url)
+    // console.log(url)
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUrl(e.target.value)
     }
@@ -45,7 +45,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                 }),
             })
             const data = await response.json()
-            console.log(data.twitter_handle)
+            // console.log(data.twitter_handle)
             if (data.twitter_handle) {
                 Alert(
                     AlertType.success,
@@ -125,7 +125,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                 }),
             })
             const data = await response.json()
-            console.log(data)
+            // console.log(data)
             if (data.is_twitterBinded) {
                 setTwitterHandle(data.twitter_handle)
             }
@@ -137,7 +137,7 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
         }
     }
     const openTwitterPopup = (ssId: string) => {
-        console.log(ssId)
+        // console.log(ssId)
         const url = `https://twitter.com/intent/tweet?text=Hey%20everyone!%20I%20wanted%20to%20let%20you%20know%20about%20a%20great%20platform%20called%20@ShillStreet%20that%20I've%20been%20using.%20It's%20been%20really%20helpful%20for%20me%20and%20I%20think%20you%20should%20check%20it%20out%20too.%20ssid:${ssId}.%20You%20can%20learn%20more%20about%20it%20at%20https://shillstreet.com.`
         const windowFeatures =
             "width=600,height=400,menubar=no,toolbar=no,location=no,status=no,resizable=yes,scrollbars=yes"

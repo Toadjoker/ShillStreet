@@ -49,14 +49,14 @@ const LoginButton = () => {
     }, [isConnected])
 
     useMemo(() => {
-        console.log(address)
+        // console.log(address)
         if (isSuccess) {
             const data = {
                 walletAddress: address ?? "defaultWalletAddress",
                 privateString: privateString ?? "defaultPrivateString",
             }
             onSubmit(data)
-            console.log(data)
+            // console.log(data)
         }
     }, [isSuccess, address, privateString, onSubmit])
     return (

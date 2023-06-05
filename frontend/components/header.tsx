@@ -36,7 +36,7 @@ const Header = ({ headerCallback }: any) => {
             if (token) {
                 const response = await AuthRequest.get("/users/user/", token)
                 if (response) {
-                    console.log(response)
+                    // console.log(response)
                     if (response.walletAddress) {
                         setIsConnecting(true)
                         setUserAddressOnline(response.walletAddress)
@@ -65,7 +65,7 @@ const Header = ({ headerCallback }: any) => {
     return (
         <section className="fixed top-0 left-0 right-0 z-10 bg-gray-800 h-16 flex items-center justify-between px-3 md:px-20 border-b">
             {/* site logo */}
-            <Link href="/" className=" text-white text-xs md:text-xl font-semibold cursor-pointer">
+            <Link href="/" className="text-white text-xs md:text-xl font-semibold cursor-pointer">
                 <Image
                     src="/images/shillstreet_logo.png"
                     alt="shillstreet-logo"

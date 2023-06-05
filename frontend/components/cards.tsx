@@ -76,7 +76,7 @@ export const SmartCampaignCard = ({
     const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
         useState<number>(0)
     // const dispatch = useDispatch()
-    console.log(address)
+    // console.log(address)
 
     const { data: forecastedCampaignBalance } = useContractRead({
         address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
@@ -94,8 +94,8 @@ export const SmartCampaignCard = ({
         watch: true,
     })
 
-    console.log("forecastedCampaignBalance", forecastedCampaignBalance)
-    console.log("participationIDcount", participationIDcount)
+    // console.log("forecastedCampaignBalance", forecastedCampaignBalance)
+    // console.log("participationIDcount", participationIDcount)
 
     useEffect(() => {
         if (id == "0") {

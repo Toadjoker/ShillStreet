@@ -151,12 +151,12 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
             <div className="mt-5 text-twitterBlue border border-white rounded p-3">
                 <div className=" mb-5 p-2 ">User Name : {userName}</div>
                 <div className=" p-2 ">Email : {email}</div>
+                {!!twitterHandle && (<div className="mb-5 p-2">Twitter Account : {twitterHandle}</div>)}
             </div>
             {!!twitterHandle ? (
                 <>
-                    <div className="text-white mb-5">Twitter Account : {twitterHandle}</div>
                     <button
-                        className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                        className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                         type="submit"
                         onClick={() => unbindConnection()}
                     >

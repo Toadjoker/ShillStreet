@@ -59,6 +59,9 @@ const AccountSetup = () => {
                 </div>
                 {needLogin && state !== "signup" && state !="login" ? (
                     <div className="flex flex-col items-center justify-center">
+                        <h3 className={`${space_grotesk_medium.className} font-semibold text-xl text-white text-center p-3 w-full`} >
+                                First, you have to connect to our platform !
+                        </h3>
                         <div className="flex items-center justify-center rounded-xl pt-2  text-white">
                             <button
                                 className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"

@@ -6,7 +6,7 @@ import {
     space_grotesk_regular,
     space_grotesk_semibold,
 } from "../../utils/customFont"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useContractRead, useAccount, useContractWrite, usePrepareContractWrite } from "wagmi"
 import { useState, useEffect } from "react"
 import { TwitterIdRequest } from "../../utils/apiRequests"
@@ -31,6 +31,7 @@ const CampaignDetails = () => {
     const [participationIDcountInString, setparticipationIDcountInString] = useState<string>("")
     const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
         useState<number>(0)
+    const [campaignData, setCampaignData] = useState<any>(campaign)
 
     // contract write function
     const { config } = usePrepareContractWrite({
@@ -116,6 +117,7 @@ const CampaignDetails = () => {
     }, [twitterURL])
 
     useEffect(() => {
+        console.log(campaign)
         if (forecastedCampaignBalance) {
             setForecastedCampaignBalanceInString(
                 parseInt(forecastedCampaignBalance.toString()) / 10 ** 18
@@ -126,16 +128,30 @@ const CampaignDetails = () => {
         }
     }, [forecastedCampaignBalance, participationIDcount])
 
+    useEffect(() => {
+        const campaignData = {
+            forecastedCampaignBalanceInString: forecastedCampaignBalanceInString,
+            participationIDcount: participationIDcountInString,
+            instruction: "blallalalla",
+            title: "Chain Link",
+        }
+
+        if (typeof window !== "undefined") {
+            localStorage.setItem("campaignData", JSON.stringify(campaignData))
+        }
+    }, [forecastedCampaignBalanceInString, participationIDcountInString])
+
     return (
         <MainLayout>
             <section className="bg-gray-800 flex flex-col flex-grow mt-14 pt-14 w-full">
-                <h4
+                <h2
                     className={`${space_grotesk_semibold.className} ml-10 text-3xl text-shillStreetBlue mt-3`}
                 >
                     Campaign overview
-                </h4>
-                <div className="bg-twitterBackGround  rounded-2xl h-full m-10">
+                </h2>
+                <section className="bg-twitterBackGround  rounded-2xl h-full m-10">
                     <div className="flex items-center space-x-6  pt-3 pb-4">
+                        {/* back arrow */}
                         <div
                             onClick={() => router.back()}
                             className="bg-shillStreetGrey ml-6 w-6 h-6 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
@@ -148,6 +164,7 @@ const CampaignDetails = () => {
                                 unoptimized={true}
                             />
                         </div>
+                        {/* image and title container */}
                         <div className="flex justify-center items-center">
                             <div className="w-20 h-20 rounded-full mr-5 mt-3">
                                 <Image
@@ -159,87 +176,99 @@ const CampaignDetails = () => {
                                     className="rounded-full"
                                 />
                             </div>
-                            <h4
+                            <h3
                                 className={`${space_grotesk_semibold.className} text-3xl text-white mt-3`}
                             >
-                                {campaign?.title}
-                            </h4>
+                                {campaignData?.title}
+                            </h3>
                         </div>
                     </div>
 
                     <div className="h-auto mt-5 ml-14">
-                        <div className="mt-5 h-auto justify-center space-x-3 flex justify-center flex-col items-center md:items-center md:space-x-3 md:flex-row md:justify-center  ">
+                        <div className="mt-5 h-auto justify-center space-x-3 flex flex-col items-center md:items-center md:space-x-3 md:flex-row md:justify-center  ">
                             {/* left */}
                             <div className="w-2/3 mb-20  text-white space-y-3  border rounded-2xl ">
                                 {/* section 1 */}
                                 <div>
-                                    <h3
+                                    <p
                                         className={`${space_grotesk_semibold.className}font-semibold text-2xl p-3 border-b`}
                                     >
-                                        About {campaign?.title} campaign
-                                    </h3>
+                                        About {campaignData?.title} campaign
+                                    </p>
                                     <div className="p-7">
-                                        <h3
+                                        <p
                                             className={`${space_grotesk_semibold.className} text-twitterBlue font-semibold text-lg`}
                                         >
                                             Campaign Information
-                                        </h3>
-                                        {participationIDcountInString && (
+                                        </p>
+
+                                        {campaignData?.participationIDcount && (
                                             <div
                                                 className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                             >
-                                                <p className="w-67">Participants joined</p>
-                                                <p>{participationIDcountInString} user</p>
+                                                <p>Participants joined</p>
+
+                                                <p>{`${campaignData?.participationIDcount} user`}</p>
                                             </div>
                                         )}
-                                        <div
-                                            className={`${space_grotesk_semibold.className} text-sm flex`}
-                                        >
-                                            <p className="w-67">Total value locked (TVL)</p>
-                                            <p className="flex justify-start">
-                                                {campaign?.vaultSize}
-                                            </p>
-                                        </div>
-                                        <div
-                                            className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
-                                        >
-                                            <p className="w-67">Campaign current balance</p>
-                                            {forecastedCampaignBalanceInString && (
-                                                <p>{forecastedCampaignBalanceInString} USDC</p>
-                                            )}
-                                        </div>
-                                        <div
-                                            className={`${space_grotesk_semibold.className} text-sm flex`}
-                                        ></div>
-                                        <div className="mb-10 ">
+
+                                        {campaignData?.vaultSize && (
                                             <div
-                                                className={`${space_grotesk_light.className}text-xs flex justify-between`}
+                                                className={`${space_grotesk_semibold.className} text-sm flex`}
                                             >
-                                                <p>Funds Remaining</p>
-                                                {forecastedCampaignBalanceInString && (
+                                                <p>Total value locked (TVL)</p>
+                                                <p className="flex justify-start">
+                                                    {campaignData?.vaultSize}
+                                                </p>
+                                            </div>
+                                        )}
+                                        {campaignData?.forecastedCampaignBalanceInString && (
+                                            <div
+                                                className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
+                                            >
+                                                <p>Campaign current balance</p>
+                                                <p>
+                                                    {`${campaignData?.forecastedCampaignBalanceInString} USDC`}
+                                                </p>
+                                            </div>
+                                        )}
+                                        {campaignData?.forecastedCampaignBalanceInString && (
+                                            <div className="mb-10 ">
+                                                <div
+                                                    className={`${space_grotesk_light.className}text-xs flex justify-between`}
+                                                >
+                                                    <p>Funds Remaining</p>
+
                                                     <p>
                                                         {(
-                                                            forecastedCampaignBalanceInString / 300
+                                                            campaignData?.forecastedCampaignBalanceInString /
+                                                            300
                                                         ).toFixed(3)}
                                                         %
                                                     </p>
-                                                )}
+                                                </div>
+                                                <ProgressBar
+                                                    value={forecastedCampaignBalanceInString / 300}
+                                                />
                                             </div>
-                                            <ProgressBar
-                                                value={forecastedCampaignBalanceInString / 300}
-                                            />
-                                        </div>
+                                        )}
 
                                         {/* section 2 */}
                                         <div>
-                                            <h3
-                                                className={`${space_grotesk_semibold.className} text-twitterBlue font-semibold text-lg`}
-                                            >
-                                                {campaign?.title} Overview
-                                            </h3>
-                                            <p className={`${space_grotesk_regular.className}`}>
-                                                {campaign?.overview}
-                                            </p>
+                                            {campaignData?.title && (
+                                                <p
+                                                    className={`${space_grotesk_semibold.className} text-twitterBlue font-semibold text-lg`}
+                                                >
+                                                    {`${campaignData?.title} Overview`}
+                                                </p>
+                                            )}
+                                            {campaignData?.overview && (
+                                                <p
+                                                    className={`${space_grotesk_regular.className}`}
+                                                >
+                                                    {campaignData?.overview}
+                                                </p>
+                                            )}
                                             <div
                                                 className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                             >
@@ -250,6 +279,7 @@ const CampaignDetails = () => {
                                                 <Link
                                                     href="https://blog.chain.link/cross-chain-bridge/?_ga=2.251032590.903498201.1685827149-1065892986.1683128058&_gac=1.83568100.1684330817.CjwKCAjw9pGjBhB-EiwAa5jl3MkSG4fj59oTB_RHYn9gd_kH2juOFOPB8pacXKAj-YqEuNbJcxYItBoCvWQQAvD_BwE"
                                                     className="bg-purple-600 w-5 h-5 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                                                    target="_blank"
                                                 >
                                                     <Image
                                                         src="/images/chevron-right.svg"
@@ -265,22 +295,24 @@ const CampaignDetails = () => {
                                         {/* section 3 */}
 
                                         <div>
-                                            <h3
+                                            <p
                                                 className={`${space_grotesk_semibold.className} text-lg font-semibold text-twitterBlue`}
                                             >
                                                 Thread Instructions
-                                            </h3>
-                                            {campaign?.threadDetails &&
-                                                campaign?.threadDetails.map(
-                                                    (detail: any, index: any) => (
-                                                        <p
-                                                            key={index}
-                                                            className={`${space_grotesk_regular.className}`}
-                                                        >
-                                                            {detail}
-                                                        </p>
-                                                    )
-                                                )}
+                                            </p>
+                                            <div>
+                                                {campaignData?.threadDetails &&
+                                                    campaignData?.threadDetails.map(
+                                                        (detail: any, index: any) => (
+                                                            <p
+                                                                key={index}
+                                                                className={`${space_grotesk_regular.className}`}
+                                                            >
+                                                                {detail}
+                                                            </p>
+                                                        )
+                                                    )}
+                                            </div>
                                             <div
                                                 className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                             >
@@ -306,23 +338,23 @@ const CampaignDetails = () => {
                             {/* right */}
                             <div className="bg-twitterBlue ml-4 w-1/2 md:w-1/4 h-2/3 text-twitterBackGround p-4 mb-5 rounded-2xl space-y-8">
                                 <div>
-                                    <h4
+                                    <p
                                         className={`${space_grotesk_semibold.className} font-semibold`}
                                     >
                                         Sepolia campaign address
-                                    </h4>
+                                    </p>
                                     <p
                                         className={`${space_grotesk_light.className} text-xs flex items-center space-x-2`}
                                     >
-                                        <h4 className="text-xs">{campaign?.address}</h4>
+                                        {campaignData?.address}
                                     </p>
                                 </div>
                                 <div>
-                                    <h4
+                                    <p
                                         className={`${space_grotesk_semibold.className} font-semibold`}
                                     >
                                         Thread and Earn
-                                    </h4>
+                                    </p>
                                     <p className={`${space_grotesk_light.className} text-xs`}>
                                         Tweet a thread covering the required criteria and tell us
                                         where to find the thread, we will send your calculated
@@ -331,11 +363,11 @@ const CampaignDetails = () => {
                                     </p>
                                 </div>
                                 <div>
-                                    <h4
+                                    <p
                                         className={`${space_grotesk_semibold.className} font-semibold`}
                                     >
                                         Twitter URL
-                                    </h4>
+                                    </p>
                                     <input
                                         className="bg-gray-200  h-8 w-full rounded-xl text-shillStreetGrey px-4"
                                         onChange={(e: any) => setTwitterURL(e.target.value)}
@@ -357,7 +389,7 @@ const CampaignDetails = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </section>
         </MainLayout>
     )

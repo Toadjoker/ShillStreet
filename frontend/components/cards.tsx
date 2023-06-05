@@ -73,7 +73,7 @@ export const SmartCampaignCard = ({
     console.log(address)
     // this function dispatch to get a single campaign
     const dispatchToStore = (id: any) => {
-        dispatch(setCampaignAction(id))
+        // dispatch(setCampaignAction(id))
     }
 
     // Determine if the campaign is deployed or not

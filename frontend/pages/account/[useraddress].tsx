@@ -24,7 +24,7 @@ const CardSampleData: any = [
         value: "17th",
     },
     { index: 1, title: "Threads", duration: "Past 30 Days", value: "12" },
-    { index: 2, title: "Earnings", duration: "Past 30 Days", value: "$125" },
+    { index: 2, title: "Earnings", duration: "Past 30 Days", value: "125 $STC" },
 ]
 
 const AccountOverview = () => {
@@ -215,7 +215,7 @@ const AccountOverview = () => {
                     </div>
 
                     {/* overview cards container */}
-                    <div className="flex justify-center items-center flex-col space-y-10  mb-5 mt-5 md:flex-row md: md:space-y-0 md:space-x-20 h-full w-full">
+                    <div className="flex justify-center items-center flex-col mb-5 mt-5 space-y-10 md:flex-row md: md:space-y-0 md:space-x-20 w-full">
                         {CardSampleData.map((item: any) => (
                             <li key={item.index} className="list-none">
                                 <OverviewCard

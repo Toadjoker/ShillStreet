@@ -17,7 +17,7 @@ type Inputs = {
 
 const SignUpForm = () => {
     const [isValid, setIsValid] = useState<boolean>(false)
-    const [requesting, setReqesting] = useState<boolean>(false)
+    const [requesting, setRequesting] = useState<boolean>(false)
     const [signUp, setSignUp] = useState<boolean>(false)
     const { disconnect } = useDisconnect()
     const { data, isError, isLoading, isSuccess, signMessage } = useSignMessage({
@@ -35,7 +35,7 @@ const SignUpForm = () => {
 
     const onSubmit: SubmitHandler<RegisterType> = async (data) => {
         if (isValid) {
-            setReqesting(true)
+            setRequesting(true)
             await registerRequest
                 .post("/users/register/", data)
                 .then((response: any) => {
@@ -105,16 +105,6 @@ const SignUpForm = () => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="-mt-8  w-full flex flex-col">
-            <div className="w-full flex items-center justify-center">
-                <Image
-                    src="/images/shillStreetIcon.png"
-                    alt="shillstreet-logo"
-                    width={50}
-                    height={50}
-                    unoptimized={true}
-                    className="rounded-full"
-                />
-            </div>
 
             <div className="w-full mt-5  ">
                 <h3
@@ -126,7 +116,12 @@ const SignUpForm = () => {
                     Please fill in the form and submit.
                 </p>
             </div>
-
+            <div
+                className="w-full flex flex-col justify-center items-center mb-2 pt-3 "
+                
+            >   
+                <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
+            </div>
             <div className="w-full flex flex-col items-center justify-center px-14">
                 <input
                     type="text"
@@ -141,12 +136,8 @@ const SignUpForm = () => {
                     {...register("email", { required: "This field is required" })}
                 />
             </div>
-
-            <div
-                className="w-full flex justify-center items-center mt-5 pt-3 border-t"
-                onClick={() => setSignUp(true)}
-            >
-                <ConnectWalletButton buttonTitle="Sign up" requesting={requesting} />
+            <div className="flex  justify-center items-center mt-5 pt-3 border-t">
+            <button className="bg-twitterBlue p-2 rounded" onClick={() => setSignUp(true)}>Sign up </button>
             </div>
         </form>
     )

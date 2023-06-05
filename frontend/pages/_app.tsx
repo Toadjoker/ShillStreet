@@ -64,7 +64,7 @@ const myCustomTheme: Theme = {
         actionButtonSecondaryBackground:"white",
         closeButton: '...',
         closeButtonBackground: '...',
-        connectButtonBackground: 'white',
+        connectButtonBackground: '#1DA1F2',
         connectButtonBackgroundError: '...',
         connectButtonInnerBackground: '...',
         connectButtonText: '...',

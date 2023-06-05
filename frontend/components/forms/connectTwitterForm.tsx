@@ -147,13 +147,16 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
         checkTwitterHandle()
     }, [address, isBindnig])
     return (
-        <>
-            <div className="text-white mb-5">Your Account User Name is : {userName}</div>
-            <div className="text-white mb-5">Your Account Email is : {email}</div>
+        <div className="flex flex-col justify-center items-center px-14">  
+            <div className="mt-5 text-twitterBlue border border-white rounded p-3">
+            <div className=" mb-5 p-2 ">
+                User Name : {userName}</div>
+            <div className=" p-2 ">Email : {email}</div>
+            </div>
             {!!twitterHandle ? (
                 <>
                     <div className="text-white mb-5">
-                        Your Connected Twitter Account is : {twitterHandle}
+                        Twitter Account : {twitterHandle}
                     </div>
                     <button
                         className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
@@ -164,26 +167,19 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                     </button>
                 </>
             ) : (
-                <>
-                    <div className="flex items-center justify-between my-10">
-                        <p
-                            className={`${space_grotesk_medium.className} font-bold text-xl text-center mt-5`}
-                        >
-                            Connect Twitter
-                        </p>
+                <div className="flex flex-col jusitfy-center items-center">
                         <button
-                            className={`${space_grotesk_medium.className} flex items-center justify-center text-xs bg-twitterBlue p-2 rounded-full w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
+                            className={`${space_grotesk_medium.className} flex items-center justify-center  mt-6 text-xs bg-twitterBlue p-2 rounded w-32 h-10 shadow-md hover:bg-blue-600 text-white`}
                             type="submit"
                             onClick={() => createConnection()}
                         >
                             {isRequesting ? <Spinner width={20} height={20} /> : "Connect Twitter"}
                         </button>
-                    </div>
-                    <div className="flex items-center justify-between my-10">
+                    <div className="flex items-center justify-between my-10 ">
                         {isConnecting && (
-                            <>
+                            <div className="flex flex-row space-x-3">
                                 <input
-                                    className="text-black"
+                                    className="text-black rounded"
                                     placeholder="Your Tweet Link"
                                     onChange={handleEmailChange}
                                 ></input>
@@ -198,12 +194,12 @@ const ConnectTwitterForm = ({ userName, email }: ConnectTwitterFormProps) => {
                                         "Verify Twitter"
                                     )}
                                 </button>
-                            </>
+                            </div>
                         )}
                     </div>
-                </>
+                </div>
             )}
-        </>
+        </div>
     )
 }
 

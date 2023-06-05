@@ -7,8 +7,7 @@ import { space_grotesk_medium } from "../utils/customFont"
 import { useAccount, useSignMessage } from "wagmi"
 import { useMemo } from "react"
 import { ConnectWalletButton } from "."
-
-
+import { useRouter } from "next/router"
 
 const LoginButton = () => {
     const {
@@ -21,15 +20,14 @@ const LoginButton = () => {
         message: "default shill street sign message",
     })
     const { address, isConnected } = useAccount()
-
+    const router = useRouter()
     const onSubmit: SubmitHandler<LoginType> = async (data) => {
         try {
             const response = await LoginRequest.post("/users/login/", data)
             if (response) {
-                console.log(response)
-                console.log(response.jwt)
-                Cookies.set("jwt", response.jwt, { expires: 1, secure: true, sameSite: "none" })
                 Alert(AlertType.success, "Login Success!")
+                Cookies.set("jwt", response.jwt, { expires: 1, secure: true, sameSite: "none" })
+                router.reload()
             }
         } catch (error) {
             // if (error.response) {
@@ -45,10 +43,10 @@ const LoginButton = () => {
         // console.log(isConnected)
         // console.log(privateString)
         const token = Cookies.get("jwt")
-        if (isConnected && privateString === undefined && !token) {
+        if (isConnected && !token) {
             signMessage() // sign the message
         }
-    }, [isConnected, privateString])
+    }, [isConnected])
 
     useMemo(() => {
         console.log(address)
@@ -65,7 +63,7 @@ const LoginButton = () => {
         <section className="flex items-center justify-between my-5">
             {/* only show the connect button if the address is undefined */}
             {address === undefined && (
-                <ConnectWalletButton buttonTitle="Connect"  requesting={isLoading} />
+                <ConnectWalletButton buttonTitle="Connect" requesting={isLoading} />
             )}
         </section>
     )

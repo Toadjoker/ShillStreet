@@ -17,7 +17,6 @@ const AccountSetup = () => {
     const [userTwitterHandle, setUserTwitterHandle] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
     const [needLogin, setNeedLogin] = useState<boolean>(true)
- 
 
     const { isConnected } = useAccount()
     const onSubmit = async () => {
@@ -26,6 +25,7 @@ const AccountSetup = () => {
             if (token) {
                 const response = await AuthRequest.get("/users/user/", token)
                 if (response) {
+                    setState("login")
                     console.log(response)
                     setNeedLogin(false)
                     setUserAddressOnline(response.walletAddress)
@@ -49,80 +49,80 @@ const AccountSetup = () => {
         <MainLayout>
             <section className="bg-gray-800 flex flex-col items-center justify-center flex-grow  overflow-hidden">
                 {/* top title card */}
-                <div className="bg-twitterBackGround flex-col justify-center items-center border rounded-2xl"> 
-                <div className="w-full rounded-xl h-14 text-white mb-3 ">
-                    <h3
-                        className={`${space_grotesk_medium.className} font-bold text-xl text-center p-3 border-b w-full`}
-                    >
-                        Account setup  
-                    </h3>
-                </div>
-                {needLogin && state !== "signup" && state !="login" ? (
-                    <div className="flex flex-col items-center justify-center">
-                        <h3 className={`${space_grotesk_medium.className} font-semibold text-xl text-white text-center p-3 w-full`} >
-                                First, you have to connect to our platform !
-                        </h3>
-                        <div className="flex items-center justify-center rounded-xl pt-2  text-white">
-                            <button
-                                className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
-                                onClick={() => setState("login")}
-                            >
-                                Login
-                            </button>
-                            <button
-                                className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
-                                onClick={() => setState("signup")}
-                            >
-                                Signup
-                            </button>
-                        </div>
-                    </div>
-                ) : (<div className="relative w-full flex">
-                    <div
-                            onClick={() => setState("initial")}
-                            className="bg-shillStreetGrey mt-3 ml-6 w-6 h-6 mr-20 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                <div className="bg-twitterBackGround flex-col justify-center items-center border rounded-2xl">
+                    <div className="w-full rounded-xl h-14 text-white mb-3 ">
+                        <h3
+                            className={`${space_grotesk_medium.className} font-bold text-xl text-center p-3 border-b w-full`}
                         >
-                            <Image
-                                src="/images/chevron-left.svg"
-                                alt="chevron-left"
-                                width={18}
-                                height={18}
-                                unoptimized={true}
-                            />
+                            Account setup
+                        </h3>
                     </div>
-                    <div className="absolute top-1/2 mt-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-
-                    <Image
-                        src="/images/shillStreetIcon.png"
-                        alt="shillstreet-logo"
-                        width={50}
-                        height={50}
-                        unoptimized={true}
-                        className="rounded-full"
-                    />
-                    </div>
-                 </div>)
-                }
-                <div className="w-full mt-6 flex justify-center items-center ">
-                    {state == "login" && (
-                        <div className=" w-full h-22 flex justify-center text-white ">
-                            <LoginButton />
-                            {isConnected && (
-                                <ConnectTwitterForm userName={userName} email={userEmail} />
-                            )}
+                    {needLogin && state !== "signup" && state != "login" ? (
+                        <div className="flex flex-col items-center justify-center">
+                            <h3
+                                className={`${space_grotesk_medium.className} font-semibold text-xl text-white text-center p-3 w-full`}
+                            >
+                                First, you have to connect to our platform !
+                            </h3>
+                            <div className="flex items-center justify-center rounded-xl pt-2  text-white">
+                                <button
+                                    className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
+                                    onClick={() => setState("login")}
+                                >
+                                    Login
+                                </button>
+                                <button
+                                    className="bg-twitterBlue hover:bg-twitterBlue text-white font-bold py-3 px-4 rounded my-2 mx-4 transform transition duration-500 hover:scale-110"
+                                    onClick={() => setState("signup")}
+                                >
+                                    Signup
+                                </button>
+                            </div>
                         </div>
-                    )
-                    }
-                    {state == "signup" && (
-                        <div className="w-full rounded-xl py-2 h-auto mt-10 text-white  ">
-                            <SignUpForm />
+                    ) : (
+                        <div className="relative w-full flex">
+                            <div
+                                onClick={() => setState("initial")}
+                                className="bg-shillStreetGrey mt-3 ml-6 w-6 h-6 mr-20 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                            >
+                                <Image
+                                    src="/images/chevron-left.svg"
+                                    alt="chevron-left"
+                                    width={18}
+                                    height={18}
+                                    unoptimized={true}
+                                />
+                            </div>
+                            <div className="absolute top-1/2 mt-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <Image
+                                    src="/images/shillStreetIcon.png"
+                                    alt="shillstreet-logo"
+                                    width={50}
+                                    height={50}
+                                    unoptimized={true}
+                                    className="rounded-full"
+                                />
+                            </div>
                         </div>
                     )}
-                </div>
+                    <div className="w-full mt-6 flex justify-center items-center ">
+                        {state == "login" && (
+                            <div className=" w-full h-22 flex justify-center text-white ">
+                                <LoginButton />
+                                {isConnected && (
+                                    <ConnectTwitterForm userName={userName} email={userEmail} />
+                                )}
+                            </div>
+                        )}
+                        {state == "signup" && (
+                            <div className="w-full rounded-xl py-2 h-auto mt-10 text-white  ">
+                                <SignUpForm />
+                            </div>
+                        )}
+                    </div>
                 </div>
             </section>
         </MainLayout>
-
     )
 }
 

@@ -83,7 +83,7 @@ const Header = ({ headerCallback }: any) => {
                                 href="/account-setup"
                                 className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md `}
                             >
-                                Launch App
+                                Connect
                             </Link>
                             {userAddressOnline && (
                                 <Link
@@ -102,6 +102,12 @@ const Header = ({ headerCallback }: any) => {
                                 onClick={() => headerCallback(0)}
                             >
                                 Home
+                            </Link>
+                            <Link
+                                href="/account-setup"
+                                className={`${space_grotesk_regular.className}  hover:bg-twitterBlue p-2 rounded-md `}
+                            >
+                                {router.pathname != "/account-setup" ? "Connect" : "Setup"}
                             </Link>
                             {isConnecting && (
                                 <div>
@@ -144,6 +150,7 @@ const Header = ({ headerCallback }: any) => {
                                 setUserTwitterId("")
                                 setIsConnecting(false)
                                 Cookies.remove("jwt", { secure: true, sameSite: "none" })
+                                router.reload()
                             }}
                             className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white ml-2`}
                         >

@@ -81,18 +81,20 @@ const AccountSetup = () => {
                         </div>
                     ) : (
                         <div className="relative w-full flex">
-                            <div
-                                onClick={() => setState("initial")}
-                                className="bg-shillStreetGrey mt-3 ml-6 w-6 h-6 mr-20 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
-                            >
-                                <Image
-                                    src="/images/chevron-left.svg"
-                                    alt="chevron-left"
-                                    width={18}
-                                    height={18}
-                                    unoptimized={true}
-                                />
-                            </div>
+                            {!isConnected && (
+                                <div
+                                    onClick={() => setState("initial")}
+                                    className="bg-shillStreetGrey mt-3 ml-6 w-6 h-6 mr-20 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"
+                                >
+                                    <Image
+                                        src="/images/chevron-left.svg"
+                                        alt="chevron-left"
+                                        width={18}
+                                        height={18}
+                                        unoptimized={true}
+                                    />
+                                </div>
+                            )}
                             <div className="absolute top-1/2 mt-5 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                 <Image
                                     src="/images/shillStreetIcon.png"

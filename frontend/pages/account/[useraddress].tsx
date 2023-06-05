@@ -48,6 +48,7 @@ const AccountOverview = () => {
         watch: true,
         args: [userTwitterId],
     })
+    console.log(userTwitterId)
     // console.log(twitterValue)
     // const onSubmit = async () => {
     //     try {
@@ -204,7 +205,8 @@ const AccountOverview = () => {
                         ))}
                         {!requestedTwitterValue &&
                             !twitterValueInString &&
-                            connectedAddress === useraddress && (
+                            connectedAddress === useraddress &&
+                            userTwitterId != null && (
                                 <button
                                     className="bg-blue-300 border-2 rounded"
                                     onClick={() => gettwittervalue()}

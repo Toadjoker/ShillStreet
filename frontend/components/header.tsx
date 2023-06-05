@@ -75,7 +75,7 @@ const Header = ({ headerCallback }: any) => {
                 />
             </Link>
             {/* navigation */}
-            <nav className="text-white space-x-5 flex items-center">
+            <nav className="text-white flex items-center">
                 <>
                     {!isConnecting && router.pathname != "/account-setup" ? (
                         <>
@@ -138,8 +138,8 @@ const Header = ({ headerCallback }: any) => {
                 </Link>
                 {isConnecting && (
                     <div className="flex items-center">
-                        <p className=" p-2 w-auto mx-3 text-2xl rounded-md mt-4 ml-8 mr-4">|</p>
-                        <p className="bg-shillStreetBlue p-2 w-auto mx-3 rounded-md border-2 mt-4 ml-8 mr-4">
+                        <p className=" p-2 w-auto mx-4 text-2xl rounded-md mt-4">|</p>
+                        <p className="bg-shillStreetBlue p-2 w-auto rounded-md border-2 mt-4">
                             {truncatedUserAddress}
                         </p>
                         <button

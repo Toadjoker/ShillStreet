@@ -150,6 +150,7 @@ const Header = ({ headerCallback }: any) => {
                                 setUserTwitterId("")
                                 setIsConnecting(false)
                                 Cookies.remove("jwt", { secure: true, sameSite: "none" })
+                                router.reload()
                             }}
                             className={`${space_grotesk_regular.className}  hover:bg-blue-900 p-2 rounded-md border-2 border-white ml-2`}
                         >

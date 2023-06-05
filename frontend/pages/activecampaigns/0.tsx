@@ -89,7 +89,7 @@ const CampaignDetails = () => {
             if (sendContractInteraction && userTwitterId) {
                 sendContractInteraction()
             } else {
-                Alert(AlertType.error, "You need to log in!")
+                Alert(AlertType.error, "You need to log in and bind your twitter account!")
             }
         } catch (error) {
             // console.log(error)

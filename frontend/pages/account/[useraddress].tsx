@@ -48,7 +48,7 @@ const AccountOverview = () => {
         watch: true,
         args: [userTwitterId],
     })
-    console.log(userTwitterId)
+    // console.log(userTwitterId)
     // console.log(twitterValue)
     // const onSubmit = async () => {
     //     try {
@@ -91,7 +91,7 @@ const AccountOverview = () => {
             } else {
                 Alert(AlertType.error, content.message)
             }
-            console.log(content)
+            // console.log(content)
         } catch (error) {
             console.error("An error occurred while fetching user information:", error)
         }
@@ -100,7 +100,7 @@ const AccountOverview = () => {
         try {
             const response = await TwitterIdRequest.post("/users/get_twitter_id/", data)
             if (response) {
-                console.log(response)
+                // console.log(response)
                 if (response.message == "found") {
                     setUserTwitterId(response.twitter_user_id)
                 }

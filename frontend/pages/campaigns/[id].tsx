@@ -31,7 +31,7 @@ const CampaignDetails = () => {
             }, 2000)
         }
     }
-    console.log(campaign?.campaign)
+    // console.log(campaign?.campaign)
     return (
         <MainLayout>
             <section className="bg-gray-800 flex flex-col flex-grow mt-14 pt-14 w-full">

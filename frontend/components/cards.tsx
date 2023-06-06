@@ -2,6 +2,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { useDispatch } from "react-redux"
 import { setCampaignAction } from "../redux/campaigns/campaigns"
+import campapaignsContract from "../constants/CAMPAIGN_ABI.json"
+import { useContractRead } from "wagmi"
+import { useEffect, useState } from "react"
 
 import {
     space_grotesk_bold,
@@ -69,8 +72,44 @@ export const SmartCampaignCard = ({
     threadComplete,
     utilization,
 }: smartCampaignCardProps) => {
-    const dispatch = useDispatch()
-    console.log(address)
+    const [participationIDcountInString, setparticipationIDcountInString] = useState<string>("0")
+    const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
+        useState<number>(0)
+    // const dispatch = useDispatch()
+    // console.log(address)
+
+    const { data: forecastedCampaignBalance } = useContractRead({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "forecastedCampaignBalance",
+        chainId: 11155111,
+        watch: true,
+    })
+
+    const { data: participationIDcount } = useContractRead({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "participationIDcount",
+        chainId: 11155111,
+        watch: true,
+    })
+
+    // console.log("forecastedCampaignBalance", forecastedCampaignBalance)
+    // console.log("participationIDcount", participationIDcount)
+
+    useEffect(() => {
+        if (id == "0") {
+            if (forecastedCampaignBalance) {
+                setForecastedCampaignBalanceInString(
+                    parseInt(forecastedCampaignBalance.toString()) / 10 ** 18
+                )
+            }
+            if (participationIDcount) {
+                setparticipationIDcountInString(participationIDcount.toString())
+            }
+        }
+    }, [forecastedCampaignBalance, participationIDcount])
+
     // this function dispatch to get a single campaign
     const dispatchToStore = (id: any) => {
         // dispatch(setCampaignAction(id))
@@ -88,7 +127,9 @@ export const SmartCampaignCard = ({
             </h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
                 <p className="text-sm text-white">Vault Size: {vaultSize}</p>
-                <p className="text-sm text-white">Threads Completed: {threadComplete}</p>
+                <p className="text-sm text-white">
+                    Threads Completed: {participationIDcountInString}
+                </p>
             </div>
             {/* progress bar and content container */}
             <div>
@@ -96,10 +137,10 @@ export const SmartCampaignCard = ({
                     className={`${space_grotesk_regular.className} flex justify-between text-xs mb-2`}
                 >
                     <span>Utilzation</span>
-                    <span>{utilization}%</span>
+                    <span>{(forecastedCampaignBalanceInString / 300).toFixed(3)}%</span>
                 </div>
                 {/* progress bar */}
-                <ProgressBar value={utilization} />
+                <ProgressBar value={forecastedCampaignBalanceInString / 300} />
             </div>
             <div className="mt-5 flex justify-center">
                 <Link

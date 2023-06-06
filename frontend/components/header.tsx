@@ -36,7 +36,7 @@ const Header = ({ headerCallback }: any) => {
             if (token) {
                 const response = await AuthRequest.get("/users/user/", token)
                 if (response) {
-                    console.log(response)
+                    // console.log(response)
                     if (response.walletAddress) {
                         setIsConnecting(true)
                         setUserAddressOnline(response.walletAddress)
@@ -65,7 +65,7 @@ const Header = ({ headerCallback }: any) => {
     return (
         <section className="fixed top-0 left-0 right-0 z-10 bg-gray-800 h-16 flex items-center justify-between px-3 md:px-20 border-b">
             {/* site logo */}
-            <Link href="/" className=" text-white text-xs md:text-xl font-semibold cursor-pointer">
+            <Link href="/" className="text-white text-xs md:text-xl font-semibold cursor-pointer">
                 <Image
                     src="/images/shillstreet_logo.png"
                     alt="shillstreet-logo"
@@ -75,7 +75,7 @@ const Header = ({ headerCallback }: any) => {
                 />
             </Link>
             {/* navigation */}
-            <nav className="text-white space-x-5 flex items-center">
+            <nav className="text-white flex items-center">
                 <>
                     {!isConnecting && router.pathname != "/account-setup" ? (
                         <>
@@ -138,8 +138,8 @@ const Header = ({ headerCallback }: any) => {
                 </Link>
                 {isConnecting && (
                     <div className="flex items-center">
-                        <p className=" p-2 w-auto mx-3 text-2xl rounded-md mt-4 ml-8 mr-4">|</p>
-                        <p className="bg-shillStreetBlue p-2 w-auto mx-3 rounded-md border-2 mt-4 ml-8 mr-4">
+                        <p className=" p-2 w-auto mx-4 text-2xl rounded-md mt-4">|</p>
+                        <p className="bg-shillStreetBlue p-2 w-auto rounded-md border-2 mt-4">
                             {truncatedUserAddress}
                         </p>
                         <button

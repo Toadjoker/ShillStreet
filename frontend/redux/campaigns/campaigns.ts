@@ -25,6 +25,7 @@ const initialState: any = {
             threadEarnings: "Replace",
             shareOfCampaignEarned: "1.25%",
             impressions: "50,000",
+            rewardedValue:"320 $STC",
             overview:
                 "What is cross-chain interoperability? Cross-chain interoperability enables different blockchains to communicate with each other, giving smart contracts the ability to read and write data to and from other blockchains via cross-chain communication. A global standard for developers to easily build secure cross-chain services and applications. With a universal messaging interface, smart contracts can communicate across multiple blockchain networks, eliminating the need for developers to write custom code for building chain-specific integrations. CCIP opens up a new category of DeFi applications that can be built by developers for multi-chain ecosystems.",
             tokenomics:

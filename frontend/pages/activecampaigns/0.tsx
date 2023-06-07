@@ -27,7 +27,7 @@ const CampaignDetails = () => {
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
     const [twitterURL, setTwitterURL] = useState<string>("")
     const [tweetId, setTweetId] = useState<string>("")
-    const [userTwitterId, setUserTwitterId] = useState<string>("0")
+    const [userTwitterId, setUserTwitterId] = useState<string>("")
     const [participationIDcountInString, setparticipationIDcountInString] = useState<string>("")
     const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
         useState<number>(0)
@@ -86,8 +86,8 @@ const CampaignDetails = () => {
         // the following are just place holders
         try {
             setIsRequesting(true)
-            if (sendContractInteraction && userTwitterId) {
-                sendContractInteraction()
+            if (userTwitterId) {
+                sendContractInteraction!()
             } else {
                 console.log(userTwitterId)
                 Alert(AlertType.error, "You need to log in and bind your twitter account!")
@@ -150,7 +150,11 @@ const CampaignDetails = () => {
             threadEarnings: "Replace",
             shareOfCampaignEarned: "1.25%",
             impressions: "50,000",
-            threadDetails: ["-Should explain what CCIP empowers ", "-Should provide documentation","-Should be less than 280 characters (Tweet limit)"],
+            threadDetails: [
+                "-Should explain what CCIP empowers ",
+                "-Should provide documentation",
+                "-Should be less than 280 characters (Tweet limit)",
+            ],
             overview:
                 "What is cross-chain interoperability? Cross-chain interoperability enables different blockchains to communicate with each other, giving smart contracts the ability to read and write data to and from other blockchains via cross-chain communication. A global standard for developers to easily build secure cross-chain services and applications. With a universal messaging interface, smart contracts can communicate across multiple blockchain networks, eliminating the need for developers to write custom code for building chain-specific integrations. CCIP opens up a new category of DeFi applications that can be built by developers for multi-chain ecosystems. For more information, here is the documentation link: https://chain.link/cross-chain",
             tokenomics:

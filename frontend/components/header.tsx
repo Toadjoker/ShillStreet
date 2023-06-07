@@ -51,6 +51,9 @@ const Header = ({ headerCallback }: any) => {
                 }
             }
         } catch (error) {
+            setIsConnecting(false)
+            Cookies.remove("jwt", { secure: true, sameSite: "none" })
+            disconnect()
             const axiosError = error as AxiosError
             if (axiosError.response) {
             }

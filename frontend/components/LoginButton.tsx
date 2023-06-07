@@ -30,11 +30,7 @@ const LoginButton = () => {
                 router.reload()
             }
         } catch (error) {
-            // if (error.response) {
-            //     Alert(AlertType.error, error.response.data.detail)
-            // } else {
-            //     Alert(AlertType.error, "An error occurred while logging in. Please try again.")
-            // }
+            Cookies.remove("jwt")
         }
     }
 

@@ -74,7 +74,7 @@ const CampaignDetails = () => {
                     </div>
 
                     <div className="h-auto mt-5 ml-14">
-                        <div className="mt-5 h-auto justify-center space-x-3 flex justify-center flex-col items-center md:items-center md:space-x-3 md:flex-row md:justify-center  ">
+                        <div className="mt-5 h-auto space-x-3 flex justify-center flex-col items-center md:items-center md:space-x-3 md:flex-row md:justify-center  ">
                             {/* left */}
                             <div className="w-2/3 mb-20  text-white space-y-3  border rounded-2xl ">
                                 {/* section 1 */}

@@ -89,6 +89,7 @@ const CampaignDetails = () => {
             if (sendContractInteraction && userTwitterId) {
                 sendContractInteraction()
             } else {
+                console.log(userTwitterId)
                 Alert(AlertType.error, "You need to log in and bind your twitter account!")
             }
         } catch (error) {
@@ -151,7 +152,7 @@ const CampaignDetails = () => {
             impressions: "50,000",
             threadDetails: ["-Should explain what CCIP empowers ", "-Should provide documentation","-Should be less than 280 characters (Tweet limit)"],
             overview:
-                "What is cross-chain interoperability? Cross-chain interoperability enables different blockchains to communicate with each other, giving smart contracts the ability to read and write data to and from other blockchains via cross-chain communication. A global standard for developers to easily build secure cross-chain services and applications. With a universal messaging interface, smart contracts can communicate across multiple blockchain networks, eliminating the need for developers to write custom code for building chain-specific integrations. CCIP opens up a new category of DeFi applications that can be built by developers for multi-chain ecosystems.",
+                "What is cross-chain interoperability? Cross-chain interoperability enables different blockchains to communicate with each other, giving smart contracts the ability to read and write data to and from other blockchains via cross-chain communication. A global standard for developers to easily build secure cross-chain services and applications. With a universal messaging interface, smart contracts can communicate across multiple blockchain networks, eliminating the need for developers to write custom code for building chain-specific integrations. CCIP opens up a new category of DeFi applications that can be built by developers for multi-chain ecosystems. For more information, here is the documentation link: https://chain.link/cross-chain",
             tokenomics:
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam erat lectus, posuere in venenatis non, varius in libero. Maecenas a nibh et erat molestie pharetra. Fusce interdum nisl nunc. Mauris sit amet nibh viverra, sollicitudin leo commodo, porta ligula.",
         }
@@ -392,7 +393,7 @@ const CampaignDetails = () => {
                                         <p
                                             className={`${space_grotesk_semibold.className} font-semibold`}
                                         >
-                                            Twitter URL
+                                            Tweet URL
                                         </p>
                                         <input
                                             className="bg-gray-200  h-8 w-full rounded-xl text-shillStreetGrey px-4"

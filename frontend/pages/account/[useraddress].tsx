@@ -208,10 +208,10 @@ const AccountOverview = () => {
                             connectedAddress === useraddress &&
                             userTwitterId != null && (
                                 <button
-                                    className="bg-blue-300 border-2 rounded"
+                                    className="bg-twitterBlue border-2 rounded"
                                     onClick={() => gettwittervalue()}
                                 >
-                                    get twitter value
+                                    Get twitter value
                                 </button>
                             )}
                     </div>

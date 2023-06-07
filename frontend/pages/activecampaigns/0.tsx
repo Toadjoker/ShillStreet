@@ -41,7 +41,7 @@ const CampaignDetails = () => {
         args: [userTwitterId, tweetId],
     })
 
-    const { write: sendContractInteraction } = useContractWrite(config)
+    const { write: sendContractInteraction, isError: error } = useContractWrite(config)
 
     // const read function
     const { data: forecastedCampaignBalance } = useContractRead({
@@ -88,6 +88,7 @@ const CampaignDetails = () => {
             setIsRequesting(true)
             if (userTwitterId) {
                 sendContractInteraction!()
+                console.log(error)
             } else {
                 console.log(userTwitterId)
                 Alert(AlertType.error, "You need to log in and bind your twitter account!")

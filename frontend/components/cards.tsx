@@ -30,7 +30,7 @@ type smartCampaignCardProps = {
     title: string
     vaultSize: number
     threadComplete: number
-    utilization: number
+    Funds_Remaining: number
     state: string
 }
 
@@ -70,7 +70,7 @@ export const SmartCampaignCard = ({
     state,
     vaultSize,
     threadComplete,
-    utilization,
+    Funds_Remaining,
 }: smartCampaignCardProps) => {
     const [participationIDcountInString, setparticipationIDcountInString] = useState<string>("0")
     const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
@@ -119,43 +119,53 @@ export const SmartCampaignCard = ({
     const isDeployed = state !== "Not deployed yet"
 
     return (
-        <div className="w-full rounded-3xl mt-2 mb-2 p-2 px-14 h-full text-white border border-white ">
+        <div className="w-full rounded-3xl mt-2 mb-2 p-2 px-14 h-full text-white border border-white">
             <h3
                 className={`${space_grotesk_bold.className} text-twitterBlue text-2xl text-center`}
             >
                 {title}
             </h3>
             <div className={`${space_grotesk_regular.className} mt-4`}>
-                <p className="text-sm text-white">Vault Size: {vaultSize}</p>
-                <p className="text-sm text-white">
-                    Threads Completed: {participationIDcountInString}
-                </p>
+                <p className="text-sm text-white justify-between">Vault Size: {vaultSize}</p>
+                {id == "0" ? (
+                    <p className="text-sm text-white">
+                        Threads Completed: {participationIDcountInString}
+                    </p>
+                ) : (
+                    <p className="text-sm text-white">Threads Completed: {threadComplete}</p>
+                )}
             </div>
             {/* progress bar and content container */}
             <div>
                 <div
                     className={`${space_grotesk_regular.className} flex justify-between text-xs mb-2`}
                 >
-                    <span>Utilzation</span>
-                    <span>{(forecastedCampaignBalanceInString / 300).toFixed(3)}%</span>
+                    <span>Funds Remaining</span>
+                    {id == "0" ? (
+                        <span>{(forecastedCampaignBalanceInString / 300).toFixed(2)}%</span>
+                    ) : (
+                        <span>0.00%</span>
+                    )}
                 </div>
                 {/* progress bar */}
                 <ProgressBar value={forecastedCampaignBalanceInString / 300} />
             </div>
             <div className="mt-5 flex justify-center">
-                <Link
-                    onClick={isDeployed ? () => dispatchToStore(id) : undefined}
-                    href={id == "0" ? `/activecampaigns/${id}` : `/campaigns/${id}`}
-                    className={`${
-                        space_grotesk_regular.className
-                    } rounded-lg p-2 text-gray-900 text-sm ${
-                        isDeployed
-                            ? "bg-twitterBlue hover:bg-gray-200 text-white"
-                            : "bg-twitterDisabledBlue cursor-not-allowed text-white"
-                    }`}
-                >
-                    View Campaign
-                </Link>
+                {id == "0" ? (
+                    <Link
+                        onClick={() => dispatchToStore(id)}
+                        href={`/activecampaigns/${id}`}
+                        className={`${space_grotesk_regular.className} rounded-lg p-2  text-sm bg-twitterBlue hover:bg-gray-200 text-white`}
+                    >
+                        View Campaign
+                    </Link>
+                ) : (
+                    <div
+                        className={`${space_grotesk_regular.className} rounded-lg p-2 text-sm bg-twitterDisabledBlue cursor-not-allowed text-white`}
+                    >
+                        View Campaign
+                    </div>
+                )}
             </div>
         </div>
     )

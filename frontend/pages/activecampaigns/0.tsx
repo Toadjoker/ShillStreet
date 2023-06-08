@@ -304,7 +304,7 @@ const CampaignDetails = () => {
                                                 >
                                                     <p>Campaign current balance</p>
                                                     <p>
-                                                        {`${campaignData?.forecastedCampaignBalanceInString} $STC`}
+                                                        {`${campaignData?.forecastedCampaignBalanceInString.toFixed(0)} $STC`}
                                                     </p>
                                                 </div>
                                             )}

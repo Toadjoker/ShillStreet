@@ -42,7 +42,7 @@ const JobListing = () => {
                                     title={item.title}
                                     vaultSize={item.vaultSize}
                                     threadComplete={item.threadComplete}
-                                    utilization={item.utilization}
+                                    Funds_Remaining={item.Funds_Remaining}
                                 />
                             </li>
                         ))}

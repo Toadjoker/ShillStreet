@@ -15,7 +15,7 @@ const CardSampleData: any = [
 const TeamSampleData: any = [
     { index: 0, img:"/images/Berger.png" ,title: "Berger", subtitle: "Smart contract developer" },
     { index: 1, img:"/images/0x_0dc.png" ,title: "0x_0dc.eth", subtitle: "Marketing" },
-    { index: 2, img:"/images/Maej.png" ,title: "Maej", subtitle: "Front-end developer" },
+    { index: 2, img:"/images/Maej.png" ,title: "Maej", subtitle: "Frontend developer" },
     { index: 3, img: "/images/0x_Charlie.png",title: "0x_Charlie.eth", subtitle: "Marketing"},
     { index: 4, img:"/images/ASTRO.png",title: "ASTRO", subtitle: "Backend developer"}
 ]

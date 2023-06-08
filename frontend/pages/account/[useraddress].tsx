@@ -145,7 +145,7 @@ const AccountOverview = () => {
             title: "Revenue Earned (STC)",
             value: 0,
         },
-        { index: 1, title: "Reach Generated", value: "Replace" },
+        { index: 1, title: "Reach Generated", value: "18" },
         {
             index: 2,
             title: "Thread Value",

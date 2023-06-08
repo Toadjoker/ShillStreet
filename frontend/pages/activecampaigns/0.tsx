@@ -95,6 +95,7 @@ const CampaignDetails = () => {
     }, [isLoading])
     useEffect(() => {
         if (isSuccess) {
+            setIfExecutionError(true)
             setIsRequesting(false)
             Alert(
                 AlertType.success,

@@ -81,7 +81,7 @@ const AccountSetup = () => {
                         </div>
                     ) : (
                         <div className="relative w-full flex">
-                            {!isConnected && (
+                            {(!isConnected || state === "signup") && (
                                 <div
                                     onClick={() => setState("initial")}
                                     className="bg-shillStreetGrey mt-3 ml-6 w-6 h-6 mr-20 flex justify-center items-center rounded-md cursor-pointer hover:bg-gray-600"

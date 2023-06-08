@@ -10,7 +10,7 @@ const Alert = (type: AlertType, message: string, description?: string) => {
     notification[type]({
         message: message,
         description: description,
-        duration: 5,
+        duration: 10,
     })
 }
 

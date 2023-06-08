@@ -7,7 +7,13 @@ import {
     space_grotesk_semibold,
 } from "../../utils/customFont"
 import { useSelector, useDispatch } from "react-redux"
-import { useContractRead, useAccount, useContractWrite, usePrepareContractWrite } from "wagmi"
+import {
+    useContractRead,
+    useAccount,
+    useContractWrite,
+    usePrepareContractWrite,
+    useWaitForTransaction,
+} from "wagmi"
 import { useState, useEffect } from "react"
 import { TwitterIdRequest } from "../../utils/apiRequests"
 import { SubmitHandler } from "react-hook-form"
@@ -18,13 +24,13 @@ import Image from "next/image"
 import Link from "next/link"
 import campapaignsContract from "../../constants/CAMPAIGN_ABI.json"
 
-const img = "https://icodrops.com/wp-content/uploads/2021/06/dopex_logo.png"
 const CampaignDetails = () => {
     const router = useRouter()
     const state = useSelector((state: any) => state)
     const { campaign } = state.campaignsReducer
     const { isConnected, address } = useAccount()
     const [isRequesting, setIsRequesting] = useState<boolean>(false)
+    const [ifExecutionError, setIfExecutionError] = useState<boolean>(false)
     const [twitterURL, setTwitterURL] = useState<string>("")
     const [tweetId, setTweetId] = useState<string>("")
     const [userTwitterId, setUserTwitterId] = useState<string>("")
@@ -32,16 +38,6 @@ const CampaignDetails = () => {
     const [forecastedCampaignBalanceInString, setForecastedCampaignBalanceInString] =
         useState<number>(0)
     const [campaignData, setCampaignData] = useState<any>()
-
-    // contract write function
-    const { config } = usePrepareContractWrite({
-        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
-        abi: campapaignsContract.abi,
-        functionName: "postTweet",
-        args: [userTwitterId, tweetId],
-    })
-
-    const { write: sendContractInteraction, isError: error } = useContractWrite(config)
 
     // const read function
     const { data: forecastedCampaignBalance } = useContractRead({
@@ -59,6 +55,54 @@ const CampaignDetails = () => {
         chainId: 11155111,
         watch: true,
     })
+
+    // contract write function
+    const { config, isError: executionError } = usePrepareContractWrite({
+        address: "0xE3F45Fa54B4dBD43D02145ff69A854080Ae112bF",
+        abi: campapaignsContract.abi,
+        functionName: "postTweet",
+        args: [userTwitterId, tweetId],
+    })
+
+    useEffect(() => {
+        setIfExecutionError(executionError)
+    }, [executionError])
+
+    const {
+        data: postTweetData,
+        write: sendContractInteraction,
+        isError: error,
+    } = useContractWrite(config)
+
+    const { isLoading, isError, isSuccess } = useWaitForTransaction({
+        chainId: 11155111,
+        hash: postTweetData?.hash,
+    })
+    useEffect(() => {
+        if (isError) {
+            Alert(AlertType.error, "error submitting transaction")
+        }
+        if (error) {
+            Alert(AlertType.error, "user declined transaction")
+            setIsRequesting(false)
+        }
+    }, [isError, error])
+    useEffect(() => {
+        if (isLoading) {
+            Alert(AlertType.success, "transaction submitted...Please Wait...")
+            setIsRequesting(true)
+        }
+    }, [isLoading])
+    useEffect(() => {
+        if (isSuccess) {
+            setIsRequesting(false)
+            Alert(
+                AlertType.success,
+                "Transaction successful! Please note that there is a 24-hour waiting period for your rewards to be processed. They will be automatically distributed after the smart contract verifies your submission. We appreciate your support, thank you!"
+            )
+        }
+    }, [isSuccess])
+
     const getTwitterId: SubmitHandler<TwitterIdType> = async (data) => {
         try {
             const response = await TwitterIdRequest.post("/users/get_twitter_id/", data)
@@ -84,21 +128,27 @@ const CampaignDetails = () => {
 
     const handleSendingTwitterURL = async () => {
         // the following are just place holders
-        try {
-            setIsRequesting(true)
-            if (userTwitterId) {
-                sendContractInteraction!()
-                console.log(error)
-            } else {
-                console.log(userTwitterId)
-                Alert(AlertType.error, "You need to log in and bind your twitter account!")
+        if (ifExecutionError) {
+            Alert(
+                AlertType.error,
+                "Either you haven't linked your Twitter account, or you've already submitted to this campaign!"
+            )
+        } else if (!twitterURL) {
+            Alert(AlertType.error, "Please enter your tweet URL for the submission!")
+        } else {
+            try {
+                setIsRequesting(true)
+                if (userTwitterId) {
+                    sendContractInteraction!()
+                    console.log(error)
+                } else {
+                    console.log(userTwitterId)
+                    Alert(AlertType.error, "You need to log in and bind your twitter account!")
+                    setIsRequesting(false)
+                }
+            } catch (error) {
+            } finally {
             }
-        } catch (error) {
-            // console.log(error)
-        } finally {
-            setTimeout(() => {
-                setIsRequesting(false)
-            }, 2000)
         }
     }
 
@@ -107,11 +157,6 @@ const CampaignDetails = () => {
             setPostData(address)
         }
     }, [address])
-
-    useEffect(() => {
-        const splitURL = twitterURL.split("/")
-        setTweetId(splitURL[splitURL.length - 1])
-    }, [twitterURL])
 
     useEffect(() => {
         const splitURL = twitterURL.split("/")
@@ -244,7 +289,7 @@ const CampaignDetails = () => {
 
                                             {campaignData?.vaultSize && (
                                                 <div
-                                                    className={`${space_grotesk_semibold.className} text-sm flex`}
+                                                    className={`${space_grotesk_semibold.className} text-sm flex justify-between`}
                                                 >
                                                     <p>Total value locked (TVL)</p>
                                                     <p className="flex justify-start">
@@ -258,7 +303,7 @@ const CampaignDetails = () => {
                                                 >
                                                     <p>Campaign current balance</p>
                                                     <p>
-                                                        {`${campaignData?.forecastedCampaignBalanceInString} USDC`}
+                                                        {`${campaignData?.forecastedCampaignBalanceInString} $STC`}
                                                     </p>
                                                 </div>
                                             )}

@@ -68,6 +68,7 @@ const AccountOverview = () => {
     const gettwittervalue = async () => {
         try {
             const token = Cookies.get("jwt")
+            Alert(AlertType.success, "Getting twiter value...")
             const response = await fetch(`https://api.shillstreet.com/users/get_tweeterValue/`, {
                 method: "POST",
 
@@ -85,7 +86,7 @@ const AccountOverview = () => {
             if (content.message == "success") {
                 Alert(
                     AlertType.success,
-                    "Getting twiter value succes, please wait a minue to check back"
+                    "Get twiter value successful, please wait a minute to check back!"
                 )
                 setSequestedTwitterValue(true)
             } else {
